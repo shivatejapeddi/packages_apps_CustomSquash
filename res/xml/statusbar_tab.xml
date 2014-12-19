@@ -31,4 +31,9 @@
         android:summary="@string/status_bar_toggle_brightness_summary"
         android:defaultValue="false" />
 
+  <PreferenceScreen
+        android:key="traffic"
+        android:fragment="com.citrus.settings.fragments.Traffic"
+        android:title="@string/network_traffic_title" />
+
 </PreferenceScreen>
