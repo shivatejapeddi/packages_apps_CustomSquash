@@ -27,6 +27,11 @@
             android:fragment="com.citrus.settings.fragments.NavbarSettings"
             android:title="@string/navigationbar_settings_title" />
 
+        <Preference
+            android:key="powermenu"
+            android:fragment="com.citrus.settings.fragments.PowerMenu"
+            android:title="@string/powermenu_category" />
+
         <ListPreference
             android:key="screenrecord_chord_type"
             android:title="@string/screen_record_chord_title"
