@@ -18,6 +18,11 @@
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" >
 
+    <Preference
+        android:key="expanded_desktop"
+        android:fragment="com.citrus.settings.fragments.ExpandedDesktop"
+        android:title="@string/expanded_desktop_category" />
+
     <DropDownPreference
         android:key="systemui_theme_style"
         android:title="@string/systemui_theme_style_title"

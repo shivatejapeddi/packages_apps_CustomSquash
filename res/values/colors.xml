@@ -23,5 +23,12 @@
     <color name="custom_squash_tab_divider_color">@color/custom_squash_tab_theme_accent</color>
     <!-- CustomSquash tab ripple (not being used, overidden from layout -->
     <color name="background_tab_pressed_ripple">#AA000000</color>
-    
+
+    <!-- Expanded desktop -->
+    <drawable name="expanded_item_bg_activated">#ffEEEEEE</drawable>
+    <drawable name="expanded_item_bg">@android:color/background_light</drawable>
+    <color name="expanded_button_color_normal">#4CAF50</color>
+    <color name="expanded_button_color_close">#F44336</color>
+    <color name="white">?android:color/white</color>
+
 </resources>
