@@ -34,6 +34,14 @@
         android:summary="@string/toast_icon_summary"
         android:defaultValue="false" />
 
+        <!-- System APP Remover -->
+        <PreferenceScreen
+                android:id="@+id/system_app_remover"
+                android:title="@string/system_app_remover"
+                android:fragment="com.citrus.settings.fragments.SystemappRemover" />
+
+         </PreferenceCategory>
+
     <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="keyguard_toggle_torch"
         android:title="@string/keyguard_torch_title"
