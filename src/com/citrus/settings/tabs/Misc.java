@@ -64,7 +64,7 @@ public class Misc extends SettingsPreferenceFragment implements
 
         mKeyguardTorch = (SwitchPreference) findPreference(KEYGUARD_TOGGLE_TORCH);
          mKeyguardTorch.setOnPreferenceChangeListener(this);
-         if (!DuUtils.deviceSupportsFlashLight(getActivity())) {
+         if (!Utils.deviceSupportsFlashLight(getActivity())) {
              prefSet.removePreference(mKeyguardTorch);
          } else {
          mKeyguardTorch.setChecked((Settings.System.getInt(resolver,
