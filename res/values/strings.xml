@@ -276,6 +276,11 @@
     <string name="clock_category_title">Clock and Date</string>
     <string name="clock_battery_settings_title">Clock and Battery settings</string>
     <string name="clock_battery_settings_summary">Options to customize clock and battery</string>
+
+    <!-- Lockscreen Torch -->
+    <string name="keyguard_torch_title">Lockscreen torch</string>
+    <string name="keyguard_torch_summary">Longpress power button while screen is off to turn on flashlight</string>
+
     <!-- clock date options -->
     <string name="clock_title_enable">Alignment</string>
     <string name="status_bar_show_clock_title">Show clock and date</string>
@@ -318,10 +323,6 @@
     <!-- statusbar icon blacklist -->
     <string name="status_bar_icon_blacklist_title">Status bar icons</string>
     <string name="status_bar_icon_blacklist_summary">Configure what icons are shown on status bar</string>
-
-    <!-- Lockscreen torch -->
-    <string name="keyguard_torch_title">Lockscreen torch</string>
-    <string name="keyguard_torch_summary">Longpress power button with screen off turns on torch</string>
 
     <!-- Lockscreen items clock, date, alarm text -->
     <string name="lockscreen_items_settings_title">Lockscreen Items</string>
