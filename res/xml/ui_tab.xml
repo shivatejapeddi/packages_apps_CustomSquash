@@ -23,6 +23,11 @@
         android:fragment="com.citrus.settings.fragments.ExpandedDesktop"
         android:title="@string/expanded_desktop_category" />
 
+    <PreferenceScreen
+        android:fragment="com.citrus.settings.fragments.LockScreenItemsSettings"
+        android:key="lockscreen_items"
+        android:title="@string/lockscreen_items_settings_title" />
+
     <com.citrus.settings.preference.GlobalSettingSwitchPreference
         android:key="wake_when_plugged_or_unplugged"
         android:title="@string/wake_when_plugged_or_unplugged_title"
