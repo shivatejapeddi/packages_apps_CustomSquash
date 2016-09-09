@@ -450,4 +450,8 @@
     <string name="sum7">#CAFftw!</string>
     <string name="sum8">#HakunaMatata!</string>
 
+    <!-- Toast Icons -->
+    <string name="toast_icon_title">Toast icon</string>
+    <string name="toast_icon_summary">Display the app icon corresponding with the toast</string>
+
 </resources>
