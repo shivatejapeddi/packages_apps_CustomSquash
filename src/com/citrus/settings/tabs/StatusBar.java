@@ -34,7 +34,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.android.settings.Utils;
 
-public class Ui extends SettingsPreferenceFragment implements
+public class StatusBar extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     @Override
