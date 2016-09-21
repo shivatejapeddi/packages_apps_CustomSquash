@@ -51,7 +51,7 @@ public class Buttons extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getActivity().getContentResolver();
         PreferenceScreen prefScreen = getPreferenceScreen();
-        Resources res = getResources()
+        Resources res = getResources();
 
         //volume rocker wake
         mVolumeRockerWake = (SwitchPreference) findPreference(VOLUME_ROCKER_WAKE);

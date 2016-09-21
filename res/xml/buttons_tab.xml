@@ -17,6 +17,11 @@
     android:title="@string/buttons_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+        <Preference
+            android:key="navigation_options"
+            android:fragment="com.citrus.settings.fragments.NavbarSettings"
+            android:title="@string/navigationbar_settings_title" />
+
         <SwitchPreference
             android:key="volume_rocker_wake"
             android:summary="@string/volume_rocker_wake_summary"
