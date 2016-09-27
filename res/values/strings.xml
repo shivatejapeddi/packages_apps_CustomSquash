@@ -18,17 +18,21 @@
     <!-- Custom Squash menus -->
     <string name="custom_squash_title">Custom Squash!</string>
     <string name="keywords_citrus">Citrus-CAF
-    
+
     <!-- Tabs -->
     <string name="ui_title">Ui</string>
     <string name="buttons_title">Buttons</string>
-    
+
     <!-- Volume rocker wake -->
     <string name="volume_rocker_wake_title">Volume rocker wake</string>
     <string name="volume_rocker_wake_summary">Pressing the volume keys will wake your device</string>
-    
+
     <!-- Volume rocker music control -->
     <string name="volume_rocker_music_controls_title">Playback control</string>
     <string name="volume_rocker_music_controls_summary">When the screen is off, long-pressing the volume keys will seek music tracks</string>
-   
-    </resources>
+
+    <!-- Wake on Plug -->
+    <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
+    <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
+
+</resources>
