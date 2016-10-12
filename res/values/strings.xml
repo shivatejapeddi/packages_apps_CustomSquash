@@ -15,7 +15,10 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Cardinal Wings menus -->
-    <string name="cardinal_wings_title">The Wings!</string>
-    <string name="keywords_citrus">Cardinal-AOSP</string>
+    <!-- Custom Squash menus -->
+    <string name="custom_squash_title">Custom Squash!</string>
+    <string name="keywords_citrus">Citrus-CAF
+    
+    <!-- Tabs -->
+    <string name="buttons_title">Buttons</string>
     </resources>
