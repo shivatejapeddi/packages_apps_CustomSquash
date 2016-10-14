@@ -22,6 +22,7 @@ import com.android.settings.Utils;
 import com.android.settings.SettingsPreferenceFragment;
 
 import com.citrus.settings.tabs.Buttons;
+import com.citrus.settings.tabs.Ui;
 
 import com.citrus.settings.PagerSlidingTabStrip;
 
@@ -43,7 +44,7 @@ public class CustomSquash extends SettingsPreferenceFragment {
         mContainer = container;
         View view = inflater.inflate(R.layout.custom_squash, container, false);
         mViewPager = (ViewPager) view.findViewById(R.id.pager);
-	mTabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
+	      mTabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
 
         StatusBarAdapter StatusBarAdapter = new StatusBarAdapter(getFragmentManager());
         mViewPager.setAdapter(StatusBarAdapter);
@@ -76,7 +77,8 @@ public class CustomSquash extends SettingsPreferenceFragment {
 
         public StatusBarAdapter(FragmentManager fm) {
             super(fm);
-            frags[0] = new Buttons();
+            frags[0] = new Ui();
+            frags[1] = new Buttons();
         }
 
         @Override
@@ -98,7 +100,8 @@ public class CustomSquash extends SettingsPreferenceFragment {
     private String[] getTitles() {
         String titleString[];
         titleString = new String[]{
-        getString(R.string.buttons_title)};
+            getString(R.string.ui_title),
+            getString(R.string.buttons_title)};
         return titleString;
     }
 

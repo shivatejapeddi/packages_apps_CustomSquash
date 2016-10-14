@@ -20,6 +20,7 @@
     <string name="keywords_citrus">Citrus-CAF
     
     <!-- Tabs -->
+    <string name="ui_title">Ui</string>
     <string name="buttons_title">Buttons</string>
     
     <!-- Volume rocker wake -->
