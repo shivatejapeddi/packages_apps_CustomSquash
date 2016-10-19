@@ -259,7 +259,7 @@
     <string name="hardware_keys_action_sleep">Turn screen off</string>
 
     <!-- Quick settings tiles columns and rows config -->
-    <string name="quicksettings_category">Quick settings</string> 
+    <string name="quicksettings_category">Quick settings</string>
     <string name="qs_layout_category">QS tiles layout</string>
     <string name="qs_rows_portrait_title">Rows (portrait)</string>
     <string name="qs_rows_landscape_title">Rows (landscape)</string>
@@ -269,7 +269,7 @@
     <!-- General strings -->
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    
+
     <!-- Clock settings -->
     <string name="clock_settings_title">Clock settings</string>
     <string name="clock_settings_summary">Custom clock and date options</string>
@@ -296,7 +296,7 @@
     <string name="clock_date_style_lowercase">Lowercase</string>
     <string name="clock_date_style_uppercase">Uppercase</string>
     <string name="clock_date_format_custom">Custom java format</string>
-    
+
     <!-- color tuner options -->
     <string name="display_color_title">Screen color &amp; appearance</string>
     <string name="display_color_summary">screen color controls and night mode</string>
@@ -327,5 +327,9 @@
     <!-- Volume do not disturb switch -->
     <string name="vol_zen_title">Do not disturb switch</string>
     <string name="vol_zen_summary">Show do not disturb swith on volume panel</string>
-    
+
+    <!-- Lockscreen torch -->
+    <string name="keyguard_torch_title">Lockscreen torch</string>
+    <string name="keyguard_torch_summary">Longpress power button with screen off turns on torch</string>
+
 </resources>
