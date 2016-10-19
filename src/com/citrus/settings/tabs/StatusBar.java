@@ -41,7 +41,7 @@ public class StatusBar extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.ui_tab);
+        addPreferencesFromResource(R.xml.statusbar_tab);
 
         ContentResolver resolver = getActivity().getContentResolver();
     }

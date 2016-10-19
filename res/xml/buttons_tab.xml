@@ -21,7 +21,7 @@
             android:key="hardware_keys_settings"
             android:title="@string/hardware_keys_settings_title"
             android:fragment="com.citrus.settings.fragments.HardwareKeySettings" />
-            
+
         <Preference
             android:key="navigation_options"
             android:fragment="com.citrus.settings.fragments.NavbarSettings"
@@ -40,4 +40,22 @@
             android:title="@string/volume_rocker_music_controls_title"
             android:defaultValue="true"
             android:dependency="volume_rocker_wake" />
+
+        <com.citrus.settings.preference.SecureSettingSwitchPreference
+            android:key="sysui_volume_down_silent"
+            android:title="@string/volbtn_down_zen_title"
+            android:summary="@string/volbtn_down_zen_summary"
+            android:defaultValue="true"/>
+
+        <com.citrus.settings.preference.SecureSettingSwitchPreference
+            android:key="sysui_volume_up_silent"
+            android:title="@string/volbtn_up_zen_title"
+            android:summary="@string/volbtn_up_zen_summary"
+            android:defaultValue="true" />
+
+        <com.citrus.settings.preference.SecureSettingSwitchPreference
+            android:key="sysui_show_full_zen"
+            android:title="@string/vol_zen_title"
+            android:summary="@string/vol_zen_summary"
+            android:defaultValue="false"/>
 </PreferenceScreen>
