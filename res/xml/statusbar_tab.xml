@@ -21,7 +21,6 @@
   <Preference
     android:key="quicksettings"
     android:fragment="com.citrus.settings.fragments.QuickSettings"
-    android:layout="@layout/preference_systemui_tuner_qs"
     android:title="@string/quicksettings_category" />
 
     <PreferenceScreen
