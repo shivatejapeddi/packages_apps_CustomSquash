@@ -46,7 +46,12 @@
             android:dependency="status_bar_citrus_logo" />
 
      </PreferenceCategory>
- 
+
+    <PreferenceScreen
+        android:fragment="com.citrus.settings.fragments.CarrierLabelSettings"
+        android:title="@string/carrier_label_settings_title"
+        android:summary="@string/carrier_label_settings_summary" />
+
     <PreferenceScreen
             android:title="@string/power_notification_title"
             android:summary="@string/power_notification_summary">
