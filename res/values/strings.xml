@@ -307,9 +307,6 @@
     <!-- color tuner options -->
     <string name="display_color_title">Screen color &amp; appearance</string>
     <string name="display_color_summary">screen color controls and night mode</string>
-    <!-- Navbar tuner -->
-    <string name="navbar_tuner_title">Navbar tuner</string>
-    <string name="navbar_tuner_summary">Customize buttons and layout</string>
     <!-- multiwindow navbar gesture -->
     <string name="nav_gesture_title">Enable multiwindow swipe-up gesture</string>
     <string name="nav_gesture_summary">Gesture to enter multiwindow by swiping up from the recents button</string>
@@ -325,15 +322,6 @@
     <!-- statusbar icon blacklist -->
     <string name="status_bar_icon_blacklist_title">Status bar icons</string>
     <string name="status_bar_icon_blacklist_summary">Configure what icons are shown on status bar</string>
-    <!-- Volume down enter do not disturb -->
-    <string name="volbtn_down_zen_title">Volume down for do not disturb</string>
-    <string name="volbtn_down_zen_summary">allow volume down to enter do not disturb mode</string>
-    <!-- Volume up exit do not disturb -->
-    <string name="volbtn_up_zen_title">Volume up in do not disturb</string>
-    <string name="volbtn_up_zen_summary">allow volume up to exit do not disturb mode</string>
-    <!-- Volume do not disturb switch -->
-    <string name="vol_zen_title">Do not disturb switch</string>
-    <string name="vol_zen_summary">Show do not disturb swith on volume panel</string>
 
     <!-- Lockscreen torch -->
     <string name="keyguard_torch_title">Lockscreen torch</string>
