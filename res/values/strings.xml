@@ -325,18 +325,6 @@
     <string name="lockscreen_date_title">Lockscreen date</string>
     <string name="lockscreen_alarm_title">Lockscreen alarm text</string>
 
-
-    <!-- Citrus-CAF StatusBar Brand Logo -->
-    <string name="statusbar_logo">Statusbar Logo</string>
-    <string name="status_bar_logo_category_title">Statusbar logo</string>
-    <string name="status_bar_citrus_logo_title">Citrus-CAF logo</string>
-    <string name="status_bar_citrus_logo_summary">Enable to show Citrus-CAF logo on the left side of statusbar</string>
-    <string name="status_bar_citrus_logo_color">Citrus-CAF logo color</string>
-    <string name="status_bar_citrus_logo_position">Logo location</string>
-    <string name="status_bar_citrus_logo_position_summary">Choose which side to display the logo on, left or right</string>
-    <string name="status_bar_logo_position_right">Right</string>
-    <string name="status_bar_logo_position_left">Left</string>
-
     <!-- fingerprint authentication vibration -->
     <string name="fprint_sucess_vib_title">Fingerprint authentication vibration</string>
     <string name="fprint_sucess_vib_summary">Vibrate on successful fingerprint authentication</string>
