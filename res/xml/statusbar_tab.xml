@@ -102,11 +102,4 @@
         android:title="@string/ticker_screen_title"
         android:fragment="com.citrus.settings.fragments.StatusBarTickerSettings" />
 
-  <!-- Heads Up switch -->
-  <com.citrus.settings.preference.GlobalSettingSwitchPreference
-        android:key="heads_up_notifications_enabled"
-        android:title="@string/heads_up_switch_title"
-        android:summary="@string/heads_up_switch_summary"
-        android:defaultValue="true" />
-
 </PreferenceScreen>
