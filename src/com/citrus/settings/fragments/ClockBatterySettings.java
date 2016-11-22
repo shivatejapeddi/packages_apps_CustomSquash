@@ -1,33 +1,42 @@
 /*
- * Copyright (C) 2016 The Pure Nexus Project
+ *  Copyright (C) 2016 Dirty Unicorns
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+*/
 package com.citrus.settings.fragments;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.TrafficStats;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.PreferenceCategory;
+import android.support.v14.preference.PreferenceFragment;
 import android.support.v14.preference.SwitchPreference;
+import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.text.format.DateFormat;
@@ -36,11 +45,25 @@ import android.widget.EditText;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.settings.Utils;
+import com.android.settings.search.Indexable;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.internal.util.custom.CustomUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class ClockSettings extends SettingsPreferenceFragment
-        implements OnPreferenceChangeListener {
+import com.citrus.settings.preference.CustomSeekBarPreference;
+
+public class ClockBatterySettings extends SettingsPreferenceFragment implements
+        Preference.OnPreferenceChangeListener, Indexable {
+
+  private static final String TAG = "ClockBatterySettings";
+
+
+    private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+    private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 
     private static final String PREF_CLOCK_STYLE = "clock_style";
     private static final String PREF_AM_PM_STYLE = "status_bar_am_pm";
@@ -53,7 +76,10 @@ public class ClockSettings extends SettingsPreferenceFragment
 
     public static final int CLOCK_DATE_STYLE_LOWERCASE = 1;
     public static final int CLOCK_DATE_STYLE_UPPERCASE = 2;
+
     private static final int CUSTOM_CLOCK_DATE_FORMAT_INDEX = 18;
+    private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
+    private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
 
     private ListPreference mClockStyle;
     private ListPreference mClockAmPmStyle;
@@ -61,10 +87,15 @@ public class ClockSettings extends SettingsPreferenceFragment
     private ListPreference mClockDateStyle;
     private ListPreference mClockDatePosition;
     private ListPreference mClockDateFormat;
+    private ListPreference mStatusBarBattery;
+    private ListPreference mStatusBarBatteryShowPercent;
     private SwitchPreference mStatusBarClock;
     private SwitchPreference mStatusBarClockSeconds;
 
     private boolean mCheckPreferences;
+
+    private int mStatusBarBatteryValue;
+    private int mStatusBarBatteryShowPercentValue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,11 +106,12 @@ public class ClockSettings extends SettingsPreferenceFragment
     private PreferenceScreen createCustomView() {
         mCheckPreferences = false;
         PreferenceScreen prefSet = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
         if (prefSet != null) {
             prefSet.removeAll();
         }
 
-        addPreferencesFromResource(R.xml.clock_settings);
+        addPreferencesFromResource(R.xml.clock_battery_settings);
         prefSet = getPreferenceScreen();
 
         PackageManager pm = getPackageManager();
@@ -89,6 +121,22 @@ public class ClockSettings extends SettingsPreferenceFragment
         } catch (Exception e) {
             return null;
         }
+
+        mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY_STYLE);
+        mStatusBarBatteryValue = Settings.Secure.getInt(resolver,
+                Settings.Secure.STATUS_BAR_BATTERY_STYLE, 0);
+        mStatusBarBattery.setValue(Integer.toString(mStatusBarBatteryValue));
+        mStatusBarBattery.setSummary(mStatusBarBattery.getEntry());
+        mStatusBarBattery.setOnPreferenceChangeListener(this);
+
+        mStatusBarBatteryShowPercent =
+                (ListPreference) findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
+        mStatusBarBatteryShowPercentValue = Settings.Secure.getInt(resolver,
+                Settings.Secure.STATUS_BAR_SHOW_BATTERY_PERCENT, 0);
+        mStatusBarBatteryShowPercent.setValue(Integer.toString(mStatusBarBatteryShowPercentValue));
+        mStatusBarBatteryShowPercent.setSummary(mStatusBarBatteryShowPercent.getEntry());
+        mStatusBarBatteryShowPercent.setOnPreferenceChangeListener(this);
+        enableStatusBarBatteryDependents(mStatusBarBatteryValue);
 
         mClockStyle = (ListPreference) findPreference(PREF_CLOCK_STYLE);
         mClockStyle.setOnPreferenceChangeListener(this);
@@ -168,13 +216,38 @@ public class ClockSettings extends SettingsPreferenceFragment
         return MetricsEvent.CUSTOM_SQUASH;
     }
 
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        // If we didn't handle it, let preferences handle it.
+        return super.onPreferenceTreeClick(preference);
+    }
+
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (!mCheckPreferences) {
             return false;
         }
         AlertDialog dialog;
 
-        if (preference == mClockAmPmStyle) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mStatusBarBattery) {
+            mStatusBarBatteryValue = Integer.valueOf((String) newValue);
+            int index = mStatusBarBattery.findIndexOfValue((String) newValue);
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.STATUS_BAR_BATTERY_STYLE, mStatusBarBatteryValue);
+            mStatusBarBattery.setSummary(
+                    mStatusBarBattery.getEntries()[index]);
+
+            enableStatusBarBatteryDependents(mStatusBarBatteryValue);
+        return true;
+        } else if (preference == mStatusBarBatteryShowPercent) {
+            mStatusBarBatteryShowPercentValue = Integer.valueOf((String) newValue);
+            int index = mStatusBarBatteryShowPercent.findIndexOfValue((String) newValue);
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.STATUS_BAR_SHOW_BATTERY_PERCENT, mStatusBarBatteryShowPercentValue);
+            mStatusBarBatteryShowPercent.setSummary(
+                    mStatusBarBatteryShowPercent.getEntries()[index]);
+        return true;
+        } else if (preference == mClockAmPmStyle) {
             int val = Integer.parseInt((String) newValue);
             int index = mClockAmPmStyle.findIndexOfValue((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
@@ -307,4 +380,35 @@ public class ClockSettings extends SettingsPreferenceFragment
         }
         mClockDateFormat.setEntries(parsedDateEntries);
     }
+
+    private void enableStatusBarBatteryDependents(int batteryIconStyle) {
+        if (batteryIconStyle == STATUS_BAR_BATTERY_STYLE_HIDDEN ||
+                batteryIconStyle == STATUS_BAR_BATTERY_STYLE_TEXT) {
+            mStatusBarBatteryShowPercent.setEnabled(false);
+        } else {
+            mStatusBarBatteryShowPercent.setEnabled(true);
+        }
+    }
+
+    public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.clock_battery_settings;
+                    result.add(sir);
+
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    ArrayList<String> result = new ArrayList<String>();
+                    return result;
+                }
+        };
 }
