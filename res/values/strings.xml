@@ -270,8 +270,9 @@
     <string name="colors_title">Colors</string>
 
     <!-- Clock settings -->
-    <string name="clock_settings_title">Clock settings</string>
-    <string name="clock_settings_summary">Custom clock and date options</string>
+    <string name="clock_category_title">Clock and Date</string>
+    <string name="clock_battery_settings_title">Clock and Battery settings</string>
+    <string name="clock_battery_settings_summary">Options to customize clock and battery</string>
     <!-- clock date options -->
     <string name="clock_title_enable">Alignment</string>
     <string name="status_bar_show_clock_title">Show clock and date</string>
@@ -414,7 +415,7 @@
     <string name="hardware_keys_disable_title">Disable navigation buttons</string>
 
     <!-- Battery customizations -->
-    <string name="status_bar_battery_style_category">Battery</string>
+    <string name="battery_category_title">Battery</string>
     <string name="status_bar_battery_style_title">Battery status style</string>
     <string name="status_bar_battery_style_icon_portrait">Icon portrait</string>
     <string name="status_bar_battery_style_icon_landscape">Icon landscape</string>
