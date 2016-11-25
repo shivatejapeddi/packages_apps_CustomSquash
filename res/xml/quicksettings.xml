@@ -17,6 +17,11 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/quicksettings_category" >
 
+     <com.citrus.settings.preference.SecureSettingSwitchPreference
+            android:key="lockscreen_qs_disabled"
+            android:title="@string/lockscreen_qs_disabled_title"
+            android:summary="@string/lockscreen_qs_disabled_summary"/>
+
     <PreferenceCategory
         android:key="qs_layout_category"
         android:title="@string/qs_layout_category">
