@@ -64,6 +64,7 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
 
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+    private static final String STATUS_BAR_BATTERY_STYLE_TILE = "status_bar_battery_style_tile";
 
     private static final String PREF_CLOCK_STYLE = "clock_style";
     private static final String PREF_AM_PM_STYLE = "status_bar_am_pm";
@@ -78,6 +79,7 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
     public static final int CLOCK_DATE_STYLE_UPPERCASE = 2;
 
     private static final int CUSTOM_CLOCK_DATE_FORMAT_INDEX = 18;
+    private static final int STATUS_BAR_BATTERY_STYLE_PORTRAIT = 0;
     private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
 
@@ -91,6 +93,7 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
     private ListPreference mStatusBarBatteryShowPercent;
     private SwitchPreference mStatusBarClock;
     private SwitchPreference mStatusBarClockSeconds;
+    private SwitchPreference mQsBatteryTitle;
 
     private boolean mCheckPreferences;
 
@@ -128,6 +131,11 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
         mStatusBarBattery.setValue(Integer.toString(mStatusBarBatteryValue));
         mStatusBarBattery.setSummary(mStatusBarBattery.getEntry());
         mStatusBarBattery.setOnPreferenceChangeListener(this);
+
+        mQsBatteryTitle = (SwitchPreference) findPreference(STATUS_BAR_BATTERY_STYLE_TILE);
+        mQsBatteryTitle.setChecked((Settings.Secure.getInt(resolver,
+                Settings.Secure.STATUS_BAR_BATTERY_STYLE_TILE, 1) == 1));
+        mQsBatteryTitle.setOnPreferenceChangeListener(this);
 
         mStatusBarBatteryShowPercent =
                 (ListPreference) findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
@@ -246,6 +254,11 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
                     Settings.Secure.STATUS_BAR_SHOW_BATTERY_PERCENT, mStatusBarBatteryShowPercentValue);
             mStatusBarBatteryShowPercent.setSummary(
                     mStatusBarBatteryShowPercent.getEntries()[index]);
+        return true;
+        } else if  (preference == mQsBatteryTitle) {
+            boolean checked = ((SwitchPreference)preference).isChecked();
+            Settings.Secure.putInt(getActivity().getContentResolver(),
+                    Settings.Secure.STATUS_BAR_BATTERY_STYLE_TILE, checked ? 1:0);
         return true;
         } else if (preference == mClockAmPmStyle) {
             int val = Integer.parseInt((String) newValue);
@@ -385,8 +398,12 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
         if (batteryIconStyle == STATUS_BAR_BATTERY_STYLE_HIDDEN ||
                 batteryIconStyle == STATUS_BAR_BATTERY_STYLE_TEXT) {
             mStatusBarBatteryShowPercent.setEnabled(false);
+            mQsBatteryTitle.setEnabled(false);
+        } else if (batteryIconStyle == STATUS_BAR_BATTERY_STYLE_PORTRAIT) {
+            mQsBatteryTitle.setEnabled(false);
         } else {
             mStatusBarBatteryShowPercent.setEnabled(true);
+            mQsBatteryTitle.setEnabled(true);
         }
     }
 
