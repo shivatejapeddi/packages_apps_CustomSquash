@@ -16,22 +16,29 @@
 
 package com.citrus.settings.tabs;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v14.preference.SwitchPreference;
-import android.provider.Settings;
+import android.text.Spannable;
+import android.text.TextUtils;
+import android.widget.EditText;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 
 import com.citrus.settings.utils.Utils;
@@ -46,11 +53,15 @@ public class Ui extends SettingsPreferenceFragment implements
 
     private static final String SCREENSHOT_TYPE = "screenshot_type";
 
+    private static final String PREF_CUSTOM_SETTINGS_SUMMARY = "custom_settings_summary";
+
     private FingerprintManager mFingerprintManager;
 
     private SystemSettingSwitchPreference mLsTorch;
     private ListPreference mScreenshotType;
     private SystemSettingSwitchPreference mFingerprintVib;
+    private Preference mCustomSummary;
+    private String mCustomSummaryText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,7 +88,10 @@ public class Ui extends SettingsPreferenceFragment implements
                 Settings.System.SCREENSHOT_TYPE, 0);
         mScreenshotType.setValue(String.valueOf(mScreenshotTypeValue));
         mScreenshotType.setSummary(mScreenshotType.getEntry());
-        mScreenshotType.setOnPreferenceChangeListener(this);
+        mScreenshotType.setOnPreferenceChangeListener(this)
+
+        mCustomSummary = (Preference) findPreference(PREF_CUSTOM_SETTINGS_SUMMARY);
+        updateCustomSummaryTextString();
     }
 
     @Override
@@ -105,7 +119,47 @@ public class Ui extends SettingsPreferenceFragment implements
                     Settings.System.SCREENSHOT_TYPE, mScreenshotTypeValue);
             mScreenshotType.setValue(String.valueOf(mScreenshotTypeValue));
             return true;
-         }
+            }
         return false;
+    }
+
+     @Override
+     public boolean onPreferenceTreeClick(Preference preference) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mCustomSummary) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            alert.setTitle(R.string.custom_summary_title);
+            alert.setMessage(R.string.custom_summary_explain);
+
+            // Set an EditText view to get user input
+            final EditText input = new EditText(getActivity());
+            input.setText(TextUtils.isEmpty(mCustomSummaryText) ? "" : mCustomSummaryText);
+            input.setSelection(input.getText().length());
+            alert.setView(input);
+            alert.setPositiveButton(getString(android.R.string.ok),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            String value = ((Spannable) input.getText()).toString().trim();
+                            Settings.System.putString(resolver, Settings.System.CUSTOM_SETTINGS_SUMMARY, value);
+                            updateCustomSummaryTextString();
+                        }
+                    });
+            alert.setNegativeButton(getString(android.R.string.cancel), null);
+            alert.show();
+        } else {
+            return super.onPreferenceTreeClick(preference);
+        }
+        return false;
+    }
+
+    private void updateCustomSummaryTextString() {
+        mCustomSummaryText = Settings.System.getString(
+                getActivity().getContentResolver(), Settings.System.CUSTOM_SETTINGS_SUMMARY);
+
+        if (TextUtils.isEmpty(mCustomSummaryText)) {
+            mCustomSummary.setSummary(R.string.custom_title_summary);
+        } else {
+            mCustomSummary.setSummary(mCustomSummaryText);
+        }
     }
 }
