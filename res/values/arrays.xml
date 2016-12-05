@@ -351,4 +351,16 @@
         <item>2</item>
     </string-array>
 
+   <!-- Custom Summaries -->
+    <string-array name="custom_summaries">
+         <item>@string/sum1</item>
+         <item>@string/sum2</item>
+         <item>@string/sum3</item>
+         <item>@string/sum4</item>
+         <item>@string/sum5</item>
+         <item>@string/sum6</item>
+         <item>@string/sum7</item>
+
+     </string-array>
+
 </resources>
