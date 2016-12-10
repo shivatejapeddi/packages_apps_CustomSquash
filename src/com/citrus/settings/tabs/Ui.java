@@ -51,14 +51,11 @@ public class Ui extends SettingsPreferenceFragment implements
 
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
 
-    private static final String SCREENSHOT_TYPE = "screenshot_type";
-
     private static final String PREF_CUSTOM_SETTINGS_SUMMARY = "custom_settings_summary";
 
     private FingerprintManager mFingerprintManager;
 
     private SystemSettingSwitchPreference mLsTorch;
-    private ListPreference mScreenshotType;
     private SystemSettingSwitchPreference mFingerprintVib;
     private Preference mCustomSummary;
     private String mCustomSummaryText;
@@ -83,13 +80,6 @@ public class Ui extends SettingsPreferenceFragment implements
             prefScreen.removePreference(mLsTorch);
         }
 
-        mScreenshotType = (ListPreference) findPreference(SCREENSHOT_TYPE);
-        int mScreenshotTypeValue = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.SCREENSHOT_TYPE, 0);
-        mScreenshotType.setValue(String.valueOf(mScreenshotTypeValue));
-        mScreenshotType.setSummary(mScreenshotType.getEntry());
-        mScreenshotType.setOnPreferenceChangeListener(this)
-
         mCustomSummary = (Preference) findPreference(PREF_CUSTOM_SETTINGS_SUMMARY);
         updateCustomSummaryTextString();
     }
@@ -109,18 +99,9 @@ public class Ui extends SettingsPreferenceFragment implements
         super.onPause();
     }
 
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
-        if  (preference == mScreenshotType) {
-            int mScreenshotTypeValue = Integer.parseInt(((String) objValue).toString());
-            mScreenshotType.setSummary(
-                    mScreenshotType.getEntries()[mScreenshotTypeValue]);
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.SCREENSHOT_TYPE, mScreenshotTypeValue);
-            mScreenshotType.setValue(String.valueOf(mScreenshotTypeValue));
-            return true;
-            }
-        return false;
+     public boolean onPreferenceChange(Preference preference, Object objValue) {
+       final String key = preference.getKey();
+       return true;
     }
 
      @Override
