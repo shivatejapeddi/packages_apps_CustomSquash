@@ -53,11 +53,22 @@
 
 	</PreferenceCategory>
 
+       <PreferenceCategory
+        android:key="headsup_notifications_category"
+        android:title="@string/headsup_category">
+
+     <PreferenceScreen
+        android:key="heads_up_settings"
+        android:title="@string/headsup_settings_title"
+        android:fragment="com.citrus.settings.fragments.HeadsUpSettings"/>
+
   <!-- Dialer Forced Heads up switch -->
   <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="always_headsup_dialer"
         android:title="@string/always_headsup_dialer_title"
         android:summary="@string/always_headsup_dialer_summary"
         android:defaultValue="false" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

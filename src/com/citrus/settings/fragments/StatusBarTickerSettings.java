@@ -64,14 +64,17 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
     private static final int MENU_RESET = Menu.FIRST;
     private static final int DLG_RESET  = 0;
 
+    private static final String KEY_HEADS_UP_SETTINGS = "heads_up_settings";
+
     private ListPreference mShowTicker;
     private ColorPickerPreference mTextColor;
     private ColorPickerPreference mIconColor;
     private CustomSeekBarPreference mTickerFontSize;
     private ListPreference mTickerFontStyle;
+    private PreferenceScreen mHeadsUp;
 
     private ContentResolver mResolver;
-
+   
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -283,11 +286,25 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
         @Override
         public void onCancel(DialogInterface dialog) {
 
+    mHeadsUp = (PreferenceScreen) findPreference(KEY_HEADS_UP_SETTINGS);
+
         }
+    private boolean getUserHeadsUpState() {
+         return Settings.Global.getInt(getContentResolver(),
+                Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED,
+                Settings.Global.HEADS_UP_ON) != 0;
+      }
     }
 
     @Override
     protected int getMetricsCategory() {
         return MetricsEvent.CUSTOM_SQUASH;
+    }
+
+    @Override
+      public void onResume() {
+          super.onResume();
+        mHeadsUp.setSummary(getUserHeadsUpState()
+                ? R.string.summary_heads_up_enabled : R.string.summary_heads_up_disabled);
     }
 }
