@@ -23,6 +23,7 @@
     <string name="ui_title">Ui</string>
     <string name="buttons_title">Buttons</string>
     <string name="statusbar_title">StatusBar</string>
+    <string name="garnish_title">Garnish</string>
 
     <!-- Volume rocker wake -->
     <string name="volume_rocker_wake_title">Volume rocker wake</string>
