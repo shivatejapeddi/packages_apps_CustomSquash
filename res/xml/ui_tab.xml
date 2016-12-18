@@ -18,16 +18,6 @@
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" >
 
-   <Preference
-        android:key="custom_settings_summary"
-        android:title="@string/custom_settings_summary_title" />
-
-    <com.citrus.settings.preference.SystemSettingSwitchPreference
-        android:key="custom_settings_random_summary"
-        android:title="@string/custom_summary_randomize_title"
-        android:summary="@string/custom_summary_randomize_explain"
-        android:defaultValue="false" />
-
     <Preference
         android:key="expanded_desktop"
         android:fragment="com.citrus.settings.fragments.ExpandedDesktop"

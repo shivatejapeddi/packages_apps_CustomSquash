@@ -23,7 +23,7 @@
     <string name="ui_title">Ui</string>
     <string name="buttons_title">Buttons</string>
     <string name="statusbar_title">StatusBar</string>
-    <string name="garnish_title">Garnish</string>
+    <string name="misc_title">Misc</string>
 
     <!-- Volume rocker wake -->
     <string name="volume_rocker_wake_title">Volume rocker wake</string>
@@ -435,9 +435,9 @@
     <string name="lockscreen_qs_disabled_summary">Disable shortcuts and expanding quick settings on secure lock screens</string>
 
     <!-- Custom summary text -->
-    <string name="custom_settings_summary_title">Custom summary text for CustomSquash</string>
-    <string name="custom_summary_title">Custom CustomSquash summary</string>
-    <string name="custom_summary_explain">Please enter a new summary. Leave blank to revert to default text.</string>
+    <string name="custom_settings_summary_title">Custom Squash summary text</string>
+    <string name="custom_summary_title">Custom Squash summary</string>
+    <string name="custom_summary_explain">Enter new summary text. Leave blank to revert to default.</string>
 
     <!-- Custom summaries -->
     <string name="custom_summary_randomize_title">Randomize summary</string>
@@ -450,5 +450,6 @@
     <string name="sum5">#LogcatOrGTFO!</string>
     <string name="sum6">#LemonTinge</string>
     <string name="sum7">#CAFftw!</string>
+    <string name="sum8">#HakunaMatata!</string>
 
 </resources>
