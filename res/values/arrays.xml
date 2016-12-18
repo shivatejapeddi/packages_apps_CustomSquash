@@ -360,6 +360,7 @@
          <item>@string/sum5</item>
          <item>@string/sum6</item>
          <item>@string/sum7</item>
+         <item>@string/sum8</item>
      </string-array>
 
     <string-array name="text_charging_symbol_entries" translatable="false">
