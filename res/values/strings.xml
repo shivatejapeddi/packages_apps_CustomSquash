@@ -299,9 +299,6 @@
     <string name="clock_date_style_uppercase">Uppercase</string>
     <string name="clock_date_format_custom">Custom java format</string>
 
-    <!-- color tuner options -->
-    <string name="display_color_title">Screen color &amp; appearance</string>
-    <string name="display_color_summary">screen color controls and night mode</string>
     <!-- multiwindow navbar gesture -->
     <string name="nav_gesture_title">Enable multiwindow swipe-up gesture</string>
     <string name="nav_gesture_summary">Gesture to enter multiwindow by swiping up from the recents button</string>
