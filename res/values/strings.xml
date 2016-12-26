@@ -259,6 +259,7 @@
     <string name="qs_tile_title_visibility_title">QS tile titles</string>
     <string name="qs_tile_title_visibility_summary_on">QS tiles titles are now visible</string>
     <string name="qs_tile_title_visibility_summary_off">QS tiles titles are now gone</string>
+    <string name="qs_small_tiles_title">Small QS tiles</string>
 
     <!-- General strings -->
     <string name="cancel">Cancel</string>
