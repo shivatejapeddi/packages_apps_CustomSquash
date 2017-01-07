@@ -152,7 +152,7 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
 
         mForceChargeBatteryText = (SwitchPreference) findPreference(FORCE_CHARGE_BATTERY_TEXT);
         mForceChargeBatteryText.setChecked((Settings.Secure.getInt(resolver,
-                Settings.Secure.FORCE_CHARGE_BATTERY_TEXT, 1) == 1));
+                Settings.Secure.FORCE_CHARGE_BATTERY_TEXT, 0) == 1));
         mForceChargeBatteryText.setOnPreferenceChangeListener(this);
 
         mStatusBarBatteryShowPercent =
