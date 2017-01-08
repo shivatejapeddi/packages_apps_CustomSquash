@@ -22,6 +22,14 @@
         <SwitchPreference
             android:key="hardware_keys_disable"
             android:title="@string/hardware_keys_disable_title" />
+
+    <ListPreference
+        android:dialogTitle="@string/backlight_timeout_title"
+        android:entries="@array/backlight_timeout_entries"
+        android:entryValues="@array/backlight_timeout_values"
+        android:key="backlight_timeout"
+        android:persistent="false"
+        android:title="@string/backlight_timeout_title" />
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -44,6 +44,8 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
     // Key Disabler
     private static final String HWKEY_DISABLE = "hardware_keys_disable";
 
+    private static final String KEY_BACKLIGHT_TIMEOUT = "backlight_timeout";
+
     // category keys
     private static final String CATEGORY_HWKEY = "hardware_keys";
     private static final String CATEGORY_BACK = "back_key";
@@ -64,6 +66,7 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
     public static final int KEY_MASK_CAMERA = 0x20;
     public static final int KEY_MASK_VOLUME = 0x40;
 
+    private ListPreference mBacklightTimeout;
     private SwitchPreference mHwKeyDisable;
 
     @Override
@@ -89,7 +92,17 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
         } else {
             prefScreen.removePreference(hwkeyCat);
         }
+        
+        mBacklightTimeout = (ListPreference) findPreference(KEY_BACKLIGHT_TIMEOUT);
+            if (mBacklightTimeout != null) {
+       	  mBacklightTimeout.setOnPreferenceChangeListener(this);
+       	  int BacklightTimeout = Settings.System.getInt(getContentResolver(),
+        	         Settings.System.BUTTON_BACKLIGHT_TIMEOUT, 5000);
+         	mBacklightTimeout.setValue(Integer.toString(BacklightTimeout));
+         	mBacklightTimeout.setSummary(mBacklightTimeout.getEntry());
 
+         }
+         
         // bits for hardware keys present on device
         final int deviceKeys = getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
@@ -114,6 +127,11 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
         final PreferenceCategory appSwitchCategory =
                 (PreferenceCategory) prefScreen.findPreference(CATEGORY_APPSWITCH);
 
+         // Backlight timout
+        if (!hasMenuKey || !hasHomeKey) {
+             prefScreen.removePreference(mBacklightTimeout);
+         }
+         
         // back key
         if (!hasBackKey) {
             prefScreen.removePreference(backCategory);
@@ -164,6 +182,16 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
                     value ? 1 : 0);
             setActionPreferencesEnabled(!value);
             return true;
+        } else if (preference == mBacklightTimeout) {
+             String BacklightTimeout = (String) newValue;
+             int BacklightTimeoutValue = Integer.parseInt(BacklightTimeout);
+             Settings.System.putInt(getActivity().getContentResolver(),
+                     Settings.System.BUTTON_BACKLIGHT_TIMEOUT, BacklightTimeoutValue);
+             int BacklightTimeoutIndex = mBacklightTimeout
+                     .findIndexOfValue(BacklightTimeout);
+             mBacklightTimeout
+                     .setSummary(mBacklightTimeout.getEntries()[BacklightTimeoutIndex]);
+             return true;
             }
             return false;
     }
