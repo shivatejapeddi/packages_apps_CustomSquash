@@ -28,11 +28,6 @@
         android:key="lockscreen_items"
         android:title="@string/lockscreen_items_settings_title" />
 
-    <PreferenceScreen
-        android:fragment="com.citrus.settings.fragments.BlurPersonalizations"
-        android:key="blur_personalization"
-        android:title="@string/settings_blur_cat" />
-
     <com.citrus.settings.preference.GlobalSettingSwitchPreference
         android:key="wake_when_plugged_or_unplugged"
         android:title="@string/wake_when_plugged_or_unplugged_title"
