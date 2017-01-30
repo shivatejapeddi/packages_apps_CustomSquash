@@ -24,6 +24,7 @@
     <string name="buttons_title">Buttons</string>
     <string name="statusbar_title">StatusBar</string>
     <string name="misc_title">Misc</string>
+    <string name="lockscreen_title">Lock Screen</string>
 
     <!-- Volume rocker wake -->
     <string name="volume_rocker_wake_title">Volume rocker wake</string>

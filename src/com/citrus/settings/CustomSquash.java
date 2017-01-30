@@ -29,6 +29,7 @@ import com.citrus.settings.tabs.Buttons;
 import com.citrus.settings.tabs.StatusBar;
 import com.citrus.settings.tabs.Ui;
 import com.citrus.settings.tabs.Misc;
+import com.citrus.settings.tabs.LockScreen;
 
 import com.citrus.settings.PagerSlidingTabStrip;
 
@@ -86,8 +87,9 @@ public class CustomSquash extends SettingsPreferenceFragment {
             super(fm);
             frags[0] = new Ui();
             frags[1] = new StatusBar();
-            frags[2] = new Buttons();
-            frags[3] = new Misc();
+            frags[2] = new LockScreen();
+            frags[3] = new Buttons();
+            frags[4] = new Misc();
         }
 
         @Override
@@ -111,6 +113,7 @@ public class CustomSquash extends SettingsPreferenceFragment {
         titleString = new String[]{
             getString(R.string.ui_title),
             getString(R.string.statusbar_title),
+            getString(R.string.lockscreen_title),
             getString(R.string.buttons_title),
             getString(R.string.misc_title)};
         return titleString;
