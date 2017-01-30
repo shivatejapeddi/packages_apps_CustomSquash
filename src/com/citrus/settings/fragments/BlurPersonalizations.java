@@ -21,7 +21,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.graphics.Color;
 import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
@@ -45,8 +44,6 @@ import java.util.Map;
 
 import com.citrus.settings.preference.CustomSeekBarPreference;
 
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
-
 public class BlurPersonalizations extends SettingsPreferenceFragment
         implements OnPreferenceChangeListener {
 
@@ -64,14 +61,6 @@ public class BlurPersonalizations extends SettingsPreferenceFragment
     private CustomSeekBarPreference mQuickSettPerc;
     private CustomSeekBarPreference mNotSettPerc;
 
-    //Colors
-    private ColorPickerPreference mDarkBlurColor;
-    private ColorPickerPreference mLightBlurColor;
-    private ColorPickerPreference mMixedBlurColor;
-    public static int BLUR_LIGHT_COLOR_PREFERENCE_DEFAULT = Color.DKGRAY;
-    public static int BLUR_MIXED_COLOR_PREFERENCE_DEFAULT = Color.GRAY;
-    public static int BLUR_DARK_COLOR_PREFERENCE_DEFAULT = Color.LTGRAY;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,14 +68,6 @@ public class BlurPersonalizations extends SettingsPreferenceFragment
         PreferenceScreen prefSet = getPreferenceScreen();
 
         ContentResolver resolver = getActivity().getContentResolver();
-
-        //Some help here
-        int intLightColor;
-        int intDarkColor;
-        int intMixedColor;
-        String hexLightColor;
-        String hexDarkColor;
-        String hexMixedColor;
 
         mExpand = (SwitchPreference) prefSet.findPreference("blurred_status_bar_expanded_enabled_pref");
         mExpand.setChecked((Settings.System.getInt(getActivity().getContentResolver(),
@@ -127,28 +108,6 @@ public class BlurPersonalizations extends SettingsPreferenceFragment
         mRecentsRadius = (CustomSeekBarPreference) findPreference("recents_blur_radius");
         mRecentsRadius.setValue(Settings.System.getInt(resolver, Settings.System.RECENT_APPS_RADIUS_PREFERENCE_KEY, 3));
         mRecentsRadius.setOnPreferenceChangeListener(this);
-        
-        mLightBlurColor = (ColorPickerPreference) findPreference("blur_light_color");
-        mLightBlurColor.setOnPreferenceChangeListener(this);
-        intLightColor = Settings.System.getInt(getContentResolver(), Settings.System.BLUR_LIGHT_COLOR_PREFERENCE_KEY, BLUR_LIGHT_COLOR_PREFERENCE_DEFAULT);
-        hexLightColor = String.format("#%08x", (0xffffffff & intLightColor));
-        mLightBlurColor.setSummary(hexLightColor);
-        mLightBlurColor.setNewPreviewColor(intLightColor);
-
-        mDarkBlurColor = (ColorPickerPreference) findPreference("blur_dark_color");
-        mDarkBlurColor.setOnPreferenceChangeListener(this);
-        intDarkColor = Settings.System.getInt(getContentResolver(), Settings.System.BLUR_DARK_COLOR_PREFERENCE_KEY, BLUR_DARK_COLOR_PREFERENCE_DEFAULT);
-        hexDarkColor = String.format("#%08x", (0xffffffff & intDarkColor));
-        mDarkBlurColor.setSummary(hexDarkColor);
-        mDarkBlurColor.setNewPreviewColor(intDarkColor);
-
-        mMixedBlurColor = (ColorPickerPreference) findPreference("blur_mixed_color");
-        mMixedBlurColor.setOnPreferenceChangeListener(this);
-        intMixedColor = Settings.System.getInt(getContentResolver(), Settings.System.BLUR_MIXED_COLOR_PREFERENCE_KEY, BLUR_MIXED_COLOR_PREFERENCE_DEFAULT);
-        hexMixedColor = String.format("#%08x", (0xffffffff & intMixedColor));
-        mMixedBlurColor.setSummary(hexMixedColor);
-        mMixedBlurColor.setNewPreviewColor(intMixedColor);
- 
     }
 
     @Override
@@ -193,30 +152,6 @@ public class BlurPersonalizations extends SettingsPreferenceFragment
             int value = ((Integer)newValue).intValue();
             Settings.System.putInt(
                 resolver, Settings.System.RECENT_APPS_RADIUS_PREFERENCE_KEY, value);
-            return true; 
-        } else if (preference == mLightBlurColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.BLUR_LIGHT_COLOR_PREFERENCE_KEY, intHex);
-            return true;
-        } else if (preference == mDarkBlurColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.BLUR_DARK_COLOR_PREFERENCE_KEY, intHex);
-            return true;           
-        } else if (preference == mMixedBlurColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.BLUR_MIXED_COLOR_PREFERENCE_KEY, intHex);
             return true;            
         }
         return false;
