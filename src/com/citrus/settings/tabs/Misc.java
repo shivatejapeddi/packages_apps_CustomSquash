@@ -46,11 +46,15 @@ public class Misc extends SettingsPreferenceFragment implements
 
     private static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
 
+    private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+
     private SwitchPreference mKeyguardTorch;
 
     private static final String PREF_CUSTOM_SETTINGS_SUMMARY = "custom_settings_summary";
 
     private Preference mCustomSummary;
+    private ListPreference mRecentsClearAllLocation;
+    private SwitchPreference mRecentsClearAll;
     private String mCustomSummaryText;
 
     @Override
@@ -61,6 +65,15 @@ public class Misc extends SettingsPreferenceFragment implements
         PreferenceScreen prefSet = getPreferenceScreen();
 
         ContentResolver resolver = getActivity().getContentResolver();
+
+
+        // clear all recents
+        mRecentsClearAllLocation = (ListPreference) findPreference(RECENTS_CLEAR_ALL_LOCATION);
+        int location = Settings.System.getIntForUser(resolver,
+                Settings.System.RECENTS_CLEAR_ALL_LOCATION, 3, UserHandle.USER_CURRENT);
+        mRecentsClearAllLocation.setValue(String.valueOf(location));
+        mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntry());
+        mRecentsClearAllLocation.setOnPreferenceChangeListener(this);
 
         mKeyguardTorch = (SwitchPreference) findPreference(KEYGUARD_TOGGLE_TORCH);
          mKeyguardTorch.setOnPreferenceChangeListener(this);
@@ -95,6 +108,13 @@ public class Misc extends SettingsPreferenceFragment implements
             boolean checked = ((SwitchPreference)preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.KEYGUARD_TOGGLE_TORCH, checked ? 1:0);
+            return true;
+        } else if (preference == mRecentsClearAllLocation) {
+            int location = Integer.valueOf((String) objValue);
+            int index = mRecentsClearAllLocation.findIndexOfValue((String) objValue);
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.RECENTS_CLEAR_ALL_LOCATION, location, UserHandle.USER_CURRENT);
+            mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntries()[index]);
             return true;
         }
         return false;
