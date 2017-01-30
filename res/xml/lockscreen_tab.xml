@@ -17,4 +17,10 @@
     android:title="@string/lockscreen_title"
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    
+        <com.citrus.settings.preference.SecureSettingSwitchPreference
+            android:key="lockscreen_visualizer"
+            android:title="@string/lockscreen_visualizer_title"
+            android:defaultValue="true"/>
+
 </PreferenceScreen>

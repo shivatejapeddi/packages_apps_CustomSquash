@@ -489,4 +489,7 @@
     <!-- Enable keys backlight-->
     <string name="button_brightness_title">Enable backlight</string>
 
+    <!-- lock screen visualizer -->
+    <string name="lockscreen_visualizer_title">Display music visualizer</string>
+
 </resources>
