@@ -34,6 +34,12 @@
             android:summary="@string/qs_advanced_bt_summary"
             android:defaultValue="false" />
  
+      <com.citrus.settings.preference.SecureSettingSwitchPreference
+            android:key="qs_wifi_easy_toggle"
+            android:title="@string/qs_advanced_wifi_title"
+            android:summary="@string/qs_advanced_wifi_summary"
+            android:defaultValue="false" />
+ 
     <PreferenceCategory
         android:key="qs_layout_category"
         android:title="@string/qs_layout_category">
