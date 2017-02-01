@@ -532,4 +532,8 @@
     <string name="double_tap_sleep_anywhere_title">Double-tap to sleep anywhere</string>
     <string name="double_tap_sleep_anywhere_summary">Double tap anywhere on the lockscreen to put the device to sleep</string>
 
+    <!-- Recents memory bar -->
+    <string name="systemui_recents_mem_display_title">Show memory bar</string>
+    <string name="systemui_recents_mem_display_summary">Display RAM usage under recents view</string>
+
 </resources>
