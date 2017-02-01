@@ -540,4 +540,8 @@
     <string name="qs_advanced_data_title">Advanced data tile</string>
     <string name="qs_advanced_data_summary">Enable one tap action to enable or disable data</string>
 
+    <!-- Advanced BT tile -->
+    <string name="qs_advanced_bt_title">Advanced bluetooth tile</string>
+    <string name="qs_advanced_bt_summary">Enable one tap action to enable or disable Bluetooth</string>
+ 
 </resources>
