@@ -44,6 +44,11 @@
                 android:targetClass="com.android.systemui.tuner.TunerActivity" />
     </PreferenceScreen>
 
+    <PreferenceScreen
+        android:key="citrus_logo"
+        android:title="@string/status_bar_citrus_logo_title"
+	android:fragment="com.citrus.settings.fragments.LogoSettings"  />
+
   <PreferenceScreen
         android:fragment="com.citrus.settings.fragments.ClockBatterySettings"
         android:title="@string/clock_battery_settings_title"
