@@ -48,6 +48,11 @@
         android:key="citrus_logo"
         android:title="@string/status_bar_citrus_logo_title"
 	android:fragment="com.citrus.settings.fragments.LogoSettings"  />
+ 
+    <PreferenceScreen
+        android:key="custom_logo"
+        android:title="@string/sb_custom_logos"
+ 	android:fragment="com.citrus.settings.fragments.CustomLogo" />
 
   <PreferenceScreen
         android:fragment="com.citrus.settings.fragments.ClockBatterySettings"
