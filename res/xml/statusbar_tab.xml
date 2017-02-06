@@ -28,6 +28,12 @@
         android:title="@string/carrier_label_settings_title"
         android:summary="@string/carrier_label_settings_summary" />
 
+     <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="status_bar_notif_count"
+        android:title="@string/status_bar_notif_count_title"
+        android:summary="@string/status_bar_notif_count_summary"
+        android:persistent="false" />
+
     <PreferenceScreen
             android:title="@string/power_notification_title"
             android:summary="@string/power_notification_summary">
