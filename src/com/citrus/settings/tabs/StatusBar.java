@@ -37,6 +37,10 @@ import com.android.settings.Utils;
 public class StatusBar extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
+
+    private SwitchPreference mEnableNC;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,12 @@ public class StatusBar extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.statusbar_tab);
 
         ContentResolver resolver = getActivity().getContentResolver();
+    
+        mEnableNC = (SwitchPreference) findPreference(STATUS_BAR_NOTIF_COUNT);
+        mEnableNC.setOnPreferenceChangeListener(this);
+        int EnableNC = Settings.System.getInt(getContentResolver(),
+                STATUS_BAR_NOTIF_COUNT, 0);
+        mEnableNC.setChecked(EnableNC != 0);
     }
 
     @Override
@@ -63,6 +73,12 @@ public class StatusBar extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
-        return true;
+        if (preference == mEnableNC) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getContentResolver(), STATUS_BAR_NOTIF_COUNT,
+                    value ? 1 : 0);
+            return true;
+          }
+    return false;
     }
 }
