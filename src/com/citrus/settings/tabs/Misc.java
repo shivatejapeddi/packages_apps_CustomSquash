@@ -39,16 +39,11 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.citrus.settings.utils.Utils;
-import com.citrus.settings.preference.SystemSettingSwitchPreference;
 
 public class Misc extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
-    private static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
-
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
-
-    private SwitchPreference mKeyguardTorch;
 
     private static final String PREF_CUSTOM_SETTINGS_SUMMARY = "custom_settings_summary";
 
@@ -66,7 +61,6 @@ public class Misc extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getActivity().getContentResolver();
 
-
         // clear all recents
         mRecentsClearAllLocation = (ListPreference) findPreference(RECENTS_CLEAR_ALL_LOCATION);
         int location = Settings.System.getIntForUser(resolver,
@@ -74,15 +68,6 @@ public class Misc extends SettingsPreferenceFragment implements
         mRecentsClearAllLocation.setValue(String.valueOf(location));
         mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntry());
         mRecentsClearAllLocation.setOnPreferenceChangeListener(this);
-
-        mKeyguardTorch = (SwitchPreference) findPreference(KEYGUARD_TOGGLE_TORCH);
-         mKeyguardTorch.setOnPreferenceChangeListener(this);
-         if (!Utils.deviceSupportsFlashLight(getActivity())) {
-             prefSet.removePreference(mKeyguardTorch);
-         } else {
-         mKeyguardTorch.setChecked((Settings.System.getInt(resolver,
-                 Settings.System.KEYGUARD_TOGGLE_TORCH, 0) == 1));
-         }
 
         mCustomSummary = (Preference) findPreference(PREF_CUSTOM_SETTINGS_SUMMARY);
         updateCustomSummaryTextString();
@@ -104,12 +89,7 @@ public class Misc extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-      if  (preference == mKeyguardTorch) {
-            boolean checked = ((SwitchPreference)preference).isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.KEYGUARD_TOGGLE_TORCH, checked ? 1:0);
-            return true;
-        } else if (preference == mRecentsClearAllLocation) {
+      if (preference == mRecentsClearAllLocation) {
             int location = Integer.valueOf((String) objValue);
             int index = mRecentsClearAllLocation.findIndexOfValue((String) objValue);
             Settings.System.putIntForUser(getContentResolver(),

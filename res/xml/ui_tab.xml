@@ -23,27 +23,10 @@
         android:fragment="com.citrus.settings.fragments.ExpandedDesktop"
         android:title="@string/expanded_desktop_category" />
 
-    <PreferenceScreen
-        android:fragment="com.citrus.settings.fragments.LockScreenItemsSettings"
-        android:key="lockscreen_items"
-        android:title="@string/lockscreen_items_settings_title" />
-
     <com.citrus.settings.preference.GlobalSettingSwitchPreference
         android:key="wake_when_plugged_or_unplugged"
         android:title="@string/wake_when_plugged_or_unplugged_title"
         android:summary="@string/wake_when_plugged_or_unplugged_summary"
         android:defaultValue="true" />
-
-        <com.citrus.settings.preference.SystemSettingSwitchPreference
-            android:key="fingerprint_success_vib"
-            android:title="@string/fprint_sucess_vib_title"
-            android:summary="@string/fprint_sucess_vib_summary"
-            android:defaultValue="true" />
-
-        <com.citrus.settings.preference.SystemSettingSwitchPreference
-            android:key="systemui_recents_mem_display"
-            android:title="@string/systemui_recents_mem_display_title"
-            android:summary="@string/systemui_recents_mem_display_summary"
-            android:defaultValue="false" />
  
 </PreferenceScreen>
