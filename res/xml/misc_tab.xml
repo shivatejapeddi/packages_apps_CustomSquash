@@ -40,12 +40,6 @@
                 android:title="@string/system_app_remover"
                 android:fragment="com.citrus.settings.fragments.SystemappRemover" />
 
-    <com.citrus.settings.preference.SystemSettingSwitchPreference
-        android:key="keyguard_toggle_torch"
-        android:title="@string/keyguard_torch_title"
-        android:summary="@string/keyguard_torch_summary"
-        android:defaultValue="false" />
-
         <PreferenceCategory
             android:title="@string/recents_category" >
 
@@ -63,6 +57,12 @@
             android:entryValues="@array/recents_clear_all_location_values"
             android:defaultValue="3"
             android:dependency="show_clear_all_recents" />
+
+        <com.citrus.settings.preference.SystemSettingSwitchPreference
+            android:key="systemui_recents_mem_display"
+            android:title="@string/systemui_recents_mem_display_title"
+            android:summary="@string/systemui_recents_mem_display_summary"
+            android:defaultValue="false" />
 
         </PreferenceCategory>
         

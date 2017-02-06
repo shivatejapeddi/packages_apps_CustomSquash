@@ -19,6 +19,7 @@ package com.citrus.settings.tabs;
 import android.content.Context;
 import android.content.ContentResolver;
 import android.content.res.Resources;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.support.v7.preference.ListPreference;
@@ -31,20 +32,47 @@ import android.provider.Settings;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
-import com.android.settings.Utils;
+import com.citrus.settings.utils.Utils;
+
+import com.citrus.settings.preference.SystemSettingSwitchPreference;
 
 public class LockScreen extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
-    @Override
+    private static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
+    private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
+
+    private SwitchPreference mKeyguardTorch;
+    private FingerprintManager mFingerprintManager;
+    private SystemSettingSwitchPreference mFingerprintVib;
+
+   @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.lockscreen_tab);
 
-        ContentResolver resolver = getActivity().getContentResolver();
-    }
+        PreferenceScreen prefSet = getPreferenceScreen();
 
+        ContentResolver resolver = getActivity().getContentResolver();
+
+    mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+    mFingerprintVib = (SystemSettingSwitchPreference) findPreference(FINGERPRINT_VIB);
+    if (!mFingerprintManager.isHardwareDetected()){
+    prefSet.removePreference(mFingerprintVib);
+   }
+
+    mKeyguardTorch = (SwitchPreference) findPreference(KEYGUARD_TOGGLE_TORCH);
+    mKeyguardTorch.setOnPreferenceChangeListener(this);
+    if (!Utils.deviceSupportsFlashLight(getActivity())) {
+    prefSet.removePreference(mKeyguardTorch);
+   } else {
+
+    mKeyguardTorch.setChecked((Settings.System.getInt(resolver,
+    Settings.System.KEYGUARD_TOGGLE_TORCH, 0) == 1));
+
+    }
+}
     @Override
     protected int getMetricsCategory() {
         return MetricsEvent.CUSTOM_SQUASH;
@@ -61,7 +89,12 @@ public class LockScreen extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
-        return true;
+       if (preference == mKeyguardTorch) {
+           boolean checked = ((SwitchPreference)preference).isChecked();
+           Settings.System.putInt(getActivity().getContentResolver(),
+                   Settings.System.KEYGUARD_TOGGLE_TORCH, checked ? 1:0);
+         return true;
+     }
+        return false;
     }
 }
