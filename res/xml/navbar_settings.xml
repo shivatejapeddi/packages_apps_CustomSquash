@@ -74,11 +74,5 @@
                 settings:min="65"
                 settings:units="%" />
 
-    <com.citrus.settings.preference.SecureSettingSwitchPreference
-        android:key="overview_nav_bar_gesture"
-        android:title="@string/nav_gesture_title"
-        android:summary="@string/nav_gesture_summary"
-        android:defaultValue="false"/>
-
     </PreferenceCategory>
 </PreferenceScreen>
