@@ -433,11 +433,12 @@
     <string name="lockscreen_qs_disabled_summary">Disable shortcuts and expanding quick settings on secure lock screens</string>
 
     <!-- Custom summary text -->
-    <string name="custom_settings_summary_title">Custom Squash summary text</string>
-    <string name="custom_summary_title">Custom Squash summary</string>
+    <string name="custom_settings_summary_title">CustomSquash summary text</string>
+    <string name="custom_summary_title">CustomSquash summary</string>
     <string name="custom_summary_explain">Enter new summary text. Leave blank to revert to default.</string>
 
     <!-- Custom summaries -->
+    <string name="custom_summary_cat_title">Custom summary</string>
     <string name="custom_summary_randomize_title">Randomize summary</string>
     <string name="custom_summary_randomize_explain">Pre-written summaries will be selected at random and will change everytime you start the Settings app.\nThis overrides any custom summary set.</string>
     <string name="custom_title_summary">Welcome to LemonLand!</string>
@@ -559,7 +560,8 @@
     <string name="battery_bar_style_reversed">Reversed</string>
 
 <!-- Citrus Logo --> 
-    <string name="status_bar_citrus_logo_title">Enable logo</string>
+    <string name="status_bar_citrus_logo_frags_title">Citrus-CAF logo</string>
+    <string name="status_bar_citrus_logo_title">Enable Logo</string>
     <string name="status_bar_citrus_logo_summary">Enable to show Citrus-CAF logo on the status bar</string>
     <string name="status_bar_citrus_logo_color">Logo color</string>
     <string name="status_bar_logo">Citrus-CAF logo</string>
@@ -572,10 +574,9 @@
     <!--Custom logos-->
     <string name="citrus_custom_logo_summary">Choose between a variety of Custom logos/images in statusbar</string>
     <string name="sb_custom_logos">Custom Icons</string>
-    <string name="custom_logo_style"> Logos</string>
+    <string name="custom_logo_style">Icons</string>
     <string name="custom_logos">Take your Pick</string>
-    <string name="show_custom_logo_title">Show Custom Logo</string>
-    <string name="show_custom_logo_summary">Show Logos in Statusbar from a wide range of icons available in System</string>
+    <string name="show_custom_logo_title">Show custom icons</string>
     <string name="custom_logo_color">Color</string>
     <string name="logo0">Tuner </string>
     <string name="logo1">BugDroid Minimal </string>
@@ -640,5 +641,6 @@
     <!-- Fingerprint unlock keystore -->
     <string name="fp_unlock_keystore_title">FP unlock</string>
     <string name="fp_unlock_keystore_summary">Unlock device with fingerprint after reboot without PIN/Password/Pattern\nNote: at your own risk!</string>
+    <string name="fp_cat_title">Fingerprint</string>
 
 </resources>
