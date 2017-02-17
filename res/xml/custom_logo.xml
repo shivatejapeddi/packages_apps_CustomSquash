@@ -26,7 +26,6 @@
     <com.citrus.settings.preference.SystemSettingSwitchPreference
             android:key="show_custom_logo"
             android:title="@string/show_custom_logo_title"
-            android:summary="@string/show_custom_logo_summary"
             android:defaultValue="false" />
 
     <net.margaritov.preference.colorpicker.ColorPickerPreference
