@@ -18,6 +18,21 @@
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+    <!-- System APP Remover -->
+    <PreferenceScreen
+        android:id="@+id/system_app_remover"
+        android:title="@string/system_app_remover"
+        android:fragment="com.citrus.settings.fragments.SystemappRemover" />
+
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="toast_icon"
+        android:title="@string/toast_icon_title"
+        android:summary="@string/toast_icon_summary"
+        android:defaultValue="false" />
+
+    <PreferenceCategory  
+        android:title="@string/custom_summary_cat_title">
+
     <Preference
         android:key="custom_settings_summary"
         android:title="@string/custom_settings_summary_title" />
@@ -27,18 +42,7 @@
         android:title="@string/custom_summary_randomize_title"
         android:summary="@string/custom_summary_randomize_explain"
         android:defaultValue="false" />
-
-    <com.citrus.settings.preference.SystemSettingSwitchPreference
-        android:key="toast_icon"
-        android:title="@string/toast_icon_title"
-        android:summary="@string/toast_icon_summary"
-        android:defaultValue="false" />
-
-        <!-- System APP Remover -->
-        <PreferenceScreen
-                android:id="@+id/system_app_remover"
-                android:title="@string/system_app_remover"
-                android:fragment="com.citrus.settings.fragments.SystemappRemover" />
+    </PreferenceCategory>
 
         <PreferenceCategory
             android:title="@string/recents_category" >

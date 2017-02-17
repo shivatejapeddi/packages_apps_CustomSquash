@@ -28,12 +28,6 @@
         android:title="@string/carrier_label_settings_title"
         android:summary="@string/carrier_label_settings_summary" />
 
-     <com.citrus.settings.preference.SystemSettingSwitchPreference
-        android:key="status_bar_notif_count"
-        android:title="@string/status_bar_notif_count_title"
-        android:summary="@string/status_bar_notif_count_summary"
-        android:persistent="false" />
-
     <PreferenceScreen
             android:title="@string/power_notification_title"
             android:summary="@string/power_notification_summary">
@@ -52,7 +46,7 @@
 
     <PreferenceScreen
         android:key="citrus_logo"
-        android:title="@string/status_bar_citrus_logo_title"
+        android:title="@string/status_bar_citrus_logo_frags_title"
 	android:fragment="com.citrus.settings.fragments.LogoSettings"  />
  
     <PreferenceScreen
@@ -65,18 +59,6 @@
         android:title="@string/clock_battery_settings_title"
         android:summary="@string/clock_battery_settings_summary" />
 
-  <com.citrus.settings.preference.SystemSettingSwitchPreference
-    android:key="double_tap_sleep_gesture"
-    android:title="@string/double_tap_to_sleep_title"
-    android:summary="@string/double_tap_to_sleep_summary"
-    android:defaultValue="false" />
-
-  <com.citrus.settings.preference.SystemSettingSwitchPreference
-        android:key="status_bar_brightness_control"
-        android:title="@string/status_bar_toggle_brightness"
-        android:summary="@string/status_bar_toggle_brightness_summary"
-        android:defaultValue="false" />
-
   <PreferenceScreen
         android:key="traffic"
         android:fragment="com.citrus.settings.fragments.Traffic"
@@ -86,5 +68,23 @@
         android:key="ticker"
         android:title="@string/ticker_screen_title"
         android:fragment="com.citrus.settings.fragments.StatusBarTickerSettings" />
+
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="status_bar_notif_count"
+        android:title="@string/status_bar_notif_count_title"
+        android:summary="@string/status_bar_notif_count_summary"
+        android:persistent="false" />
+
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="double_tap_sleep_gesture"
+        android:title="@string/double_tap_to_sleep_title"
+        android:summary="@string/double_tap_to_sleep_summary"
+        android:defaultValue="false" />
+
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="status_bar_brightness_control"
+        android:title="@string/status_bar_toggle_brightness"
+        android:summary="@string/status_bar_toggle_brightness_summary"
+        android:defaultValue="false" />
 
 </PreferenceScreen>
