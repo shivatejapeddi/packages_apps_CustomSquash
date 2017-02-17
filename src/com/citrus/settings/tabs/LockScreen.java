@@ -22,6 +22,7 @@ import android.content.res.Resources;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.ListPreference;
 import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.Preference;
@@ -42,6 +43,7 @@ public class LockScreen extends SettingsPreferenceFragment implements
     private static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
     private static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
+    private static final String CATEGORY_FP = "category_fp";
 
     private SwitchPreference mKeyguardTorch;
     private SwitchPreference mFpKeystore;
@@ -59,11 +61,10 @@ public class LockScreen extends SettingsPreferenceFragment implements
         ContentResolver resolver = getActivity().getContentResolver();
 
     mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
-    mFingerprintVib = (SystemSettingSwitchPreference) findPreference(FINGERPRINT_VIB);
     mFpKeystore = (SwitchPreference) findPreference(FP_UNLOCK_KEYSTORE);
+    final PreferenceCategory fpCat = (PreferenceCategory) prefSet.findPreference(CATEGORY_FP);
     if (!mFingerprintManager.isHardwareDetected()){
-    prefSet.removePreference(mFingerprintVib);
-    prefSet.removePreference(mFpKeystore);
+    prefSet.removePreference(fpCat);
    } else {
     mFpKeystore.setChecked((Settings.System.getInt(getContentResolver(),
             Settings.System.FP_UNLOCK_KEYSTORE, 0) == 1));

@@ -27,6 +27,12 @@
             android:fragment="com.citrus.settings.fragments.NavbarSettings"
             android:title="@string/navigationbar_settings_title" />
 
+        <ListPreference
+            android:key="screenrecord_chord_type"
+            android:title="@string/screen_record_chord_title"
+            android:entries="@array/screen_record_chord_entries"
+            android:entryValues="@array/screen_record_chord_values" />
+
         <SwitchPreference
             android:key="volume_rocker_wake"
             android:summary="@string/volume_rocker_wake_summary"
@@ -44,11 +50,5 @@
             android:title="@string/volume_keys_control_media_stream_title"
             android:summary="@string/volume_keys_control_media_stream_summary"
             android:defaultValue="false" />
-
-        <ListPreference
-            android:key="screenrecord_chord_type"
-            android:title="@string/screen_record_chord_title"
-            android:entries="@array/screen_record_chord_entries"
-            android:entryValues="@array/screen_record_chord_values" />
 
 </PreferenceScreen>
