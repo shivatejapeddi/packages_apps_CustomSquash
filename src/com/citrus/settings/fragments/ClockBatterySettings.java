@@ -109,7 +109,7 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
     private ListPreference mStatusBarBatteryShowPercent;
     private ListPreference mTextChargingSymbol;
     private ListPreference mBatteryBar;
-//    private ListPreference mBatteryBarNoNavbar;
+    private ListPreference mBatteryBarNoNavbar;
     private ListPreference mBatteryBarStyle;
     private ListPreference mBatteryBarThickness;
  
@@ -198,10 +198,10 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
         mBatteryBar.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR, 0)) + "");
         mBatteryBar.setSummary(mBatteryBar.getEntry());
 
-//        mBatteryBarNoNavbar = (ListPreference) findPreference(PREF_BATT_BAR_NO_NAVBAR);
-//        mBatteryBarNoNavbar.setOnPreferenceChangeListener(this);
-//        mBatteryBarNoNavbar.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR, 0)) + "");
-//        mBatteryBarNoNavbar.setSummary(mBatteryBarNoNavbar.getEntry());
+        mBatteryBarNoNavbar = (ListPreference) findPreference(PREF_BATT_BAR_NO_NAVBAR);
+        mBatteryBarNoNavbar.setOnPreferenceChangeListener(this);
+        mBatteryBarNoNavbar.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR, 0)) + "");
+        mBatteryBarNoNavbar.setSummary(mBatteryBarNoNavbar.getEntry());
 
         mBatteryBarStyle = (ListPreference) findPreference(PREF_BATT_BAR_STYLE);
         mBatteryBarStyle.setOnPreferenceChangeListener(this);
@@ -239,13 +239,13 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
             Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1)) + "");
         mBatteryBarThickness.setSummary(mBatteryBarThickness.getEntry());
 
-        // boolean hasNavBarByDefault = getResources().getBoolean(
-        //    com.android.internal.R.bool.config_showNavigationBar);
+        boolean hasNavBarByDefault = getResources().getBoolean(
+            com.android.internal.R.bool.config_showNavigationBar);
         //boolean enableNavigationBar = Settings.Secure.getInt(resolver,
         //    Settings.Secure.NAVIGATION_BAR_VISIBLE, hasNavBarByDefault ? 1 : 0) == 1;
 
         //if (!hasNavBarByDefault || !enableNavigationBar) {
-        //    prefSet.removePreference(mBatteryBar);
+        prefSet.removePreference(mBatteryBar);
         //} else {
         //    prefSet.removePreference(mBatteryBarNoNavbar);
         //}
@@ -416,14 +416,14 @@ public class ClockBatterySettings extends SettingsPreferenceFragment implements
                 Settings.System.STATUSBAR_BATTERY_BAR, val);
             mBatteryBar.setSummary(mBatteryBar.getEntries()[index]);
             updateBatteryBarOptions();
-//        } else if (preference == mBatteryBarNoNavbar) {
-//            int val = Integer.valueOf((String) newValue);
-//            int index = mBatteryBarNoNavbar.findIndexOfValue((String) newValue);
-//            Settings.System.putInt(resolver,
-//                Settings.System.STATUSBAR_BATTERY_BAR, val);
-//            mBatteryBarNoNavbar.setSummary(mBatteryBarNoNavbar.getEntries()[index]);
-//            updateBatteryBarOptions();
-//            return true;
+        } else if (preference == mBatteryBarNoNavbar) {
+            int val = Integer.valueOf((String) newValue);
+            int index = mBatteryBarNoNavbar.findIndexOfValue((String) newValue);
+            Settings.System.putInt(resolver,
+                Settings.System.STATUSBAR_BATTERY_BAR, val);
+            mBatteryBarNoNavbar.setSummary(mBatteryBarNoNavbar.getEntries()[index]);
+            updateBatteryBarOptions();
+            return true;
         } else if (preference == mBatteryBarStyle) {
             int val = Integer.valueOf((String) newValue);
             int index = mBatteryBarStyle.findIndexOfValue((String) newValue);
