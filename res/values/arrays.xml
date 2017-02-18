@@ -444,7 +444,7 @@
         <item>2</item>
         <item>3</item>
     </string-array>
-<!--
+
     <string-array name="battery_bar_no_navbar_entries">
          <item>Hide</item>
         <item>Statusbar</item>
@@ -454,7 +454,7 @@
         <item>0</item>
         <item>1</item>
     </string-array>
--->
+
     <string-array name="battery_bar_style_entries" translatable="false">
         <item>@string/battery_bar_style_regular</item>
         <item>@string/battery_bar_style_center_mirrored</item>
