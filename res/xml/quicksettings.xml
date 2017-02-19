@@ -29,6 +29,9 @@
             android:entryValues="@array/quick_pulldown_values"
             android:persistent="false" />
 
+    <PreferenceCategory
+            android:title="@string/qs_advanced_tile_cat" >
+
     <com.citrus.settings.preference.SecureSettingSwitchPreference
             android:key="qs_data_advanced"
             android:title="@string/qs_advanced_data_title"
@@ -46,6 +49,8 @@
             android:title="@string/qs_advanced_wifi_title"
             android:summary="@string/qs_advanced_wifi_summary"
             android:defaultValue="false" />
+
+    </PreferenceCategory>
  
     <PreferenceCategory
         android:key="qs_layout_category"
