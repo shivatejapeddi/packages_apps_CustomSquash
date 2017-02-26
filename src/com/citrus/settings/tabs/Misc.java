@@ -47,10 +47,13 @@ public class Misc extends SettingsPreferenceFragment implements
 
     private static final String PREF_CUSTOM_SETTINGS_SUMMARY = "custom_settings_summary";
 
+    private static final String WIRED_RINGTONE_FOCUS_MODE = "wired_ringtone_focus_mode";
+
     private Preference mCustomSummary;
     private ListPreference mRecentsClearAllLocation;
     private SwitchPreference mRecentsClearAll;
     private String mCustomSummaryText;
+    private ListPreference mWiredHeadsetRingtoneFocus;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,13 @@ public class Misc extends SettingsPreferenceFragment implements
 
         mCustomSummary = (Preference) findPreference(PREF_CUSTOM_SETTINGS_SUMMARY);
         updateCustomSummaryTextString();
+
+        mWiredHeadsetRingtoneFocus = (ListPreference) findPreference(WIRED_RINGTONE_FOCUS_MODE);
+        int mWiredHeadsetRingtoneFocusValue = Settings.Global.getInt(resolver,
+                Settings.Global.WIRED_RINGTONE_FOCUS_MODE, 1);
+        mWiredHeadsetRingtoneFocus.setValue(Integer.toString(mWiredHeadsetRingtoneFocusValue));
+        mWiredHeadsetRingtoneFocus.setSummary(mWiredHeadsetRingtoneFocus.getEntry());
+        mWiredHeadsetRingtoneFocus.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -89,12 +99,21 @@ public class Misc extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
       if (preference == mRecentsClearAllLocation) {
             int location = Integer.valueOf((String) objValue);
             int index = mRecentsClearAllLocation.findIndexOfValue((String) objValue);
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.RECENTS_CLEAR_ALL_LOCATION, location, UserHandle.USER_CURRENT);
             mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntries()[index]);
+            return true;
+      } else if (preference == mWiredHeadsetRingtoneFocus) {
+            int mWiredHeadsetRingtoneFocusValue = Integer.valueOf((String) objValue);
+            int index = mWiredHeadsetRingtoneFocus.findIndexOfValue((String) objValue);
+            mWiredHeadsetRingtoneFocus.setSummary(
+                    mWiredHeadsetRingtoneFocus.getEntries()[index]);
+            Settings.Global.putInt(resolver, Settings.Global.WIRED_RINGTONE_FOCUS_MODE,
+                    mWiredHeadsetRingtoneFocusValue);
             return true;
         }
         return false;

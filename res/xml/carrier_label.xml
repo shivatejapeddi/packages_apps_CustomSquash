@@ -53,7 +53,7 @@
             android:title="@string/carrier_label_hide_label_title"
             android:dependency="status_bar_carrier" />
 
-          <com.citrus.settings.preference.CustomSeekBarPreference
+          <com.android.settings.SeekBarPreference
             android:key="hide_carrier_max_notification"
             android:title="@string/carrier_label_number_of_notification_icons_title"
             android:max="6"

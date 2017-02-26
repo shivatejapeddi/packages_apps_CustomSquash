@@ -689,4 +689,9 @@
     <string name="allow_incall_home_title">Home button when ringing</string>
     <string name="allow_incall_home_summary">Allow to use Home button when device is ringing</string>
 
+    <!-- Wired headset ringtone audio focus -->
+    <string name="wired_ringtone_focus_mode_title">Where to play ringtones from</string>
+    <string name="wired_ringtone_focus_mode_dynamic">Wired headset if connected and playing music</string>
+    <string name="wired_ringtone_focus_mode_stock">Speakerphone and headset (default)</string>
+
 </resources>
