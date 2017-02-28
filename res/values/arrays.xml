@@ -377,11 +377,6 @@
          <item>2</item>
      </string-array>
 
-     <string-array name="slimsizer_profile_array">
-         <item >Load Profile</item>
-         <item >Save Profile</item>
-     </string-array>
-
     <!--- Buttons backlight timeout -->
     <string-array name="backlight_timeout_entries">
         <item>@string/backlight_timeout_on</item>
