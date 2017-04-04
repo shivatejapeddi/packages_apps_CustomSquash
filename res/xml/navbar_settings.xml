@@ -32,6 +32,12 @@
             android:key="navbar_mode"
             android:title="@string/navbar_mode" />
 
+       <com.citrus.settings.preference.SystemSettingSwitchPreference
+            android:key="nav_bar_dynamic"
+            android:title="@string/nav_bar_dynamic_title"
+            android:summary="@string/nav_bar_dynamic_summary"
+            android:defaultValue="false" />
+
         <PreferenceScreen
             android:key="smartbar_settings"
             android:title="@string/smartbar_settings_title"
