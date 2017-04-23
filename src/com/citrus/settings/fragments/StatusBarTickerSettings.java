@@ -23,6 +23,7 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
@@ -63,7 +64,7 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
     private static final int MENU_RESET = Menu.FIRST;
     private static final int DLG_RESET  = 0;
 
-    private SwitchPreference mShowTicker;
+    private ListPreference mShowTicker;
     private ColorPickerPreference mTextColor;
     private ColorPickerPreference mIconColor;
     private CustomSeekBarPreference mTickerFontSize;
@@ -85,6 +86,7 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
 
         addPreferencesFromResource(R.xml.ticker);
         mResolver = getActivity().getContentResolver();
+        final PreferenceScreen prefSet = getPreferenceScreen();
 
         int intColor;
         String hexColor;
@@ -92,10 +94,12 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
         boolean showTicker = Settings.System.getInt(mResolver,
                 Settings.System.STATUS_BAR_SHOW_TICKER, 0) == 1;
 
-        mShowTicker =
-                (SwitchPreference) findPreference(SHOW_TICKER);
-        mShowTicker.setChecked(showTicker);
-        mShowTicker.setOnPreferenceChangeListener(this);
+        mShowTicker = (ListPreference) prefSet.findPreference(SHOW_TICKER);
+        int tickerMode = Settings.System.getIntForUser(mResolver,
+                    Settings.System.STATUS_BAR_SHOW_TICKER,
+                    0, UserHandle.USER_CURRENT);
+            mShowTicker.setValue(String.valueOf(tickerMode));
+            mShowTicker.setSummary(mShowTicker.getEntry());
 
         PreferenceCategory catColors =
                 (PreferenceCategory) findPreference(CAT_COLORS);
@@ -165,12 +169,13 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
         String hex;
         int intHex;
 
-        if (preference == mShowTicker) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(mResolver,
-                    Settings.System.STATUS_BAR_SHOW_TICKER,
-                    value ? 1 : 0);
-            refreshSettings();
+        if (preference.equals(mShowTicker)) {
+                int tickerMode = Integer.parseInt(((String) newValue).toString());
+                Settings.System.putIntForUser(mResolver,
+                        Settings.System.STATUS_BAR_SHOW_TICKER, tickerMode,
+                        UserHandle.USER_CURRENT);
+                int index = mShowTicker.findIndexOfValue((String) newValue);
+                mShowTicker.setSummary(mShowTicker.getEntries()[index]);
             return true;
         } else if (preference == mTextColor) {
             hex = ColorPickerPreference.convertToARGB(
