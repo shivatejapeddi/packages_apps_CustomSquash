@@ -632,4 +632,7 @@
     <string name="header_weather_summary">Enable notification panel header weather display</string>
     <string name="weather_icon_pack_title">Condition icon pack</string>
 
+    <!-- Lockscreen Shortcuts -->
+    <string name="lockscreen_targets_title">Bottom L/R shortcuts</string>
+
 </resources>

@@ -23,6 +23,13 @@
             android:key="lockscreen_items"
             android:title="@string/lockscreen_items_settings_title" />
 
+        <PreferenceScreen
+            android:title="@string/lockscreen_targets_title">
+        <intent
+            android:targetPackage="com.android.systemui"
+            android:targetClass="com.android.systemui.custom.LockscreenShortcutsActivity" />
+        </PreferenceScreen>
+
         <com.citrus.settings.preference.SystemSettingSwitchPreference
             android:key="keyguard_toggle_torch"
             android:title="@string/keyguard_torch_title"
@@ -55,8 +62,8 @@
        <PreferenceCategory
             android:key="category_fp"
             android:title="@string/fp_cat_title">
-       
-       <com.citrus.settings.preference.SystemSettingSwitchPreference   
+
+       <com.citrus.settings.preference.SystemSettingSwitchPreference
             android:key="fingerprint_success_vib"
             android:title="@string/fprint_sucess_vib_title"
             android:summary="@string/fprint_sucess_vib_summary"
