@@ -261,7 +261,8 @@
     <string name="qs_tile_title_visibility_title">QS tile titles</string>
     <string name="qs_tile_title_visibility_summary_on">QS tiles titles are now visible</string>
     <string name="qs_tile_title_visibility_summary_off">QS tiles titles are now gone</string>
-    <string name="qs_small_tiles_title">Small QS tiles</string>
+    <string name="qqs_scroll_title">Scroll small QS tiles</string>
+    <string name="qqs_scroll_summary">Allow scrolling through the small QS tiles</string>
 
     <!-- General strings -->
     <string name="cancel">Cancel</string>
@@ -463,7 +464,7 @@
     <string name="backlight_timeout_15s">15 sec</string>
     <string name="backlight_timeout_20s">20 sec</string>
     <string name="backlight_timeout_30s">30 sec</string>
-    
+
     <!-- Enable keys backlight-->
     <string name="button_brightness_title">Enable backlight</string>
 
@@ -500,11 +501,11 @@
     <!-- Advanced BT tile -->
     <string name="qs_advanced_bt_title">Advanced bluetooth tile</string>
     <string name="qs_advanced_bt_summary">Enable one tap action to enable or disable Bluetooth</string>
- 
+
     <!-- Advanced WIFI tile -->
     <string name="qs_advanced_wifi_title">Advanced Wi-Fi tile</string>
     <string name="qs_advanced_wifi_summary">Enable one tap action to enable or disable WiFi</string>
- 
+
      <!-- QS headers -->
     <string name="qs_header_category">QS Header options</string>
     <string name="status_bar_custom_header_title">Custom header image</string>
@@ -523,7 +524,7 @@
     <!--  Lockscreen battery info indicator  -->
     <string name="lockscreen_battery_info_title">Lockscreen charging info</string>
     <string name="lockscreen_battery_info_summary">Display real time charger current, voltage and battery temperature on lockscreen while charging</string>
-  
+
     <!-- Battery Bar -->
     <string name="battery_bar_title">Battery bar</string>
     <string name="battery_bar">Battery bar location</string>
@@ -539,7 +540,7 @@
     <string name="battery_bar_style_center_mirrored">Center-mirrored</string>
     <string name="battery_bar_style_reversed">Reversed</string>
 
-<!-- Citrus Logo --> 
+<!-- Citrus Logo -->
     <string name="status_bar_citrus_logo_frags_title">Citrus-CAF logo</string>
     <string name="status_bar_citrus_logo_title">Enable Logo</string>
     <string name="status_bar_citrus_logo_summary">Enable to show Citrus-CAF logo on the status bar</string>
@@ -550,7 +551,7 @@
     <string name="status_bar_logo_position_right">Right</string>
     <string name="status_bar_logo_position_left">Left</string>
     <string name="status_bar_logo_position_center">Center</string>
-  
+
     <!--Custom logos-->
     <string name="citrus_custom_logo_summary">Choose between a variety of Custom logos/images in statusbar</string>
     <string name="sb_custom_logos">Custom Icons</string>
@@ -610,8 +611,8 @@
     <string name="quick_pulldown_right">Right</string>
     <string name="quick_pulldown_always">Always</string>
 
-    <!-- Notification Count in Statusbar --> 
-    <string name="status_bar_notif_count_title">Show notification count</string> 
+    <!-- Notification Count in Statusbar -->
+    <string name="status_bar_notif_count_title">Show notification count</string>
     <string name="status_bar_notif_count_summary">Display the number of pending notifications</string>
 
     <!-- Media art -->

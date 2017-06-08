@@ -56,18 +56,16 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private static final String PREF_LOCK_QS_DISABLED = "lockscreen_qs_disabled";
     private static final String PREF_ROWS_PORTRAIT = "qs_rows_portrait";
     private static final String PREF_ROWS_LANDSCAPE = "qs_rows_landscape";
-    private static final String PREF_SYSUI_QQS_COUNT = "sysui_qqs_count_key";
     private static final String DAYLIGHT_HEADER_PACK = "daylight_header_pack";
     private static final String DEFAULT_HEADER_PACKAGE = "com.android.systemui";
     private static final String CUSTOM_HEADER_IMAGE_SHADOW = "status_bar_custom_header_shadow";
     private static final String CUSTOM_HEADER_PROVIDER = "custom_header_provider";
     private static final String CUSTOM_HEADER_BROWSE = "custom_header_browse";
-    private static final String QUICK_PULLDOWN = "quick_pulldown";  
-    
+    private static final String QUICK_PULLDOWN = "quick_pulldown";
+
     private CustomSeekBarPreference mQsColumns;
     private CustomSeekBarPreference mRowsPortrait;
     private CustomSeekBarPreference mRowsLandscape;
-    private CustomSeekBarPreference mSysuiQqsCount;
     private ListPreference mDaylightHeaderPack;
     private ListPreference mHeaderProvider;
     private ListPreference mQuickPulldown;
@@ -75,7 +73,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private CustomSeekBarPreference mHeaderShadow;
     private PreferenceScreen mHeaderBrowse;
     private String mDaylightHeaderProvider;
- 
+
     private static final int MY_USER_ID = UserHandle.myUserId();
 
     @Override
@@ -117,13 +115,9 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         } else {
             prefSet.removePreference(mLockQsDisabled);
         }
-        
-        mSysuiQqsCount = (CustomSeekBarPreference) findPreference(PREF_SYSUI_QQS_COUNT);
-         int SysuiQqsCount = Settings.Secure.getInt(getContentResolver(),
-                 Settings.Secure.QQS_COUNT, 6);
-         mSysuiQqsCount.setValue(SysuiQqsCount / 1);
-         mSysuiQqsCount.setOnPreferenceChangeListener(this);
-    
+
+
+
         String settingHeaderPackage = Settings.System.getString(getContentResolver(),
                 Settings.System.STATUS_BAR_DAYLIGHT_HEADER_PACK);
         if (settingHeaderPackage == null) {
@@ -216,11 +210,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
              Settings.System.putInt(getActivity().getContentResolver(),
                      Settings.System.QS_ROWS_LANDSCAPE, rowsLandscape * 1);
              return true;
-        } else if (preference == mSysuiQqsCount) {
-             int SysuiQqsCount = (Integer) objValue;
-             Settings.Secure.putInt(getActivity().getContentResolver(),
-                     Settings.Secure.QQS_COUNT, SysuiQqsCount * 1);
-              return true;
         } else if (preference == mDaylightHeaderPack) {
             String value = (String) objValue;
             Settings.System.putString(getContentResolver(),
