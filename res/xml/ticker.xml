@@ -53,13 +53,6 @@
 
 	</PreferenceCategory>
 
-  <!-- Heads Up switch -->
-  <com.citrus.settings.preference.GlobalSettingSwitchPreference
-        android:key="heads_up_notifications_enabled"
-        android:title="@string/heads_up_switch_title"
-        android:summary="@string/heads_up_switch_summary"
-        android:defaultValue="true" />
-
   <!-- Dialer Forced Heads up switch -->
   <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="always_headsup_dialer"
