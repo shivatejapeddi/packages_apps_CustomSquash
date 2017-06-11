@@ -74,7 +74,7 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
     private PreferenceScreen mHeadsUp;
 
     private ContentResolver mResolver;
-   
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +96,8 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
 
         boolean showTicker = Settings.System.getInt(mResolver,
                 Settings.System.STATUS_BAR_SHOW_TICKER, 0) == 1;
+
+        mHeadsUp = (PreferenceScreen) findPreference(KEY_HEADS_UP_SETTINGS);
 
         mShowTicker = (ListPreference) prefSet.findPreference(SHOW_TICKER);
         int tickerMode = Settings.System.getIntForUser(mResolver,
@@ -286,13 +288,11 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
         @Override
         public void onCancel(DialogInterface dialog) {
 
-    mHeadsUp = (PreferenceScreen) findPreference(KEY_HEADS_UP_SETTINGS);
-
         }
     private boolean getUserHeadsUpState() {
-         return Settings.Global.getInt(getContentResolver(),
-                Settings.Global.HEADS_UP_NOTIFICATIONS_ENABLED,
-                Settings.Global.HEADS_UP_ON) != 0;
+         return Settings.System.getInt(getContentResolver(),
+                Settings.System.HEADS_UP_USER_ENABLED,
+                Settings.System.HEADS_UP_USER_ON) != 0;
       }
     }
 
