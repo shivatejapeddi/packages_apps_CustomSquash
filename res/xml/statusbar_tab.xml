@@ -24,11 +24,6 @@
     android:title="@string/quicksettings_category" />
 
     <PreferenceScreen
-        android:fragment="com.citrus.settings.fragments.CarrierLabelSettings"
-        android:title="@string/carrier_label_settings_title"
-        android:summary="@string/carrier_label_settings_summary" />
-
-    <PreferenceScreen
             android:title="@string/power_notification_title"
             android:summary="@string/power_notification_summary">
         <intent android:action="android.intent.action.MAIN"
@@ -48,7 +43,7 @@
         android:key="citrus_logo"
         android:title="@string/status_bar_citrus_logo_frags_title"
 	android:fragment="com.citrus.settings.fragments.LogoSettings"  />
- 
+
     <PreferenceScreen
         android:key="custom_logo"
         android:title="@string/sb_custom_logos"

@@ -73,7 +73,7 @@
     <string-array name="action_dialog_no_default_entries">
         <item>@string/action_entry_custom_action</item>
         <item>@string/action_entry_select_app</item>
-   </string-array>
+   </string-array>     
 
     <string-array name="action_dialog_no_default_values" translatable="false">
         <item>@string/action_value_custom_action</item>
@@ -246,21 +246,6 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-
-    <!-- Carrier Label -->
-    <string-array name="carrier_label_entries" translatable="false">
-        <item>@string/show_carrier_disabled</item>
-        <item>@string/show_carrier_keyguard</item>
-        <item>@string/show_carrier_statusbar</item>
-        <item>@string/show_carrier_enabled</item>
-    </string-array>
-
-    <string-array name="carrier_label_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-</string-array>
 
     <!-- Screen record chord behavior -->
     <string-array name="screen_record_chord_entries" translatable="false">
@@ -586,7 +571,7 @@
 		<item>@string/status_bar_logo_position_center</item>
 		<item>@string/status_bar_logo_position_right</item>
                 <item>@string/status_bar_logo_position_left</item>
-    </string-array>
+-    </string-array>
 
     <string-array name="status_bar_logo_position_values" translatable="false">
         <item>0</item>
