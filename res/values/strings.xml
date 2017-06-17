@@ -341,7 +341,7 @@
     <string name="fprint_sucess_vib_summary">Vibrate on successful fingerprint authentication</string>
 
     <!-- Screen record chord behavior -->
-    <string name="screen_record_chord_title">Power + volume up behavior</string>
+    <string name="screen_record_chord_title">Power  volume up behavior</string>
     <string name="screen_record_chord_screenrecord">Start screen recording</string>
     <string name="screen_record_chord_selscreenshot">Take screenshot of selectable area</string>
 
@@ -648,5 +648,17 @@
 	<!-- Navbar dynamic color -->
     <string name="nav_bar_dynamic_title">Dynamic navbar color</string>
     <string name="nav_bar_dynamic_summary">Enables the navbar to adapt app\'s primary dark color. Restart your desired app to see effect.</string>
+
+    <!-- Carrier label -->
+    <string name="carrier_title">Carrier Label</string>
+    <string name="carrier_options_summary">Customize the carrier label</string>
+    <string name="custom_carrier_label_title">Custom carrier label</string>
+    <string name="custom_carrier_label_explain">Please enter a new label. Leave blank to revert to stock label.</string>
+    <string name="custom_carrier_label_notset">Custom label currently not set</string>
+    <string name="show_carrier_title">Carrier label</string>
+    <string name="show_carrier_disabled">Disabled</string>
+    <string name="show_carrier_keyguard">Lockscreen only</string>
+    <string name="show_carrier_statusbar">Statusbar only</string>
+    <string name="status_bar_carrier_color">Carrier label color</string>
 
 </resources>

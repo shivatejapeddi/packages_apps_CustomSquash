@@ -73,7 +73,7 @@
     <string-array name="action_dialog_no_default_entries">
         <item>@string/action_entry_custom_action</item>
         <item>@string/action_entry_select_app</item>
-   </string-array>     
+   </string-array>
 
     <string-array name="action_dialog_no_default_values" translatable="false">
         <item>@string/action_value_custom_action</item>
@@ -602,6 +602,19 @@
     </string-array>
 
     <string-array name="ticker_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Carrier Label -->
+    <string-array name="carrier_label_entries">
+        <item>@string/show_carrier_disabled</item>
+        <item>@string/show_carrier_keyguard</item>
+        <item>@string/show_carrier_statusbar</item>
+    </string-array>
+
+    <string-array name="carrier_label_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
