@@ -68,6 +68,7 @@ public class CarrierLabel extends SettingsPreferenceFragment implements
     private static final String STATUS_BAR_CARRIER_COLOR = "status_bar_carrier_color";
     private static final String STATUS_BAR_CARRIER_FONT_SIZE  = "status_bar_carrier_font_size";
     private static final String STATUS_BAR_CARRIER_FONT_STYLE = "status_bar_carrier_font_style";
+    private static final String HIDE_CARRIER_MAX_NOTIFICATION = "hide_carrier_max_notification";
 
     static final int DEFAULT_STATUS_CARRIER_COLOR = 0xffffffff;
 
@@ -77,6 +78,7 @@ public class CarrierLabel extends SettingsPreferenceFragment implements
     private ColorPickerPreference mCarrierColorPicker;
     private ListPreference mStatusBarCarrierFontStyle;
     private SeekBarPreference mStatusBarCarrierSize;
+    private SeekBarPreference mHideCarrierMaxNotification;
 
     @Override
     protected int getMetricsCategory() {
@@ -115,11 +117,15 @@ public class CarrierLabel extends SettingsPreferenceFragment implements
                 Settings.System.STATUS_BAR_CARRIER_FONT_STYLE, 0)));
         mStatusBarCarrierFontStyle.setSummary(mStatusBarCarrierFontStyle.getEntry());
 
-
         mStatusBarCarrierSize = (SeekBarPreference) findPreference(STATUS_BAR_CARRIER_FONT_SIZE);
         mStatusBarCarrierSize.setProgress(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.STATUS_BAR_CARRIER_FONT_SIZE, 10));
         mStatusBarCarrierSize.setOnPreferenceChangeListener(this);
+
+        mHideCarrierMaxNotification = (SeekBarPreference) findPreference(HIDE_CARRIER_MAX_NOTIFICATION);
+        mHideCarrierMaxNotification.setProgress(Settings.System.getInt(resolver,
+                Settings.System.HIDE_CARRIER_MAX_NOTIFICATION, 1));
+        mHideCarrierMaxNotification.setOnPreferenceChangeListener(this);
 
         updatepreferences();
         updateCustomLabelTextSummary();
@@ -164,6 +170,11 @@ public class CarrierLabel extends SettingsPreferenceFragment implements
                         Settings.System.STATUS_BAR_CARRIER_FONT_STYLE, val);
                 mStatusBarCarrierFontStyle.setSummary(mStatusBarCarrierFontStyle.getEntries()[index]);
                 return true;
+        }  else if (preference == mHideCarrierMaxNotification) {
+            int width = ((Integer)newValue).intValue();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HIDE_CARRIER_MAX_NOTIFICATION, width);
+            return true;
         }
       return false;
     }

@@ -48,4 +48,16 @@
             android:dependency="status_bar_carrier"
             android:defaultValue="0xffffffff" />
 
+        <com.citrus.settings.preference.SystemSettingSwitchPreference
+            android:key="hide_carrier_max_switch"
+            android:title="@string/carrier_label_hide_label_title"
+            android:dependency="status_bar_carrier" />
+
+          <com.citrus.settings.preference.CustomSeekBarPreference
+            android:key="hide_carrier_max_notification"
+            android:title="@string/carrier_label_number_of_notification_icons_title"
+            android:max="6"
+            settings:min="1"
+            android:dependency="hide_carrier_max_switch" />
+
 </PreferenceScreen>
