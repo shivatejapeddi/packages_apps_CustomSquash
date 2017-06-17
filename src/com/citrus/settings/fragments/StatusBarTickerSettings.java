@@ -289,12 +289,13 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
         public void onCancel(DialogInterface dialog) {
 
         }
+    }
+
     private boolean getUserHeadsUpState() {
          return Settings.System.getInt(getContentResolver(),
                 Settings.System.HEADS_UP_USER_ENABLED,
                 Settings.System.HEADS_UP_USER_ON) != 0;
       }
-    }
 
     @Override
     protected int getMetricsCategory() {
