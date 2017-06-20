@@ -52,7 +52,7 @@ import net.margaritov.preference.colorpicker.ColorPickerPreference;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.citrus.settings.utils.Utils;
-import com.android.settings.SeekBarPreference;
+import com.citrus.settings.preference.CustomSeekBarPreference;
 
 import java.util.Date;
 import java.util.List;
@@ -77,8 +77,8 @@ public class CarrierLabel extends SettingsPreferenceFragment implements
     private String mCustomCarrierLabelText;
     private ColorPickerPreference mCarrierColorPicker;
     private ListPreference mStatusBarCarrierFontStyle;
-    private SeekBarPreference mStatusBarCarrierSize;
-    private SeekBarPreference mHideCarrierMaxNotification;
+    private CustomSeekBarPreference mStatusBarCarrierSize;
+    private CustomSeekBarPreference mHideCarrierMaxNotification;
 
     @Override
     protected int getMetricsCategory() {
@@ -117,13 +117,13 @@ public class CarrierLabel extends SettingsPreferenceFragment implements
                 Settings.System.STATUS_BAR_CARRIER_FONT_STYLE, 0)));
         mStatusBarCarrierFontStyle.setSummary(mStatusBarCarrierFontStyle.getEntry());
 
-        mStatusBarCarrierSize = (SeekBarPreference) findPreference(STATUS_BAR_CARRIER_FONT_SIZE);
-        mStatusBarCarrierSize.setProgress(Settings.System.getInt(getActivity().getContentResolver(),
+        mStatusBarCarrierSize = (CustomSeekBarPreference) findPreference(STATUS_BAR_CARRIER_FONT_SIZE);
+        mStatusBarCarrierSize.setValue(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.STATUS_BAR_CARRIER_FONT_SIZE, 10));
         mStatusBarCarrierSize.setOnPreferenceChangeListener(this);
 
-        mHideCarrierMaxNotification = (SeekBarPreference) findPreference(HIDE_CARRIER_MAX_NOTIFICATION);
-        mHideCarrierMaxNotification.setProgress(Settings.System.getInt(resolver,
+        mHideCarrierMaxNotification = (CustomSeekBarPreference) findPreference(HIDE_CARRIER_MAX_NOTIFICATION);
+        mHideCarrierMaxNotification.setValue(Settings.System.getInt(resolver,
                 Settings.System.HIDE_CARRIER_MAX_NOTIFICATION, 1));
         mHideCarrierMaxNotification.setOnPreferenceChangeListener(this);
 
