@@ -100,16 +100,13 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
         mHeadsUp = (PreferenceScreen) findPreference(KEY_HEADS_UP_SETTINGS);
 
         mShowTicker = (ListPreference) prefSet.findPreference(SHOW_TICKER);
+        mShowTicker.setOnPreferenceChangeListener(this);
         int tickerMode = Settings.System.getIntForUser(mResolver,
                     Settings.System.STATUS_BAR_SHOW_TICKER,
                     0, UserHandle.USER_CURRENT);
             mShowTicker.setValue(String.valueOf(tickerMode));
             mShowTicker.setSummary(mShowTicker.getEntry());
 
-        PreferenceCategory catColors =
-                (PreferenceCategory) findPreference(CAT_COLORS);
-
-        if (showTicker) {
             mTextColor =
                     (ColorPickerPreference) findPreference(TEXT_COLOR);
             intColor = Settings.System.getInt(mResolver,
@@ -143,11 +140,6 @@ public class StatusBarTickerSettings extends SettingsPreferenceFragment implemen
             mTickerFontStyle.setValue(Integer.toString(Settings.System.getInt(getActivity()
                     .getContentResolver(), Settings.System.STATUS_BAR_TICKER_FONT_STYLE, 0)));
             mTickerFontStyle.setSummary(mTickerFontStyle.getEntry());
-        } else {
-            removePreference("status_bar_ticker_font_size");
-            removePreference(CAT_COLORS);
-            removePreference("status_bar_ticker_font_style");
-        }
 
         setHasOptionsMenu(true);
     }
