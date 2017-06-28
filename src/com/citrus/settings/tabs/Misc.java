@@ -23,6 +23,7 @@ import android.content.DialogInterface;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v7.preference.PreferenceCategory;
@@ -49,11 +50,17 @@ public class Misc extends SettingsPreferenceFragment implements
 
     private static final String WIRED_RINGTONE_FOCUS_MODE = "wired_ringtone_focus_mode";
 
+    private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
+    private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
+    private static final String SCROLLINGCACHE_DEFAULT = "1";
+
+    private String mCustomSummaryText;
+
     private Preference mCustomSummary;
     private ListPreference mRecentsClearAllLocation;
-    private SwitchPreference mRecentsClearAll;
-    private String mCustomSummaryText;
+    private ListPreference mScrollingCachePref;
     private ListPreference mWiredHeadsetRingtoneFocus;
+    private SwitchPreference mRecentsClearAll;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +88,11 @@ public class Misc extends SettingsPreferenceFragment implements
         mWiredHeadsetRingtoneFocus.setValue(Integer.toString(mWiredHeadsetRingtoneFocusValue));
         mWiredHeadsetRingtoneFocus.setSummary(mWiredHeadsetRingtoneFocus.getEntry());
         mWiredHeadsetRingtoneFocus.setOnPreferenceChangeListener(this);
+
+        mScrollingCachePref = (ListPreference) findPreference(SCROLLINGCACHE_PREF);
+        mScrollingCachePref.setValue(SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP,
+                SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP, SCROLLINGCACHE_DEFAULT)));
+        mScrollingCachePref.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -115,6 +127,11 @@ public class Misc extends SettingsPreferenceFragment implements
             Settings.Global.putInt(resolver, Settings.Global.WIRED_RINGTONE_FOCUS_MODE,
                     mWiredHeadsetRingtoneFocusValue);
             return true;
+      } else if (preference == mScrollingCachePref) {
+            if (objValue != null) {
+                SystemProperties.set(SCROLLINGCACHE_PERSIST_PROP, (String)objValue);
+            return true;
+            }
         }
         return false;
     }
