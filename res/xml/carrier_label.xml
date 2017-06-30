@@ -38,10 +38,10 @@
         <com.citrus.settings.preference.CustomSeekBarPreference
             android:key="status_bar_carrier_font_size"
             android:title="@string/status_bar_carrier_size"
-            android:max="23"
+            settings:max="23"
             settings:min="4"
             settings:units="dp"
-            android:defaultValue="14"  />
+            settings:defaultValue="14"  />
 
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="status_bar_carrier_color"
@@ -57,7 +57,7 @@
           <com.citrus.settings.preference.CustomSeekBarPreference
             android:key="hide_carrier_max_notification"
             android:title="@string/carrier_label_number_of_notification_icons_title"
-            android:max="6"
+            settings:max="6"
             settings:min="1"
             settings:units=""
             android:dependency="hide_carrier_max_switch" />
