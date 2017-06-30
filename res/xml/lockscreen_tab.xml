@@ -40,7 +40,7 @@
             android:key="lockscreen_battery_info"
             android:title="@string/lockscreen_battery_info_title"
             android:summary="@string/lockscreen_battery_info_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <com.citrus.settings.preference.SecureSettingSwitchPreference
             android:key="lockscreen_visualizer"
