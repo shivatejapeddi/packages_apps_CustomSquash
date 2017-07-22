@@ -488,10 +488,9 @@
     <string name="recents_clear_all_location_bottom_left">Bottom left</string>
     <string name="recents_clear_all_location_bottom_center">Bottom center</string>
 
-    <!-- Lockscreen double tap to sleep -->
-    <string name="tap_to_sleep_lockscreen_category">Tap to Sleep on Lockscreen</string>
-    <string name="double_tap_sleep_anywhere_title">Double-tap to sleep anywhere</string>
-    <string name="double_tap_sleep_anywhere_summary">Double tap anywhere on the lockscreen to put the device to sleep</string>
+    <!-- Double Tap Lockscreen to Sleep -->
+    <string name="double_tap_to_sleep_lockscreen_title">Double tap on lockscreen to sleep</string>
+    <string name="double_tap_to_sleep_lockscreen_summary">Double tap on the top third or bottom shortcut area of the lock screen to put the device to sleep</string>
 
     <!-- Recents memory bar -->
     <string name="systemui_recents_mem_display_title">Show memory bar</string>
@@ -569,7 +568,7 @@
     <string name="custom_logos">Take your Pick</string>
     <string name="show_custom_logo_title">Show custom icons</string>
     <string name="custom_logo_color">Color</string>
-    <string name="custom_logo_position">Position</string> 
+    <string name="custom_logo_position">Position</string>
     <string name="logo0">Cardinal</string>
     <string name="logo1">BugDroid Minimal</string>
     <string name="logo2">Drupal</string>
