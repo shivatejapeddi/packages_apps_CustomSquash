@@ -24,20 +24,6 @@
         android:summary="@string/toast_icon_summary"
         android:defaultValue="false" />
 
-    <PreferenceCategory
-        android:title="@string/custom_summary_cat_title">
-
-    <Preference
-        android:key="custom_settings_summary"
-        android:title="@string/custom_settings_summary_title" />
-
-    <com.citrus.settings.preference.SystemSettingSwitchPreference
-        android:key="custom_settings_random_summary"
-        android:title="@string/custom_summary_randomize_title"
-        android:summary="@string/custom_summary_randomize_explain"
-        android:defaultValue="false" />
-    </PreferenceCategory>
-
     <!-- Three-fingers-swipe to screenshot -->
        <com.citrus.settings.preference.SystemSettingSwitchPreference
             android:key="three_finger_gesture"
@@ -58,6 +44,20 @@
         android:summary="@string/pref_scrollingcache_summary"
         android:entries="@array/entries_scrollingcache"
         android:entryValues="@array/values_scrollingcache" />
+
+    <PreferenceCategory
+        android:title="@string/custom_summary_cat_title">
+
+    <Preference
+        android:key="custom_settings_summary"
+        android:title="@string/custom_settings_summary_title" />
+
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="custom_settings_random_summary"
+        android:title="@string/custom_summary_randomize_title"
+        android:summary="@string/custom_summary_randomize_explain"
+        android:defaultValue="false" />
+    </PreferenceCategory>
 
         <PreferenceCategory
             android:title="@string/recents_category" >
