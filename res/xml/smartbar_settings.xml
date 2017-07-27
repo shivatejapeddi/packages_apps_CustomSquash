@@ -59,7 +59,6 @@
         settings:units=""
         android:persistent="false" />
 
-
     <com.citrus.settings.preference.CustomSeekBarPreference
         android:key="smartbar_custom_icon_size"
         android:title="@string/smartbar_custom_icon_size_title"
@@ -67,6 +66,12 @@
         settings:min="10"
         settings:units="%"
         android:persistent="false" />
+
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="nav_bar_dynamic"
+        android:title="@string/nav_bar_dynamic_title"
+        android:summary="@string/nav_bar_dynamic_summary"
+        android:defaultValue="false" />
 
 <com.citrus.settings.preference.SecureSettingSwitchPreference
         android:key="one_handed_mode_ui"
