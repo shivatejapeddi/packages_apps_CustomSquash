@@ -43,6 +43,9 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
 
     // Key Disabler
     private static final String HWKEY_DISABLE = "hardware_keys_disable";
+ 
+    // Accidental Touch
+    private static final String KEY_ANBI = "anbi";
 
     // Buttons Brightness
     private static final String KEY_BACKLIGHT_TIMEOUT = "backlight_timeout";
@@ -71,6 +74,7 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
     private ListPreference mBacklightTimeout;
     private SwitchPreference mHwKeyDisable;
     private SwitchPreference mButtonBrightness;
+    private SwitchPreference mAnbiPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,8 +82,6 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
         addPreferencesFromResource(R.xml.hardwarekeys);
 
         final PreferenceScreen prefScreen = getPreferenceScreen();
-
-
 
         final boolean needsNavbar = DUActionUtils.hasNavbarByDefault(getActivity());
         final PreferenceCategory hwkeyCat = (PreferenceCategory) prefScreen
@@ -112,9 +114,15 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
              Settings.System.BUTTON_BRIGHTNESS, 1) == 1));
              mButtonBrightness.setOnPreferenceChangeListener(this);
 
+        /* Accidental navigation button interaction */
+        mAnbiPreference = (SwitchPreference) findPreference(KEY_ANBI);
+        if (mAnbiPreference != null) {
+            mAnbiPreference.setChecked((Settings.System.getInt(getContentResolver(),
+            Settings.System.ANBI_ENABLED, 0) == 1));
+            mAnbiPreference.setOnPreferenceChangeListener(this);
+            }
         }
-        
-        // bits for hardware keys present on device
+
         final int deviceKeys = getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
 
@@ -209,6 +217,11 @@ public class HardwareKeys extends ActionFragment implements OnPreferenceChangeLi
              Settings.System.putInt(getActivity().getContentResolver(),
                       Settings.System.BUTTON_BRIGHTNESS, value ? 1 : 0);
              return true;	
+        } else if (preference == mAnbiPreference) {
+             boolean value = (Boolean) newValue;
+             Settings.System.putInt(getActivity().getContentResolver(),
+                      Settings.System.ANBI_ENABLED, value ? 1 : 0);
+             return true;
             }
             return false;
     }

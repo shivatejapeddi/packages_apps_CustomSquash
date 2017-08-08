@@ -46,6 +46,13 @@
         android:defaultValue="false"
         android:dependency="button_brightness" />
 
+    <SwitchPreference
+        android:key="anbi"
+        android:title="@string/anbi_title"
+        android:summary="@string/anbi_summary"
+        android:persistent="false"
+        android:dependency="hardware_keys_disable" />
+ 
     </PreferenceCategory>
 
     <PreferenceCategory
