@@ -24,6 +24,11 @@
             android:title="@string/lockscreen_items_settings_title" />
 
         <PreferenceScreen
+            android:key="lockscreen_weather"
+            android:title="@string/lock_screen_weather_settings_title"
+            android:fragment="com.citrus.settings.fragments.LockScreenWeatherSettings" />
+
+        <PreferenceScreen
             android:title="@string/lockscreen_targets_title">
         <intent
             android:targetPackage="com.android.systemui"
