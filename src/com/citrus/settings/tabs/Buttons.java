@@ -29,6 +29,8 @@ import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v14.preference.SwitchPreference;
 import android.provider.Settings;
 
+import com.android.internal.util.custom.CustomUtils;
+
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
@@ -40,9 +42,13 @@ public class Buttons extends SettingsPreferenceFragment implements
     private static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
     private static final String SCREENRECORD_CHORD_TYPE = "screenrecord_chord_type";
 
+    private static final String PREF_KEY_DEVICE_ADDITIONAL_BUTTONS = "device_additional_buttons";
+    private static final String DEVICE_ADDITIONAL_BUTTONS_PACKAGE_NAME = "com.cyanogenmod.settings.device";
+
     public static final String VOLUME_ROCKER_MUSIC_CONTROLS = "volume_rocker_music_controls";
 
     private ListPreference mScreenrecordChordType;
+    private PreferenceScreen mDeviceAdditionalButtons;
     private SwitchPreference mVolumeRockerWake;
     private SwitchPreference mVolumeRockerMusicControl;
 
@@ -55,6 +61,7 @@ public class Buttons extends SettingsPreferenceFragment implements
         ContentResolver resolver = getActivity().getContentResolver();
         PreferenceScreen prefScreen = getPreferenceScreen();
         Resources res = getResources();
+        Context context = getActivity();
 
         //volume rocker wake
         mVolumeRockerWake = (SwitchPreference) findPreference(VOLUME_ROCKER_WAKE);
@@ -74,6 +81,11 @@ public class Buttons extends SettingsPreferenceFragment implements
                 Settings.System.SCREENRECORD_CHORD_TYPE, 0);
         mScreenrecordChordType = initActionList(SCREENRECORD_CHORD_TYPE,
                 recordChordValue);
+
+        mDeviceAdditionalButtons = (PreferenceScreen) findPreference(PREF_KEY_DEVICE_ADDITIONAL_BUTTONS);
+        if (!CustomUtils.isAvailableApp(DEVICE_ADDITIONAL_BUTTONS_PACKAGE_NAME,context)) {
+            removePreference(PREF_KEY_DEVICE_ADDITIONAL_BUTTONS);
+        }
     }
 
     @Override

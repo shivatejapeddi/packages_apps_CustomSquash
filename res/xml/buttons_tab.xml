@@ -27,6 +27,15 @@
             android:fragment="com.citrus.settings.fragments.NavbarSettings"
             android:title="@string/navigationbar_settings_title" />
 
+       <PreferenceScreen
+        android:key="device_additional_buttons"
+        android:title="@string/device_additional_buttons_title">
+        <intent
+            android:action="com.android.settings.action.EXTRA_SETTINGS"
+            android:targetPackage="com.cyanogenmod.settings.device"
+            android:targetClass="com.cyanogenmod.settings.device.ButtonSettings" />
+       </PreferenceScreen>
+
         <Preference
             android:key="powermenu"
             android:fragment="com.citrus.settings.fragments.PowerMenu"

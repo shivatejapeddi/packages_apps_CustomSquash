@@ -809,4 +809,6 @@
     <string name="weather_config_title">Service settings</string>
     <string name="weather_icon_pack_title">Condition icon pack</string>
   
+    <!-- Additional Button Settings -->
+    <string name="device_additional_buttons_title">Notification Slider</string>
 </resources>
