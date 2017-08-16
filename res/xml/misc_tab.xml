@@ -31,6 +31,12 @@
             android:summary="@string/three_finger_gesture_summary"
             android:defaultValue="false" />
 
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+            android:key="sensor_block"
+            android:title="@string/sensor_block_title"
+            android:summary="@string/sensor_block_summary"
+            android:defaultValue="false" />
+
         <ListPreference
             android:key="wired_ringtone_focus_mode"
             android:title="@string/wired_ringtone_focus_mode_title"
