@@ -27,16 +27,11 @@
             android:fragment="com.citrus.settings.fragments.NavbarSettings"
             android:title="@string/navigationbar_settings_title" />
 
-        <PreferenceCategory
-            android:key="power_menu"
-            android:title="@string/power_menu_title">
-
         <PreferenceScreen
 	        android:key="power_menu"
             android:title="@string/power_menu_title"
             android:summary="@string/power_menu_title_summary"
 	        android:fragment="com.citrus.settings.PowerMenuSettings" />
-        </PreferenceCategory>
 
        <PreferenceScreen
         android:key="device_additional_buttons"
