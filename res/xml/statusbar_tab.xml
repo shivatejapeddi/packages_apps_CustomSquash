@@ -36,6 +36,12 @@
         android:title="@string/ime_switcher_notify"
         android:summary="@string/ime_switcher_notify_summary"
         android:defaultValue="true" />
+
+         <com.citrus.settings.preference.SystemSettingSwitchPreference
+            android:key="traffic"
+            android:fragment="com.citrus.settings.fragments.Traffic"
+            android:icon="@drawable/ic_traffic"
+            android:title="@string/network_traffic_title" />
 <!--
     <PreferenceCategory
       android:title="@string/status_bar_icons_cat">
