@@ -365,6 +365,8 @@
     <string name="action_launch_camera">Open camera</string>
     <string name="action_last_app">Launch last app</string>
     <string name="action_splitscreen">Splitscreen</string>
+    <string name="action_screenshot">Screenshot</string>
+    <string name="action_partial_screenshot">Partial screenshot</string>
 
    <!-- Navigation bar -->
    <string name="navigationbar_settings_title">Navigation bar</string>
