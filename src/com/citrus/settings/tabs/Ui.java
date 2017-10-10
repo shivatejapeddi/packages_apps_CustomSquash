@@ -16,26 +16,15 @@
 
 package com.citrus.settings.tabs;
 
-import android.content.Context;
 import android.content.ContentResolver;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.UserHandle;
-import android.provider.Settings;
-import android.support.v7.preference.PreferenceCategory;
-import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
-import android.support.v14.preference.SwitchPreference;
-
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-import com.android.internal.logging.MetricsProto.MetricsEvent;
-
-import com.android.settings.Utils;
-import com.citrus.settings.preference.SystemSettingSwitchPreference;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 public class Ui extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -52,7 +41,7 @@ public class Ui extends SettingsPreferenceFragment implements
     }
 
     @Override
-    protected int getMetricsCategory() {
+    public int getMetricsCategory() {
         return MetricsEvent.CUSTOM_SQUASH;
     }
 
@@ -67,7 +56,6 @@ public class Ui extends SettingsPreferenceFragment implements
     }
 
      public boolean onPreferenceChange(Preference preference, Object objValue) {
-       final String key = preference.getKey();
        return true;
     }
 }

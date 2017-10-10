@@ -18,26 +18,4 @@
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" >
 
-    <PreferenceScreen
-        android:key="blur"
-        android:fragment="com.citrus.settings.BlurSettings"
-        android:title="@string/blur_title" />
- 
-    <Preference
-        android:key="expanded_desktop"
-        android:fragment="com.citrus.settings.fragments.ExpandedDesktop"
-        android:title="@string/expanded_desktop_category" />
-
-    <Preference
-        android:key="gesture_preference"
-        android:fragment="com.android.settings.gestures.GestureSettings"
-        android:title="@string/gesture_preference_title" 
-        android:summary="@string/gesture_preference_summary"/>
-
-    <com.citrus.settings.preference.GlobalSettingSwitchPreference
-        android:key="wake_when_plugged_or_unplugged"
-        android:title="@string/wake_when_plugged_or_unplugged_title"
-        android:summary="@string/wake_when_plugged_or_unplugged_summary"
-        android:defaultValue="true" />
- 
 </PreferenceScreen>
