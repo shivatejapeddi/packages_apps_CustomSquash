@@ -57,6 +57,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private static final String CATEGORY_WEATHER = "weather_category";
     private static final String WEATHER_ICON_PACK = "weather_icon_pack";
     private static final String DEFAULT_WEATHER_ICON_PACKAGE = "org.omnirom.omnijaws";
+    private static final String DEFAULT_WEATHER_ICON_PREFIX = "weather";
     private static final String WEATHER_SERVICE_PACKAGE = "org.omnirom.omnijaws";
     private static final String CHRONUS_ICON_PACK_INTENT = "com.dvtonder.chronus.ICON_PACK";
 
@@ -129,7 +130,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             String settingHeaderPackage = Settings.System.getString(getContentResolver(),
                     Settings.System.OMNIJAWS_WEATHER_ICON_PACK);
             if (settingHeaderPackage == null) {
-                settingHeaderPackage = DEFAULT_WEATHER_ICON_PACKAGE;
+                settingHeaderPackage = DEFAULT_WEATHER_ICON_PACKAGE + "." + DEFAULT_WEATHER_ICON_PREFIX;
             }
             mWeatherIconPack = (ListPreference) findPreference(WEATHER_ICON_PACK);
 
@@ -142,7 +143,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             int valueIndex = mWeatherIconPack.findIndexOfValue(settingHeaderPackage);
             if (valueIndex == -1) {
                 // no longer found
-                settingHeaderPackage = DEFAULT_WEATHER_ICON_PACKAGE;
+                settingHeaderPackage = DEFAULT_WEATHER_ICON_PACKAGE + "." + DEFAULT_WEATHER_ICON_PREFIX;
                 Settings.System.putString(getContentResolver(),
                         Settings.System.OMNIJAWS_WEATHER_ICON_PACK, settingHeaderPackage);
                 valueIndex = mWeatherIconPack.findIndexOfValue(settingHeaderPackage);
