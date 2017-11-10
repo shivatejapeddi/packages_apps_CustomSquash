@@ -21,8 +21,13 @@
   
           <Preference
                 android:key="charging_light"
-                android:fragment="com.citrus.settings.fragments.BatteryLightSettings"
+                android:fragment="com.citrus.settings.fragments.led.BatteryLightSettings"
                 android:title="@string/custom_battery_light_settings" />
   
+          <Preference
+                android:key="notification_light"
+                android:title="@string/notification_light_title"
+                android:fragment="com.citrus.settings.fragments.led.NotificationLightSettings" />
+
     </PreferenceCategory>
 </PreferenceScreen>
