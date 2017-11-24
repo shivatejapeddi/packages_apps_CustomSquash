@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2007 The Android Open Source Project
+<!-- Copyright (C) 2017 The Dirty Unicorns Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,14 +13,12 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-<style name="TextAppearance.PagerTabsSystemSettings" parent="@android:style/TextAppearance.DeviceDefault.Small">
-        <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
+    <!-- Alert dialog -->
+    <dimen name="alert_dialog_padding_material">20dp</dimen>
+    
     <!-- Navbar height -->
     <integer name="navigation_bar_height_min_percent">65</integer>
     <integer name="navigation_bar_height_max_percent">135</integer>
