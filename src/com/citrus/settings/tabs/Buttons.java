@@ -86,6 +86,15 @@ public class Buttons extends SettingsPreferenceFragment implements
         if (!CustomUtils.isAvailableApp(DEVICE_ADDITIONAL_BUTTONS_PACKAGE_NAME,context)) {
             removePreference(PREF_KEY_DEVICE_ADDITIONAL_BUTTONS);
         }
+
+        final int deviceHwKeys = res.getInteger(
+                    com.android.internal.R.integer.config_deviceHardwareKeys);
+ 
+        final Preference HwkeysPreference = findPreference("hardware_keys_settings");
+
+        if (deviceHwKeys == 0) {
+            prefScreen.removePreference(HwkeysPreference);
+        }
     }
 
     @Override
