@@ -112,6 +112,11 @@ public class HardwareKeys extends ActionFragment implements Preference.OnPrefere
         // let super know we can load ActionPreferences
         onPreferenceScreenLoaded(ActionConstants.getDefaults(ActionConstants.HWKEYS));
     }
+ 
+    @Override
+    protected boolean usesExtendedActionsList() {
+        return true;
+    }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
