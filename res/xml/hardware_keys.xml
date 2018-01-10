@@ -16,9 +16,20 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+	<PreferenceCategory 
+        android:key="hw_keys"
+		android:title="@string/hardware_keys_category">
+
+		<SwitchPreference 
+            android:key="hardware_keys_disable"
+			android:title="@string/hardware_keys_disable_title"
+            android:disableDependentsState="true" />
+	</PreferenceCategory>
+
     <PreferenceCategory
         android:key="back_key"
-        android:title="@string/hardware_keys_back_key_title" >
+        android:title="@string/hardware_keys_back_key_title" 
+        android:dependency="hardware_keys_disable" >
 
         <com.citrus.settings.preference.ActionPreference
             android:key="hwkeys_button_back_single_tap"
@@ -42,7 +53,8 @@
 
     <PreferenceCategory
         android:key="home_key"
-        android:title="@string/hardware_keys_home_key_title" >
+        android:title="@string/hardware_keys_home_key_title" 
+        android:dependency="hardware_keys_disable" >
 
         <com.citrus.settings.preference.ActionPreference
             android:key="hwkeys_button_home_single_tap"
@@ -66,7 +78,8 @@
 
     <PreferenceCategory
         android:key="app_switch_key"
-        android:title="@string/hardware_keys_appswitch_key_title" >        
+        android:title="@string/hardware_keys_appswitch_key_title" 
+        android:dependency="hardware_keys_disable" >        
 
         <com.citrus.settings.preference.ActionPreference
             android:key="hwkeys_button_overview_single_tap"
@@ -90,7 +103,8 @@
 
     <PreferenceCategory
         android:key="menu_key"
-        android:title="@string/hardware_keys_menu_key_title" >        
+        android:title="@string/hardware_keys_menu_key_title" 
+        android:dependency="hardware_keys_disable" >        
 
         <com.citrus.settings.preference.ActionPreference
             android:key="hwkeys_button_menu_single_tap"
@@ -114,7 +128,8 @@
 
     <PreferenceCategory
         android:key="assist_key"
-        android:title="@string/hardware_keys_assist_key_title" >
+        android:title="@string/hardware_keys_assist_key_title" 
+        android:dependency="hardware_keys_disable" >
 
         <com.citrus.settings.preference.ActionPreference
             android:key="hwkeys_button_assist_single_tap"
