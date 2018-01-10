@@ -301,4 +301,11 @@
     <string name="led_notification_title">Light settings</string>
     <string name="led_notification_text">LED light enabled by settings</string>
     
+    <!-- dialog -->
+    <string name="ok">OK</string>
+    <string name="profiles_add">Add</string>
+    <string name="profile_choose_app">Choose app</string> 
+    <string name="dialog_delete_title">Remove</string>
+    <string name="dialog_delete_message">Remove selected item?</string>
+
 </resources>
