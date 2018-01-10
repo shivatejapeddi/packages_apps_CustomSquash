@@ -39,6 +39,9 @@ public class HardwareKeys extends ActionFragment implements Preference.OnPrefere
 
     // Hardwarekey
     private static final String HWKEY_DISABLE = "hardware_keys_disable";
+    
+    // ANBI
+    private static final String KEY_ANBI = "anbi";
 
      // category keys
     private static final String CATEGORY_HWKEY = "hw_keys";
@@ -61,6 +64,7 @@ public class HardwareKeys extends ActionFragment implements Preference.OnPrefere
     public static final int KEY_MASK_VOLUME = 0x40;
 
     private SwitchPreference mHwKeyDisable;
+    private SwitchPreference mAnbiPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,13 +77,22 @@ public class HardwareKeys extends ActionFragment implements Preference.OnPrefere
         final PreferenceCategory hwkeyCat = (PreferenceCategory) prefScreen.findPreference(CATEGORY_HWKEY);
         int keysDisabled = 0;
         if (!needsNavbar) {
+            /* Accidental navigation button interaction */
+            mAnbiPreference = (SwitchPreference) findPreference(KEY_ANBI);
             mHwKeyDisable = (SwitchPreference) findPreference(HWKEY_DISABLE);
+            if (mAnbiPreference != null) {
+                mAnbiPreference.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.ANBI_ENABLED, 0) == 1));
+                mAnbiPreference.setOnPreferenceChangeListener(this);
+            }
             keysDisabled = Settings.Secure.getIntForUser(getContentResolver(),
                     Settings.Secure.HARDWARE_KEYS_DISABLE, 0,
                     UserHandle.USER_CURRENT);
             mHwKeyDisable.setChecked(keysDisabled != 0);
             mHwKeyDisable.setOnPreferenceChangeListener(this);
         } else {
+            hwkeyCat.removePreference(mAnbiPreference);
+            hwkeyCat.removePreference(mHwKeyDisable);                                    
             prefScreen.removePreference(hwkeyCat);
         }
 
@@ -151,6 +164,11 @@ public class HardwareKeys extends ActionFragment implements Preference.OnPrefere
             Settings.Secure.putInt(getContentResolver(), Settings.Secure.HARDWARE_KEYS_DISABLE,
                     value ? 1 : 0);
             setActionPreferencesEnabled(!value);
+            return true;
+        } else if (preference == mAnbiPreference) {
+             boolean value = (Boolean) newValue;
+             Settings.System.putInt(getActivity().getContentResolver(),
+                      Settings.System.ANBI_ENABLED, value ? 1 : 0);
             return true;
         }
         return false;
