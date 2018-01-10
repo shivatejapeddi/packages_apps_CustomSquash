@@ -311,4 +311,22 @@
     <!-- ANBI -->
     <string name="anbi_title">Accidental touch</string>
     <string name="anbi_summary">Prevent interaction with navigation buttons while the screen is being touched</string>
+
+    <!-- Buttons Backlight -->
+    <string name="button_backlight_cat">Button backlight</string>
+    <string name="button_backlight_on_touch_only_title">Button touch</string>
+    <string name="button_backlight_on_touch_only_summary">Enable backlight with timout only on button touch</string>
+    <string name="button_backlight_enable_title">Enable</string>
+    <string name="button_manual_brightness">Brightness level, disabled on value 0</string>
+
+    <!-- Buttons backlight timeout -->
+    <string name="backlight_timeout_title">Backlight timeout</string>
+    <string name="backlight_timeout_on">Enabled always</string>
+    <string name="backlight_timeout_3s">3 sec</string>
+    <string name="backlight_timeout_default">5 sec (default)</string>
+    <string name="backlight_timeout_10s">10 sec</string>
+    <string name="backlight_timeout_15s">15 sec</string>
+    <string name="backlight_timeout_20s">20 sec</string>
+    <string name="backlight_timeout_30s">30 sec</string>
+
 </resources>

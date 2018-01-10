@@ -14,7 +14,10 @@
      limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" 
+    android:title="@string/hardware_keys_settings_title">
 
 	<PreferenceCategory 
         android:key="hw_keys"
@@ -33,6 +36,40 @@
             android:dependency="hardware_keys_disable" />
 
 	</PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="button_backlight"
+        android:title="@string/button_backlight_cat"
+        android:dependency="hardware_keys_disable" >
+        
+    <SwitchPreference
+        android:key="button_brightness"
+        android:title="@string/button_backlight_enable_title"
+        android:persistent="false" />
+
+    <com.citrus.settings.preference.CustomSeekBarPreference
+        android:key="button_manual_brightness_new"
+        android:title="@string/button_manual_brightness"
+        android:max="255"
+        settings:min="0"
+        settings:units=""
+        android:persistent="false" />
+
+    <ListPreference
+        android:dialogTitle="@string/backlight_timeout_title"
+        android:entries="@array/backlight_timeout_entries"
+        android:entryValues="@array/backlight_timeout_values"
+        android:key="button_timeout"
+        android:persistent="false"
+        android:title="@string/backlight_timeout_title" />
+
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="button_backlight_on_touch_only"
+        android:title="@string/button_backlight_on_touch_only_title"
+        android:summary="@string/button_backlight_on_touch_only_summary"
+        android:defaultValue="false" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="back_key"
@@ -158,4 +195,5 @@
         </com.citrus.settings.preference.ActionPreference>
 
     </PreferenceCategory>
+
 </PreferenceScreen>
