@@ -54,6 +54,7 @@ public class NavigationBar extends SettingsPreferenceFragment implements Prefere
     private static final String KEY_NAVIGATION_HEIGHT_LAND = "navbar_height_landscape";
     private static final String KEY_NAVIGATION_WIDTH = "navbar_width";
     private static final String KEY_PULSE_SETTINGS = "pulse_settings";
+    private static final String KEY_HW_KEYS_SETTINGS = "hardware_keys";
 
     private SwitchPreference mNavbarVisibility;
     private ListPreference mNavbarMode;
@@ -66,6 +67,7 @@ public class NavigationBar extends SettingsPreferenceFragment implements Prefere
     private CustomSeekBarPreference mBarHeightLand;
     private CustomSeekBarPreference mBarWidth;
     private PreferenceScreen mPulseSettings;
+    private PreferenceScreen mHwKeysSettings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,15 @@ public class NavigationBar extends SettingsPreferenceFragment implements Prefere
         mFlingSettings = (PreferenceScreen) findPreference(KEY_FLING_NAVBAR_SETTINGS);
         mSmartbarSettings = (PreferenceScreen) findPreference(KEY_SMARTBAR_SETTINGS);
         mPulseSettings = (PreferenceScreen) findPreference(KEY_PULSE_SETTINGS);
+        mHwKeysSettings = (PreferenceScreen) findPreference(KEY_HW_KEYS_SETTINGS);
+
+        // bits for hardware keys present on device
+        final boolean needsNavbar = DUActionUtils.hasNavbarByDefault(getActivity());
+
+        // Hardware key
+        if (needsNavbar) {
+            getPreferenceScreen().removePreference(mHwKeysSettings);
+        }
 
         boolean showing = Settings.Secure.getInt(getContentResolver(),
                 Settings.Secure.NAVIGATION_BAR_VISIBLE,
