@@ -250,4 +250,20 @@
     <string name="hardware_keys_category">Navigation buttons</string>
     <string name="hardware_keys_disable_title">Disable navigation buttons</string>
 
+    <!-- Battery customizations -->
+    <string name="battery_settings_title">Battery Settings</string>
+    <string name="battery_settings_summary">Customize Battery styles</string>
+
+    <!-- Battery light -->
+    <string name="custom_leds">LED lights</string>
+    <string name="custom_battery_light_settings">Battery charging light</string>
+    <string name="battery_light_enable">Enable</string>
+    <string name="battery_light_allow_on_dnd_title">Battery light in Do Not Disturb mode</string>
+    <string name="battery_light_low_blinking_title">Blinking light on low battery</string>
+    <string name="battery_light_cat">Battery light color when charging</string>
+    <string name="battery_light_low_color">Low battery</string>
+    <string name="battery_light_medium_color">Medium battery</string>
+    <string name="battery_light_full_color">Almost full battery</string>
+    <string name="battery_light_reallyfull_color">Full (100) battery</string>
+
 </resources>

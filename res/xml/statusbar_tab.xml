@@ -23,4 +23,10 @@
     android:fragment="com.citrus.settings.fragments.QuickSettings"
     android:title="@string/quicksettings_category" />
 
+    <Preference
+      android:key="battery_settings"
+      android:fragment="com.citrus.settings.fragments.BatterySettings"
+      android:title="@string/battery_settings_title" 
+      android:summary="@string/battery_settings_summary"/>
+  
 </PreferenceScreen>
