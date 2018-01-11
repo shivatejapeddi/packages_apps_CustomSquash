@@ -46,6 +46,9 @@
     <string name="qs_rows_landscape_title">Tiles rows on landscape</string>
     <string name="qs_columns_portrait_title">Tiles columns on portrait</string>
     <string name="qs_columns_landscape_title">Tiles columns on landscape</string>
+    <string name="qs_tile_title_visibility_title">QS tile titles</string>
+    <string name="qs_tile_title_visibility_summary_on">QS tiles titles are now visible</string>
+    <string name="qs_tile_title_visibility_summary_off">QS tiles titles are now gone</string>
 
     <!-- General strings -->
     <string name="cancel">Cancel</string>
