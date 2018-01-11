@@ -16,18 +16,30 @@
 
 package com.citrus.settings.tabs;
 
+import android.content.Context;
 import android.content.ContentResolver;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.provider.Settings;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
+import com.citrus.settings.preference.SystemSettingSwitchPreference;
+
 public class LockScreen extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
+
+    private static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
+    
+    private FingerprintManager mFingerprintManager;
+    private SwitchPreference mFpKeystore;
 
    @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +50,16 @@ public class LockScreen extends SettingsPreferenceFragment implements
         PreferenceScreen prefSet = getPreferenceScreen();
 
         ContentResolver resolver = getActivity().getContentResolver();
+        
+        mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+        mFpKeystore = (SwitchPreference) findPreference(FP_UNLOCK_KEYSTORE);
+        if (mFingerprintManager == null || !mFingerprintManager.isHardwareDetected()){
+        prefSet.removePreference(mFpKeystore);
+        } else {
+        mFpKeystore.setChecked((Settings.System.getInt(getContentResolver(),
+               Settings.System.FP_UNLOCK_KEYSTORE, 0) == 1));
+        mFpKeystore.setOnPreferenceChangeListener(this);
+        }
     }
 
     @Override
@@ -56,6 +78,13 @@ public class LockScreen extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        return true;
+        final String key = preference.getKey();
+        if (preference == mFpKeystore) {
+         boolean value = (Boolean) objValue;
+         Settings.System.putInt(getActivity().getContentResolver(),
+                  Settings.System.FP_UNLOCK_KEYSTORE, value ? 1 : 0);
+         return true;
+        }
+        return false;
     }
 }

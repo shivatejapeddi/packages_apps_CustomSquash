@@ -335,4 +335,9 @@
     <string name="ticker_enabled">Notification ticker</string>
     <string name="ticker_media_enabled">Notification and music ticker</string>
  
+ 
+    <!-- Fingerprint unlock keystore -->
+    <string name="fp_unlock_keystore_title">FP unlock on boot</string>
+    <string name="fp_unlock_keystore_summary">Allow unlocking device using Fingerprint directly after boot\nNote: at your own risk!</string>
+
 </resources>
