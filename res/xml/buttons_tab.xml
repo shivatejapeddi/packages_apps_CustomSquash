@@ -22,12 +22,19 @@
             android:fragment="com.citrus.settings.fragments.NavigationBar"
             android:title="@string/navigationbar_settings_title" />
 
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="volume_rocker_wake"
+        android:title="@string/volume_rocker_wake_title"
+        android:summary="@string/volume_rocker_wake_summary"
+        android:defaultValue="false"
+        android:disableDependentsState="true" />
 
     <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="volume_button_music_control"
         android:title="@string/volume_button_music_control_title"
         android:summary="@string/volume_button_music_control_summary"
-        android:defaultValue="false" />
+        android:defaultValue="false"
+        android:dependency="volume_rocker_wake" /> 
 
     <PreferenceCategory
         android:key="vol_dnd_category"
