@@ -418,4 +418,10 @@
     <string name="header_provider_disabled">Disabled</string>
     <string name="custom_header_title">Header</string>
 
+    <!-- Systemui theme -->
+    <string name="systemui_theme_style_title">Ui style</string>
+    <string name="systemui_theme_style_auto">Wallpaper based</string>
+    <string name="systemui_theme_style_light">Light</string>
+    <string name="systemui_theme_style_dark">Dark</string>
+
 </resources>

@@ -18,16 +18,23 @@ package com.citrus.settings.tabs;
 
 import android.content.ContentResolver;
 import android.os.Bundle;
+import android.support.v7.preference.DropDownPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
+import android.provider.Settings;
+
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 public class Ui extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
+
+    private static final String SYSTEMUI_THEME_STYLE = "systemui_theme_style";
+
+    private DropDownPreference mSystemUIThemeStyle;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,13 @@ public class Ui extends SettingsPreferenceFragment implements
         PreferenceScreen prefScreen = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
+        mSystemUIThemeStyle = (DropDownPreference) findPreference(SYSTEMUI_THEME_STYLE);
+        int systemUIThemeStyle = Settings.System.getInt(resolver,
+                Settings.System.SYSTEM_UI_THEME, 0);
+        int valueIndex = mSystemUIThemeStyle.findIndexOfValue(String.valueOf(systemUIThemeStyle));
+        mSystemUIThemeStyle.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
+        mSystemUIThemeStyle.setSummary(mSystemUIThemeStyle.getEntry());
+        mSystemUIThemeStyle.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -56,6 +70,15 @@ public class Ui extends SettingsPreferenceFragment implements
     }
 
      public boolean onPreferenceChange(Preference preference, Object objValue) {
-       return true;
-    }
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mSystemUIThemeStyle) {
+            String value = (String) objValue;
+            Settings.System.putInt(resolver,
+                    Settings.System.SYSTEM_UI_THEME, Integer.valueOf(value));
+            int valueIndex = mSystemUIThemeStyle.findIndexOfValue(value);
+            mSystemUIThemeStyle.setSummary(mSystemUIThemeStyle.getEntries()[valueIndex]);
+            return true;
+        }
+        return false;
+     }
 }
