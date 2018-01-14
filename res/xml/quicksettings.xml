@@ -37,7 +37,7 @@
         android:summaryOff="@string/qs_tile_title_visibility_summary_off"
         android:defaultValue="true"/>
 
-    <com.vitrus.settings.preference.SystemSettingSwitchPreference
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="qs_quickbar_scroll_enabled"
         android:title="@string/qqs_scroll_title"
         android:summary="@string/qqs_scroll_summary"
