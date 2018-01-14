@@ -424,4 +424,8 @@
     <string name="systemui_theme_style_light">Light</string>
     <string name="systemui_theme_style_dark">Dark</string>
 
+    <!-- Volume key rotation -->
+    <string name="swap_volume_buttons_title">Reorient</string>
+    <string name="swap_volume_buttons_summary">Swap volume buttons when the screen is rotated</string>
+
 </resources>
