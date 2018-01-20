@@ -31,4 +31,10 @@
     <!-- Notification light -->
     <dimen name="oval_notification_size">26dp</dimen>
 
+    <!-- CustomSquash tab elevation -->
+    <dimen name="custom_squash_tab_elevation">4dp</dimen>
+
+    <!-- CustomSquash tab indicator height -->
+    <dimen name="custom_squash_tab_indicator_height">4dp</dimen>
+
 </resources>

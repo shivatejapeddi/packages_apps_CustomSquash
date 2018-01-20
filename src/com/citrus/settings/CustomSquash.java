@@ -1,5 +1,4 @@
 package com.citrus.settings;
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -51,6 +50,9 @@ public class CustomSquash extends SettingsPreferenceFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         // After confirming PreferenceScreen is available, we call super.
         super.onActivityCreated(savedInstanceState);
+
+        // Set actionbar elevation 0 to make tab and actionbar look uniform.
+        getActivity().getActionBar().setElevation(0);
     }
 
     @Override
@@ -61,7 +63,6 @@ public class CustomSquash extends SettingsPreferenceFragment {
     @Override
     public void onResume() {
         super.onResume();
-         mContainer.setPadding(30, 30, 30, 30);
     }
 
     class StatusBarAdapter extends FragmentPagerAdapter {
