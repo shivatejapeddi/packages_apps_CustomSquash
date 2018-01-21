@@ -18,12 +18,14 @@ package com.citrus.settings.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.PreferenceScreen;
@@ -50,13 +52,14 @@ import java.util.List;
 import java.util.Map;
 
 public class NotificationStyleSettings extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceClickListener {
+        implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
 
     private static final int DIALOG_BLACKLIST_APPS = 0;
     private static final int DIALOG_WHITELIST_APPS = 1;
 
     private PackageListAdapter mPackageAdapter;
     private PackageManager mPackageManager;
+    private ListPreference mTickerMode;
     private PreferenceGroup mBlacklistPrefList;
     private PreferenceGroup mWhitelistPrefList;
     private Preference mAddBlacklistPref;
@@ -90,6 +93,14 @@ public class NotificationStyleSettings extends SettingsPreferenceFragment
 
         mAddBlacklistPref.setOnPreferenceClickListener(this);
         mAddWhitelistPref.setOnPreferenceClickListener(this);
+
+        mTickerMode = (ListPreference) findPreference("ticker_mode");
+        mTickerMode.setOnPreferenceChangeListener(this);
+        int tickerMode = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_TICKER,
+                0, UserHandle.USER_CURRENT);
+        mTickerMode.setValue(String.valueOf(tickerMode));
+        mTickerMode.setSummary(mTickerMode.getEntry());
     }
 
     @Override
@@ -248,6 +259,20 @@ public class NotificationStyleSettings extends SettingsPreferenceFragment
         builder.show();
         }
         return true;
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference.equals(mTickerMode)) {
+            int tickerMode = Integer.parseInt(((String) objValue).toString());
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.STATUS_BAR_SHOW_TICKER, tickerMode, UserHandle.USER_CURRENT);
+            int index = mTickerMode.findIndexOfValue((String) objValue);
+            mTickerMode.setSummary(
+                    mTickerMode.getEntries()[index]);
+            return true;
+            }
+        return false;
     }
 
      private void addCustomApplicationPref(String packageName, Map<String,Package> map) {
