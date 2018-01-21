@@ -54,6 +54,12 @@
       android:title="@string/battery_settings_title" 
       android:summary="@string/battery_settings_summary"/>
 
+    <Preference
+        android:key="notification_settings"
+        android:title="@string/notification_settings_title"
+        android:summary="@string/notification_settings_summary"
+        android:fragment="com.citrus.settings.fragments.NotificationSettings" />
+
     <PreferenceCategory
       android:title="@string/network_traffic_cat_title">
       
