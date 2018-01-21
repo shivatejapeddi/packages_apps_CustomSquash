@@ -443,7 +443,7 @@
 
     <!-- Notification style -->
     <string name="notification_style_title">Notification style</string> 
-
+ <string name="notification_style_warning_text">While you use heads up notifications, you will not be able to use the ticker feature, and vice versa.</string>
     <!-- Heads up --> 
     <string name="heads_up_notifications">HeadsUp</string> 
     <string name="summary_heads_up_enabled">HeadsUp notifications are enabled</string> 

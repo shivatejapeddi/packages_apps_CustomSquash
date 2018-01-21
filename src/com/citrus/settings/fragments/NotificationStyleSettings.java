@@ -76,6 +76,8 @@ public class NotificationStyleSettings extends SettingsPreferenceFragment
         // Get launch-able applications
         addPreferencesFromResource(R.xml.notification_style);
 
+        mFooterPreferenceMixin.createFooterPreference().setTitle(R.string.notification_style_warning_text);
+
         mPackageManager = getPackageManager();
         mPackageAdapter = new PackageListAdapter(getActivity());
 
