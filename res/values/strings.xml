@@ -481,4 +481,8 @@
     <string name="systemui_recents_mem_display_summaryOn">Memory bar enabled</string>
     <string name="systemui_recents_mem_display_summaryOff">Memory bar disabled</string>
 
+    <!-- Lockscreen charging current indicator  -->
+    <string name="lockscreen_charging_current_title">Lockscreen charging info</string>
+    <string name="lockscreen_charging_current_summary">Display negociated charger max current and voltage on lockscreen</string>
+
 </resources>
