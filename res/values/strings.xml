@@ -489,4 +489,7 @@
     <string name="lockscreen_qs_disabled_title">No QS when secured</string>
     <string name="lockscreen_qs_disabled_summary">Disable quick settings tiles on secured lockscreen</string>
 
+    <!-- Power menu on secure lockscreen -->
+    <string name="lockscreen_power_menu_disabled_title">Power menu when locked</string>
+    <string name="lockscreen_power_menu_disabled_summary">Disable power menu on secure lockscreen</string>
 </resources>
