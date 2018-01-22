@@ -492,4 +492,9 @@
     <!-- Power menu on secure lockscreen -->
     <string name="lockscreen_power_menu_disabled_title">Power menu when locked</string>
     <string name="lockscreen_power_menu_disabled_summary">Disable power menu on secure lockscreen</string>
+
+    <!-- Hide Lockscreen shortcuts on secure Lockscreen -->
+    <string name="lockscreen_hide_shortcuts_title">Hide bottom Shortcuts</string>
+    <string name="lockscreen_hide_shortcuts_summary">Hide bottom shortcuts on secure lock screens</string>
+
 </resources>
