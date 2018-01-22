@@ -485,4 +485,8 @@
     <string name="lockscreen_battery_info_title">Lockscreen charging info</string>
     <string name="lockscreen_battery_info_summary">Display negociated charger max current and voltage on lockscreen</string>
  
+    <!-- Disable QS on secure Lockscreen -->
+    <string name="lockscreen_qs_disabled_title">No QS when secured</string>
+    <string name="lockscreen_qs_disabled_summary">Disable quick settings tiles on secured lockscreen</string>
+
 </resources>
