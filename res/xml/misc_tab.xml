@@ -24,4 +24,9 @@
         android:summary="@string/sensor_block_summary"
         android:defaultValue="false" />
 
+    <Preference
+        android:key="suspend_actions"
+        android:title="@string/screen_state_toggles_title"
+        android:fragment="com.citrus.settings.fragments.SuspendActions" />
+
 </PreferenceScreen>
