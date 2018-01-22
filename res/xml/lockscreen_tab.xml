@@ -44,6 +44,11 @@
         android:summary="@string/lockscreen_hide_shortcuts_summary"
         android:defaultValue="false" />
 
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="double_tap_sleep_lockscreen"
+        android:title="@string/double_tap_sleep_lockscreen"
+        android:defaultValue="false" />
+
 	<com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="lockscreen_battery_info"
         android:title="@string/lockscreen_battery_info_title"
