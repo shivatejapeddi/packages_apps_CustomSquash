@@ -536,4 +536,8 @@
     <string name="force_ambient_for_media_on_forced">Normal (forced)</string>
     <string name="force_ambient_for_media_on_forced_clean">Minimal (forced)</string>
 
+    <!-- Statusbar logo -->
+    <string name="status_bar_logo_title">Citrus Logo</string>
+    <string name="status_bar_logo_summary">Enable to show Citrus logo in the statusbar</string>
+
 </resources>
