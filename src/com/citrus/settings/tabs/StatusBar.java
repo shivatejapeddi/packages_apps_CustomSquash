@@ -36,7 +36,8 @@ import com.citrus.settings.preference.SystemSettingSwitchPreference;
 
 public class StatusBar extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
-
+    
+    private ListPreference mCustomLogoStyle;
     private ListPreference mNetTrafficType;
 
     private CustomSeekBarPreference mThreshold;
@@ -70,6 +71,15 @@ public class StatusBar extends SettingsPreferenceFragment implements
         mThreshold.setValue(value);
         mThreshold.setOnPreferenceChangeListener(this);
         mThreshold.setEnabled(isNetMonitorEnabled);
+
+        mCustomLogoStyle = (ListPreference) findPreference("status_bar_custom_logo_style");
+        int customLogoStyle = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.STATUS_BAR_CUSTOM_LOGO_STYLE, 0,
+                UserHandle.USER_CURRENT);
+        mCustomLogoStyle.setValue(String.valueOf(customLogoStyle));
+        mCustomLogoStyle.setSummary(mCustomLogoStyle.getEntry());
+        mCustomLogoStyle.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -110,6 +120,14 @@ public class StatusBar extends SettingsPreferenceFragment implements
                     UserHandle.USER_CURRENT);
             int index = mNetTrafficType.findIndexOfValue((String) objValue);
             mNetTrafficType.setSummary(mNetTrafficType.getEntries()[index]);
+            return true;
+        }  else if (preference == mCustomLogoStyle) {
+            int val = Integer.valueOf((String) objValue);
+            Settings.System.putIntForUser(getContentResolver(), 
+		            Settings.System.STATUS_BAR_CUSTOM_LOGO_STYLE, val,
+                    UserHandle.USER_CURRENT);
+            int index = mCustomLogoStyle.findIndexOfValue((String) objValue);
+            mCustomLogoStyle.setSummary(mCustomLogoStyle.getEntries()[index]);
             return true;
             }
         return false;

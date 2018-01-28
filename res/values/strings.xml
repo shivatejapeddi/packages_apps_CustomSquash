@@ -536,8 +536,61 @@
     <string name="force_ambient_for_media_on_forced">Normal (forced)</string>
     <string name="force_ambient_for_media_on_forced_clean">Minimal (forced)</string>
 
+    <!-- Statusbar icons category -->
+    <string name="status_bar_icons_cat">Statusbar icons</string>
+
     <!-- Statusbar logo -->
     <string name="status_bar_logo_title">Citrus Logo</string>
     <string name="status_bar_logo_summary">Enable to show Citrus logo in the statusbar</string>
+
+    <!--Custom logos-->
+    <string name="status_bar_custom_logo_style">Select icon</string>
+    <string name="status_bar_custom_logos">Take your Pick</string>
+    <string name="show_custom_logo_title">Show custom icons</string>
+    <string name="show_custom_logo_summary">Choose between a variety of Custom logos/images in statusbar</string>    
+    <string name="logo0">Cardinal</string>
+    <string name="logo1">BugDroid Minimal</string>
+    <string name="logo2">Drupal</string>
+    <string name="logo3">Cool Smile</string>
+    <string name="logo4">Ghost</string>
+    <string name="logo5">Windows</string>
+    <string name="logo6">PC MasterRace</string>
+    <string name="logo7">PlayStation</string>
+    <string name="logo8">Xbox</string>
+    <string name="logo9">Emoji</string>
+    <string name="logo10">Happy Smile</string>
+    <string name="logo11">Blender</string>
+    <string name="logo12">Electric Guitar</string>
+    <string name="logo13">Toxic</string>
+    <string name="logo14">Pro User</string>
+    <string name="logo15">PokeBall</string>
+    <string name="logo16">Cat</string>
+    <string name="logo17">Batman</string>
+    <string name="logo18">Batman 2k16</string>
+    <string name="logo19">Captain America</string>
+    <string name="logo20">Daredevil</string>
+    <string name="logo21">Deadpool</string>
+    <string name="logo22">Flash</string>
+    <string name="logo23">Fsociety</string>
+    <string name="logo24">Ironman</string>
+    <string name="logo25">Justice league</string>
+    <string name="logo26">Green Lantern</string>
+    <string name="logo27">Punisher</string>
+    <string name="logo28">Spider 1</string>
+    <string name="logo29">Spider 2</string>
+    <string name="logo30">Super Man</string>
+    <string name="logo31">Wonder Women</string>
+    <string name="logo32">A.C Milan</string>
+    <string name="logo33">Barcelona</string>
+    <string name="logo34">Bayern</string>
+    <string name="logo35">Chelsea</string>
+    <string name="logo36">Juventus</string>
+    <string name="logo37">Liverpool</string>
+    <string name="logo38">Manchester City</string>
+    <string name="logo39">Manchester UTD</string>
+    <string name="logo40">Real Madrid</string>
+    <string name="logo41">Tottenham</string>
+    <string name="logo42">Mi</string>
+    <string name="logo43">OnePlus</string>
 
 </resources>
