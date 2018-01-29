@@ -169,7 +169,6 @@
     <string name="pulse_render_mode_fading_bars">Fading blocks</string>
     <string name="pulse_render_mode_solid_lines">Solid lines</string>
     <string name="fling_pulse_color">Pulse color</string>
-    <string name="fling_pulse_color_summary">Used also as fallback for automatic color</string>
     <string name="eos_fling_lavalamp_title">Turn on Lava Lamp</string>
     <string name="eos_fling_lavalamp_summary">Pulse animates a smooth lava lamp style color blend</string>
     <string name="pulse_advanced_category">Advanced</string>
@@ -181,8 +180,6 @@
     <string name="pulse_solid_units_opacity">Solid lines opacity</string>
     <string name="pulse_solid_dimen_category">Solid lines mode settings</string>
     <string name="pulse_custom_buttons_opacity_title">Smartbar buttons opacity on Pulse</string>
-    <string name="pulse_auto_color_title">Automatic Pulse color</string>
-    <string name="pulse_auto_color_summary">Sync color with album arts. Overrides Lava Lamp and lines opacity.</string>
 
     <!-- Pulse config -->
     <string name="pulse_custom_dimen">Bar width</string>
@@ -609,10 +606,16 @@
     <string name="torch_power_button_gesture_dt">Double tap power to toggle torch (will add a small delay to single tap)</string>
     <string name="torch_power_button_gesture_lp">Long press power to toggle torch</string>
 
-    <!-- Screen Off animation -->
+    <!-- Screen off animation -->
     <string name="screen_off_animation_title">Screen off animation</string>
     <string name="screen_off_animation_default">Default</string>
     <string name="screen_off_animation_crt">CRT</string>
     <string name="screen_off_animation_scale">Scale</string>
+
+    <!-- Suppress notification sound/vibration -->
+    <string name="notification_sound_vib_screen_on_title">Notifications sound and vibration while screen is on</string>
+    <string name="notification_sound_vib_screen_on_never">Never</string>
+    <string name="notification_sound_vib_screen_on_always">Always (default)</string>
+    <string name="notification_sound_vib_screen_on_nomedia">If no media is playing</string>
 
 </resources>
