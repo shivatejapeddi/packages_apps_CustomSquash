@@ -265,50 +265,51 @@
     
     <!-- Custom Logos  -->
     <string-array name="status_bar_custom_logo_entries">
-        <item>@string/logo0</item>
-        <item>@string/logo1</item>
-        <item>@string/logo2</item>
-        <item>@string/logo3</item>
-        <item>@string/logo4</item>
-        <item>@string/logo5</item>
-        <item>@string/logo6</item>
-        <item>@string/logo7</item>
-        <item>@string/logo8</item>
-        <item>@string/logo9</item>
-        <item>@string/logo10</item>
-        <item>@string/logo11</item>
-        <item>@string/logo12</item>
-        <item>@string/logo13</item>
-        <item>@string/logo14</item>
-        <item>@string/logo15</item>
-        <item>@string/logo16</item>
-        <item>@string/logo17</item>
-        <item>@string/logo18</item>
-        <item>@string/logo19</item>
-        <item>@string/logo20</item>
-        <item>@string/logo21</item>
-        <item>@string/logo22</item>
-        <item>@string/logo23</item>
-        <item>@string/logo24</item>
-        <item>@string/logo25</item>
-        <item>@string/logo26</item>
-        <item>@string/logo27</item>
-        <item>@string/logo28</item>
-        <item>@string/logo29</item>
-        <item>@string/logo30</item>
-        <item>@string/logo31</item>
-        <item>@string/logo32</item>
-        <item>@string/logo33</item>
-        <item>@string/logo34</item>
-        <item>@string/logo35</item>
-        <item>@string/logo36</item>
-        <item>@string/logo37</item>
-        <item>@string/logo38</item>
-        <item>@string/logo39</item>
-        <item>@string/logo40</item>
-        <item>@string/logo41</item>
-        <item>@string/logo42</item>
-        <item>@string/logo43</item>
+        <item>@string/logo_citrus</item>
+        <item>@string/logo_cardinal</item>
+        <item>@string/logo_bugdroid</item>
+        <item>@string/logo_drupal</item>
+        <item>@string/logo_cool_smile</item>
+        <item>@string/logo_ghost</item>
+        <item>@string/logo_windows</item>
+        <item>@string/logo_pcmr</item>
+        <item>@string/logo_playstation</item>
+        <item>@string/logo_xbox</item>
+        <item>@string/logo_emoji</item>
+        <item>@string/logo_happy_smile</item>
+        <item>@string/logo_blender</item>
+        <item>@string/logo_elec_guitar</item>
+        <item>@string/logo_toxic</item>
+        <item>@string/logo_pro</item>
+        <item>@string/logo_poekball</item>
+        <item>@string/logo_cat</item>
+        <item>@string/logo_batman</item>
+        <item>@string/logo_batman16</item>
+        <item>@string/logo_cap_america</item>
+        <item>@string/logo_daredevil</item>
+        <item>@string/logo_deadpool</item>
+        <item>@string/logo_flash</item>
+        <item>@string/logo_fsociety</item>
+        <item>@string/logo_ironman</item>
+        <item>@string/logo_jl</item>
+        <item>@string/logo_gl</item>
+        <item>@string/logo_punisher</item>
+        <item>@string/logo_spider1</item>
+        <item>@string/logo_spider2</item>
+        <item>@string/logo_superman</item>
+        <item>@string/logo_ww</item>
+        <item>@string/logo_ac_milan</item>
+        <item>@string/logo_barcelona</item>
+        <item>@string/logo_bayern</item>
+        <item>@string/logo_chelsea</item>
+        <item>@string/logo_juventus</item>
+        <item>@string/logo_lfc</item>
+        <item>@string/logo_mc</item>
+        <item>@string/logo_mut</item>
+        <item>@string/logo_real_madrid</item>
+        <item>@string/logo_tottenham</item>
+        <item>@string/logo_mi</item>
+        <item>@string/logo_op</item>
     </string-array>
 
     <string-array name="status_bar_custom_logo_values" translatable="false">
@@ -356,6 +357,7 @@
         <item>41</item>
         <item>42</item>
         <item>43</item>
+        <item>44</item>        
     </string-array>
 
 </resources>
