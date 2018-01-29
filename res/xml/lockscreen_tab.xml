@@ -26,6 +26,12 @@
                 android:targetClass="com.android.systemui.tuner.LockscreenTunerActivity" />
     </Preference>
 
+    <PreferenceScreen
+        android:key="lock_screen_items"
+        android:title="@string/lockscreen_items_title"
+        android:summary="@string/lockscreen_items_summary"
+        android:fragment="com.citrus.settings.fragments.LockScreenItems" />
+
     <com.citrus.settings.preference.SecureSettingSwitchPreference
         android:key="lockscreen_power_menu_disabled"
         android:title="@string/lockscreen_power_menu_disabled_title"
