@@ -39,7 +39,7 @@
         android:defaultValue="false" />
 
     <com.citrus.settings.preference.SecureSettingSwitchPreference
-        android:key="lockscreen_qs_disabled"
+        android:key="lock_qs_disabled"
         android:title="@string/lockscreen_qs_disabled_title"
         android:summary="@string/lockscreen_qs_disabled_summary"
         android:defaultValue="false" />
