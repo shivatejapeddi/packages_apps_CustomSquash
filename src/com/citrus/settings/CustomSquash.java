@@ -2,7 +2,7 @@ package com.citrus.settings;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.preference.Preference.OnPreferenceChangeListener;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
