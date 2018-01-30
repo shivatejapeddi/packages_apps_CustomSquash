@@ -450,7 +450,7 @@
 
     <!-- Notification style -->
     <string name="notification_style_title">Notification style</string> 
- <string name="notification_style_warning_text">While you use heads up notifications, you will not be able to use the ticker feature, and vice versa.</string>
+    <string name="notification_style_warning_text">While you use heads up notifications, you will not be able to use the ticker feature, and vice versa.</string>
     <!-- Heads up --> 
     <string name="heads_up_notifications">HeadsUp</string> 
     <string name="summary_heads_up_enabled">HeadsUp notifications are enabled</string> 
@@ -493,11 +493,11 @@
     <string name="lockscreen_battery_info_summary">Display negociated charger max current and voltage on lockscreen</string>
  
     <!-- Disable QS on secure Lockscreen -->
-    <string name="lockscreen_qs_disabled_title">No QS when secured</string>
-    <string name="lockscreen_qs_disabled_summary">Disable quick settings tiles on secured lockscreen</string>
+    <string name="lockscreen_qs_disabled_title">Secured quick settings</string>
+    <string name="lockscreen_qs_disabled_summary">Prevent expanding quick settings on secure lock screens</string>
 
     <!-- Power menu on secure lockscreen -->
-    <string name="lockscreen_power_menu_disabled_title">Power menu when locked</string>
+    <string name="lockscreen_power_menu_disabled_title">Secured power menu</string>
     <string name="lockscreen_power_menu_disabled_summary">Disable power menu on secure lockscreen</string>
 
     <!-- Hide Lockscreen shortcuts on secure Lockscreen -->
@@ -549,8 +549,8 @@
     <!--Custom logos-->
     <string name="status_bar_custom_logo_style">Select logo</string>
     <string name="status_bar_custom_logos">Take your Pick</string>
-    <string name="show_custom_logo_title">Show custom logo</string>
-    <string name="show_custom_logo_summary">Choose between a variety of Custom logos/images in statusbar</string>
+    <string name="show_custom_logo_title">Custom logo</string>
+    <string name="show_custom_logo_summary">Show custom logo on statusbar</string>
     <string name="logo_citrus">Citrus-CAF</string>        
     <string name="logo_cardinal">Cardinal-AOSP</string>
     <string name="logo_bugdroid">BugDroid Minimal</string>
