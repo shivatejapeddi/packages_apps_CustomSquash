@@ -633,10 +633,10 @@
     <string name="default_iconpack_title">Default icons</string>
 
     <!-- Hide Apps from Recents -->
-    <string name="hide_apps_from_recents_title">Hidden apps</string>
-    <string name="hide_from_recents_add_app">Add App</string>
-    <string name="hide_apps_from_recents_summary">Pick which apps to exclude from the recents panel</string>
-    
+    <string name="add_recents_blacklist_package">Add an app to recents blacklist</string>  
+    <string name="add_recents_blacklist_summary">Hide these apps from recents</string>
+    <string name="recents_blacklist_title">Recents blacklist</string>  
+
     <!-- Expanded desktop -->
     <string name="expanded_desktop_category">Expanded Desktop</string>
     <string name="expanded_hide_nothing">Hide nothing</string>

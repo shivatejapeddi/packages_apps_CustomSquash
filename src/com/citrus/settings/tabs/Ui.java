@@ -23,7 +23,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.database.ContentObserver;
@@ -31,11 +33,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.support.v7.preference.DropDownPreference;
+import android.support.v7.preference.PreferenceGroup;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
-import com.android.settings.R;
+
+import android.provider.Settings;
+
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,11 +54,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ListView;
 
+import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-import android.provider.Settings;
-
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+
+import com.citrus.settings.adapters.PackageListAdapter;
+import com.citrus.settings.adapters.PackageListAdapter.PackageItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,11 +70,21 @@ import java.util.Map;
 import java.util.List;
 
 public class Ui extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener, DialogInterface.OnDismissListener {
+        Preference.OnPreferenceChangeListener, DialogInterface.OnDismissListener, Preference.OnPreferenceClickListener {
 
     private static final String SYSTEMUI_THEME_STYLE = "systemui_theme_style";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
     private static final String SCREEN_OFF_ANIMATION = "screen_off_animation"; 
+
+    private static final int DIALOG_RECENTS_BLACKLIST_APPS = 0;
+
+    private PackageListAdapter mPackageAdapter;
+    private PackageManager mPackageManager;
+    private PreferenceGroup mRecentsBlacklistPrefList;
+    private Preference mAddRecentsBlacklistPref;
+
+    private String mRecentsBlacklistPackageList;
+    private Map<String, Package> mRecentsBlacklistPackages;
 
     private final static String[] sSupportedActions = new String[] {
         "org.adw.launcher.THEMES",
@@ -117,6 +135,19 @@ public class Ui extends SettingsPreferenceFragment implements
         mScreenOffAnimation.setValue(String.valueOf(screenOffStyle));
         mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntry());
         mScreenOffAnimation.setOnPreferenceChangeListener(this);
+        
+        mPackageManager = getPackageManager();
+        mPackageAdapter = new PackageListAdapter(getActivity());
+
+        mRecentsBlacklistPrefList = (PreferenceGroup) findPreference("recents_blacklist_applications");
+        mRecentsBlacklistPrefList.setOrderingAsAdded(false);
+
+        mRecentsBlacklistPackages = new HashMap<String, Package>();
+
+        mAddRecentsBlacklistPref = findPreference("add_recents_blacklist_packages");
+
+       mAddRecentsBlacklistPref.setOnPreferenceClickListener(this);
+
     }
 
     @Override
@@ -127,6 +158,7 @@ public class Ui extends SettingsPreferenceFragment implements
     @Override
     public void onResume() {
         super.onResume();
+        refreshCustomApplicationPrefs();
     }
 
     @Override
@@ -326,4 +358,197 @@ public class Ui extends SettingsPreferenceFragment implements
             this.packageName = packageName;
         }
     }
+
+    @Override
+    public int getDialogMetricsCategory(int dialogId) {
+        if (dialogId == DIALOG_RECENTS_BLACKLIST_APPS) {
+            return MetricsEvent.CUSTOM_SQUASH;
+        }
+        return 0;
+    }
+
+    /**
+     * Utility classes and supporting methods
+     */
+    @Override
+    public Dialog onCreateDialog(int id) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final Dialog dialog;
+        switch (id) {
+            case DIALOG_RECENTS_BLACKLIST_APPS:
+                final ListView list = new ListView(getActivity());
+                list.setAdapter(mPackageAdapter);
+
+                builder.setTitle(R.string.profile_choose_app);
+                builder.setView(list);
+                dialog = builder.create();
+
+                list.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // Add empty application definition, the user will be able to edit it later
+                        PackageItem info = (PackageItem) parent.getItemAtPosition(position);
+                        addCustomApplicationPref(info.packageName);
+                        dialog.cancel();
+                    }
+                });
+                break;
+            default:
+                dialog = null;
+        }
+        return dialog;
+    }
+
+    /**
+     * Application class
+     */
+    private static class Package {
+        public String name;
+        /**
+         * Stores all the application values in one call
+         * @param name
+         */
+        public Package(String name) {
+            this.name = name;
+        }
+
+        public String toString() {
+            StringBuilder builder = new StringBuilder();
+            builder.append(name);
+            return builder.toString();
+        }
+
+        public static Package fromString(String value) {
+            if (TextUtils.isEmpty(value)) {
+                return null;
+            }
+
+            try {
+                Package item = new Package(value);
+                return item;
+            } catch (NumberFormatException e) {
+                return null;
+            }
+        }
+
+    };
+
+    private void refreshCustomApplicationPrefs() {
+        if (!parsePackageList()) {
+            return;
+        }
+
+        // Add the Application Preferences
+        if (mRecentsBlacklistPrefList != null) {
+            mRecentsBlacklistPrefList.removeAll();
+
+            for (Package pkg : mRecentsBlacklistPackages.values()) {
+                try {
+                    Preference pref = createPreferenceFromInfo(pkg);
+                    mRecentsBlacklistPrefList.addPreference(pref);
+                } catch (PackageManager.NameNotFoundException e) {
+                    // Do nothing
+                }
+            }
+        }
+
+        // Keep these at the top
+        mAddRecentsBlacklistPref.setOrder(0);
+        // Add 'add' options
+        mRecentsBlacklistPrefList.addPreference(mAddRecentsBlacklistPref);
+    }
+
+    @Override
+    public boolean onPreferenceClick(Preference preference) {
+        if (preference == mAddRecentsBlacklistPref) {
+            showDialog(DIALOG_RECENTS_BLACKLIST_APPS);
+        } else {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.dialog_delete_title)
+                    .setMessage(R.string.dialog_delete_message)
+                    .setIconAttribute(android.R.attr.alertDialogIcon)
+                    .setPositiveButton(android.R.string.ok, new OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            removeCustomApplicationPref(preference.getKey());
+                        }
+                    })
+                    .setNegativeButton(android.R.string.cancel, null);
+
+        builder.show();
+        }
+        return true;
+    }
+
+     private void addCustomApplicationPref(String packageName) {
+        Package pkg = mRecentsBlacklistPackages.get(packageName);
+        if (pkg == null) {
+            pkg = new Package(packageName);
+            mRecentsBlacklistPackages.put(packageName, pkg);
+            savePackageList(false);
+            refreshCustomApplicationPrefs();
+        }
+    }
+
+    private Preference createPreferenceFromInfo(Package pkg)
+            throws PackageManager.NameNotFoundException {
+        PackageInfo info = mPackageManager.getPackageInfo(pkg.name,
+                PackageManager.GET_META_DATA);
+        Preference pref =
+                new Preference(getActivity());
+
+        pref.setKey(pkg.name);
+        pref.setTitle(info.applicationInfo.loadLabel(mPackageManager));
+        pref.setIcon(info.applicationInfo.loadIcon(mPackageManager));
+        pref.setPersistent(false);
+        pref.setOnPreferenceClickListener(this);
+        return pref;
+    }
+
+    private void removeCustomApplicationPref(String packageName) {
+        if (mRecentsBlacklistPackages.remove(packageName) != null) {
+            savePackageList(false);
+            refreshCustomApplicationPrefs();
+        }
+    }
+
+    private boolean parsePackageList() {
+
+        final String recentsBlacklistString = Settings.System.getString(getContentResolver(),
+                Settings.System.HIDE_FROM_RECENTS_LIST);
+
+        if (TextUtils.equals(mRecentsBlacklistPackageList, recentsBlacklistString)) {
+            return false;
+        }
+            mRecentsBlacklistPackageList = recentsBlacklistString;
+            mRecentsBlacklistPackages.clear();
+
+        if (recentsBlacklistString != null) {
+            final String[] array = TextUtils.split(recentsBlacklistString, "\\|");
+            for (String item : array) {
+                if (TextUtils.isEmpty(item)) {
+                    continue;
+                }
+                Package pkg = Package.fromString(item);
+                if (pkg != null) {
+                    mRecentsBlacklistPackages.put(pkg.name, pkg);
+                }
+            }
+        }
+
+        return true;
+    }
+
+     private void savePackageList(boolean preferencesUpdated) {
+        List<String> settings = new ArrayList<String>();
+        for (Package app : mRecentsBlacklistPackages.values()) {
+            settings.add(app.toString());
+        }
+        final String value = TextUtils.join("|", settings);
+        if (preferencesUpdated) {
+                mRecentsBlacklistPackageList = value;
+            }
+        Settings.System.putString(getContentResolver(),
+                Settings.System.HIDE_FROM_RECENTS_LIST, value);
+}
 }
