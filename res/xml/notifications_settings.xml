@@ -15,16 +15,32 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/notification_settings_title">
 
-    <Preference
-        android:key="notification_style"
-        android:title="@string/notification_style_title"
-        android:fragment="com.citrus.settings.fragments.NotificationStyleSettings" />
-
     <ListPreference
         android:key="notification_sound_vib_screen_on"
         android:title="@string/notification_sound_vib_screen_on_title"
         android:entries="@array/notification_sound_vib_screen_on_entries"
         android:entryValues="@array/notification_sound_vib_screen_on_values"
         android:summary="%s" />
+
+    <Preference
+        android:key="notification_style"
+        android:title="@string/notification_style_title"
+        android:fragment="com.citrus.settings.fragments.NotificationStyleSettings" />
+
+    <PreferenceCategory
+          android:key="custom_leds"
+          android:title="@string/custom_leds" >
+  
+          <Preference
+                android:key="charging_light"
+                android:fragment="com.citrus.settings.fragments.led.BatteryLightSettings"
+                android:title="@string/custom_battery_light_settings" />
+  
+          <Preference
+                android:key="notification_light"
+                android:title="@string/notification_light_title"
+                android:fragment="com.citrus.settings.fragments.led.NotificationLightSettings" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

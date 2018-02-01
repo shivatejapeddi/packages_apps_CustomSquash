@@ -34,11 +34,6 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.settings.Utils;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import net.margaritov.preference.colorpicker.ColorPickerPreference;
-
 public class BatterySettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "BatterySettings";
@@ -53,28 +48,8 @@ public class BatterySettings extends SettingsPreferenceFragment implements
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.battery_settings);
 
-        PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
-        boolean mChargingLedsEnabled = (getResources().getBoolean(
-                        com.android.internal.R.bool.config_intrusiveBatteryLed));
- 
-        boolean mNotificationLedsEnabled = (getResources().getBoolean(
-                        com.android.internal.R.bool.config_intrusiveNotificationLed));
- 
-        PreferenceCategory mLedsCategory = (PreferenceCategory) findPreference("custom_leds");
-        Preference mChargingLeds = (Preference) findPreference("charging_light");
-        Preference mNotificationLeds = (Preference) findPreference("notification_light");
- 
-        if (mChargingLeds != null && mNotificationLeds != null) {
-            if (!mChargingLedsEnabled) {
-                mLedsCategory.removePreference(mChargingLeds);
-            } else if (!mNotificationLedsEnabled) {
-                mLedsCategory.removePreference(mNotificationLeds);
-            } else if (!mChargingLedsEnabled && !mNotificationLedsEnabled) {
-                prefSet.removePreference(mLedsCategory);
-            }
-        }
     }
     
     @Override

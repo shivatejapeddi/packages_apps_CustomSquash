@@ -31,13 +31,13 @@
                 android:targetPackage="com.android.systemui"
                 android:targetClass="com.android.systemui.tuner.PowerNotificationsTunerActivity" />
     </Preference>
--->
 
     <Preference
       android:key="battery_settings"
       android:fragment="com.citrus.settings.fragments.BatterySettings"
       android:title="@string/battery_settings_title" 
       android:summary="@string/battery_settings_summary"/>
+-->
 
     <Preference
         android:key="notification_settings"

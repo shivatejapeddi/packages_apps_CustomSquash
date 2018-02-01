@@ -45,6 +45,8 @@ public class NotificationSettings extends SettingsPreferenceFragment implements
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.notifications_settings);
+        
+        PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
     
         mNoisyNotification = (ListPreference) findPreference("notification_sound_vib_screen_on");
@@ -54,6 +56,27 @@ public class NotificationSettings extends SettingsPreferenceFragment implements
                 1, UserHandle.USER_CURRENT);
         mNoisyNotification.setValue(String.valueOf(mode));
         mNoisyNotification.setSummary(mNoisyNotification.getEntry());
+
+
+        boolean mChargingLedsEnabled = (getResources().getBoolean(
+                        com.android.internal.R.bool.config_intrusiveBatteryLed));
+ 
+        boolean mNotificationLedsEnabled = (getResources().getBoolean(
+                        com.android.internal.R.bool.config_intrusiveNotificationLed));
+ 
+        PreferenceCategory mLedsCategory = (PreferenceCategory) findPreference("custom_leds");
+        Preference mChargingLeds = (Preference) findPreference("charging_light");
+        Preference mNotificationLeds = (Preference) findPreference("notification_light");
+ 
+        if (mChargingLeds != null && mNotificationLeds != null) {
+            if (!mChargingLedsEnabled) {
+                mLedsCategory.removePreference(mChargingLeds);
+            } else if (!mNotificationLedsEnabled) {
+                mLedsCategory.removePreference(mNotificationLeds);
+            } else if (!mChargingLedsEnabled && !mNotificationLedsEnabled) {
+                prefSet.removePreference(mLedsCategory);
+            }
+        }
     }
 
     @Override
