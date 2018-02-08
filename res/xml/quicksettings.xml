@@ -49,6 +49,12 @@
         android:summary="@string/status_bar_quick_qs_pulldown_summary"
         android:defaultValue="false" />
 
+    <com.citrus.settings.preference.SystemSettingSwitchPreference
+        android:key="qs_footer_warnings"
+        android:title="@string/qs_footer_warnings_title"
+        android:summary="@string/qs_footer_warnings_summary"
+        android:defaultValue="true" />
+
     <PreferenceCategory
         android:key="qs_layout_category"
         android:title="@string/qs_layout_category">
