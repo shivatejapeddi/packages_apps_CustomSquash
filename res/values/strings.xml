@@ -668,4 +668,20 @@
     <string name="qs_footer_warnings_title">QS footer warnings</string>
     <string name="qs_footer_warnings_summary">Display a warning at bottom of the QS panel while your network is monitored by external apps or a VPN</string>
 
+    <!-- Custom summary text -->
+    <string name="custom_summary_cat_title">Dashboard</string>    
+    <string name="custom_settings_summary_title">Custom dashboard summary</string>
+    <string name="custom_summary_title">Custom dashboard summary</string>
+    <string name="custom_summary_explain">Enter new summary text. Leave blank to revert to default.</string>
+    <string name="custom_summary_randomize_title">Randomize summary</string>
+    <string name="custom_summary_randomize_explain">Pre-written summaries will be selected at random and will change everytime you start the Settings app.\nThis overrides any custom summary set.</string>
+    <string name="custom_title_summary">Welcome to LemonLand!</string>
+    <string name="sum1">#CozYolo</string>
+    <string name="sum2">#MAKELEMONADE</string>
+    <string name="sum3">#LEMONHAX</string>
+    <string name="sum4">You whut m8</string>
+    <string name="sum5">#LogcatOrGTFO!</string>
+    <string name="sum6">#LemonTinge</string>
+    <string name="sum7">#CAFftw!</string>
+    <string name="sum8">#HakunaMatata!</string>
 </resources>
