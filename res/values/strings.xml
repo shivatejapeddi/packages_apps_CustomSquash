@@ -551,6 +551,10 @@
     <string name="status_bar_custom_logos">Take your Pick</string>
     <string name="show_custom_logo_title">Custom logo</string>
     <string name="show_custom_logo_summary">Show custom logo on statusbar</string>
+    <string name="show_custom_logo_pos_title">Custom logo position</string>
+    <string name="show_custom_logo_center">Center</string>
+    <string name="show_custom_logo_left">Left</string>
+    <string name="show_custom_logo_right">Right</string>    
     <string name="logo_citrus">Citrus-CAF</string>        
     <string name="logo_cardinal">Cardinal-AOSP</string>
     <string name="logo_bugdroid">BugDroid Minimal</string>

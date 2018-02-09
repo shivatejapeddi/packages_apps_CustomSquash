@@ -38,6 +38,7 @@ public class StatusBar extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     
     private ListPreference mCustomLogoStyle;
+    private ListPreference mCustomLogoPos;    
     private ListPreference mNetTrafficType;
 
     private CustomSeekBarPreference mThreshold;
@@ -79,6 +80,14 @@ public class StatusBar extends SettingsPreferenceFragment implements
         mCustomLogoStyle.setValue(String.valueOf(customLogoStyle));
         mCustomLogoStyle.setSummary(mCustomLogoStyle.getEntry());
         mCustomLogoStyle.setOnPreferenceChangeListener(this);
+        
+        mCustomLogoPos = (ListPreference) findPreference("status_bar_custom_logo_position");
+        int customLogoPos = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.STATUS_BAR_CUSTOM_LOGO_POSITION, 0,
+                UserHandle.USER_CURRENT);
+        mCustomLogoPos.setValue(String.valueOf(customLogoPos));
+        mCustomLogoPos.setSummary(mCustomLogoPos.getEntry());
+        mCustomLogoPos.setOnPreferenceChangeListener(this);
 
     }
 
@@ -129,7 +138,15 @@ public class StatusBar extends SettingsPreferenceFragment implements
             int index = mCustomLogoStyle.findIndexOfValue((String) objValue);
             mCustomLogoStyle.setSummary(mCustomLogoStyle.getEntries()[index]);
             return true;
-            }
+        }  else if (preference == mCustomLogoPos) {
+            int val = Integer.valueOf((String) objValue);
+            Settings.System.putIntForUser(getContentResolver(), 
+		            Settings.System.STATUS_BAR_CUSTOM_LOGO_POSITION, val,
+                    UserHandle.USER_CURRENT);
+            int index = mCustomLogoPos.findIndexOfValue((String) objValue);
+            mCustomLogoPos.setSummary(mCustomLogoPos.getEntries()[index]);
+            return true;
+        }
         return false;
     }
 }
