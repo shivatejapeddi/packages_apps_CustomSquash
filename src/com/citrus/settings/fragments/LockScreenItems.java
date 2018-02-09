@@ -40,6 +40,9 @@ public class LockScreenItems extends SettingsPreferenceFragment implements OnPre
         PreferenceScreen prefScreen = getPreferenceScreen();
 
         final ContentResolver resolver = getActivity().getContentResolver();
+
+        mFooterPreferenceMixin.createFooterPreference().setTitle(R.string.hide_lockscreen_footer_text); 
+        
     }
 
     @Override
