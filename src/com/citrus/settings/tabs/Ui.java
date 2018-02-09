@@ -31,6 +31,7 @@ import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.support.v7.preference.DropDownPreference;
 import android.support.v7.preference.PreferenceGroup;
@@ -76,6 +77,10 @@ public class Ui extends SettingsPreferenceFragment implements
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
     private static final String SCREEN_OFF_ANIMATION = "screen_off_animation"; 
 
+    private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
+    private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
+    private static final String SCROLLINGCACHE_DEFAULT = "1";
+ 
     private static final int DIALOG_RECENTS_BLACKLIST_APPS = 0;
 
     private PackageListAdapter mPackageAdapter;
@@ -103,6 +108,7 @@ public class Ui extends SettingsPreferenceFragment implements
     private DropDownPreference mSystemUIThemeStyle;
     private ListPreference mRecentsClearAllLocation;
     private ListPreference mScreenOffAnimation; 
+    private ListPreference mScrollingCachePref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -146,8 +152,12 @@ public class Ui extends SettingsPreferenceFragment implements
 
         mAddRecentsBlacklistPref = findPreference("add_recents_blacklist_packages");
 
-       mAddRecentsBlacklistPref.setOnPreferenceClickListener(this);
-
+        mAddRecentsBlacklistPref.setOnPreferenceClickListener(this);
+        
+        mScrollingCachePref = (ListPreference) findPreference(SCROLLINGCACHE_PREF);
+        mScrollingCachePref.setValue(SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP,
+                SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP, SCROLLINGCACHE_DEFAULT)));
+        mScrollingCachePref.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -198,6 +208,11 @@ public class Ui extends SettingsPreferenceFragment implements
             int valueIndex = mScreenOffAnimation.findIndexOfValue(value);
             mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntries()[valueIndex]);
             return true;
+        } else if (preference == mScrollingCachePref) {
+            if (objValue != null) {
+                SystemProperties.set(SCROLLINGCACHE_PERSIST_PROP, (String) objValue);
+                return true;
+            }
         }
         return false;
      }
