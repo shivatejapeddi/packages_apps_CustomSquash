@@ -606,6 +606,10 @@
     <string name="hide_lockscreen_date_summary">Change the date\'s visibility underneath the clock widget</string>
     <string name="hide_lockscreen_alarm_title">Alarm text</string>
     <string name="hide_lockscreen_alarm_summary">Change the alarm text\'s visibility underneath the clock widget</string>
+    <string name="hide_lockscreen_weather_title">Weather widget</string>
+    <string name="hide_lockscreen_weather_summary">Change the weather widget\'s visibility</string>
+    <string name="hide_lockscreen_location_title">Location text</string>
+    <string name="hide_lockscreen_location_summary">Change the location text\'s visibility near the Weather widget</string>
 
     <!-- Torch Power button gestures -->
     <string name="torch_power_button_gesture_title">Screen off power button torch</string>

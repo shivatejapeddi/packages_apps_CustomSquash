@@ -31,4 +31,23 @@
         android:summary="@string/hide_lockscreen_alarm_summary"
         android:defaultValue="true" />
 
+    <PreferenceCategory
+        android:key="weather_category"
+        android:title="@string/weather_title">
+
+        <com.citrus.settings.preference.SystemSettingSwitchPreference
+            android:key="hide_lockscreen_weather"
+            android:title="@string/hide_lockscreen_weather_title"
+            android:summary="@string/hide_lockscreen_weather_summary" 
+            android:defaultValue="false" />
+
+        <com.citrus.settings.preference.SystemSettingSwitchPreference
+            android:key="hide_lockscreen_weather_location"
+            android:title="@string/hide_lockscreen_location_title"
+            android:summary="@string/hide_lockscreen_location_summary"
+            android:defaultValue="true"
+            android:dependency="hide_lockscreen_weather" />
+            
+    </PreferenceCategory>
+
 </PreferenceScreen>
