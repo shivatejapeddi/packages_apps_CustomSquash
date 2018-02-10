@@ -19,6 +19,7 @@ package com.citrus.settings.fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -39,11 +40,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.android.internal.logging.nano.MetricsProto;
+
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.search.Indexable;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.citrus.settings.adapters.PackageListAdapter;
 import com.citrus.settings.adapters.PackageListAdapter.PackageItem;
+import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 
 import java.util.ArrayList;
@@ -52,7 +57,7 @@ import java.util.List;
 import java.util.Map;
 
 public class NotificationStyleSettings extends SettingsPreferenceFragment
-        implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
+        implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener, Indexable {
 
     private static final int DIALOG_BLACKLIST_APPS = 0;
     private static final int DIALOG_WHITELIST_APPS = 1;
@@ -370,4 +375,25 @@ public class NotificationStyleSettings extends SettingsPreferenceFragment
         Settings.System.putString(getContentResolver(),
                 setting, value);
     }
+
+    public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.notification_style;
+                    result.add(sir);
+                    return result;
+                }
+ 
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    ArrayList<String> result = new ArrayList<String>();
+                    return result;
+                }
+            };
 }

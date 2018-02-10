@@ -39,7 +39,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
-
+import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 
 import android.text.TextUtils;
@@ -56,6 +56,8 @@ import android.widget.Toast;
 import android.widget.ListView;
 
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.search.Indexable;
 import com.android.settings.SettingsPreferenceFragment;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
@@ -71,7 +73,7 @@ import java.util.Map;
 import java.util.List;
 
 public class Ui extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener, DialogInterface.OnDismissListener, Preference.OnPreferenceClickListener {
+        Preference.OnPreferenceChangeListener, DialogInterface.OnDismissListener, Preference.OnPreferenceClickListener, Indexable {
 
     private static final String SYSTEMUI_THEME_STYLE = "systemui_theme_style";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
@@ -565,5 +567,26 @@ public class Ui extends SettingsPreferenceFragment implements
             }
         Settings.System.putString(getContentResolver(),
                 Settings.System.HIDE_FROM_RECENTS_LIST, value);
-}
+    }
+
+    public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.ui_tab;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    ArrayList<String> result = new ArrayList<String>();
+                    return result;
+                }
+            };
 }

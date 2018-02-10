@@ -19,6 +19,7 @@ package com.citrus.settings.fragments;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.preference.PreferenceCategory;
@@ -27,18 +28,24 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v14.preference.SwitchPreference;
+import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.android.settings.R;
+import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.search.Indexable;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
 import com.android.internal.logging.nano.MetricsProto;
 
-public class CarrierLabel extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class CarrierLabel extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener, Indexable {
 
     private static final String KEY_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String KEY_STATUS_BAR_CARRIER = "status_bar_carrier";
@@ -127,4 +134,25 @@ public class CarrierLabel extends SettingsPreferenceFragment implements Preferen
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.CUSTOM_SQUASH;
     }
+
+    public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+            new BaseSearchIndexProvider() {
+                @Override
+                public List<SearchIndexableResource> getXmlResourcesToIndex(Context context,
+                        boolean enabled) {
+                    ArrayList<SearchIndexableResource> result =
+                            new ArrayList<SearchIndexableResource>();
+
+                    SearchIndexableResource sir = new SearchIndexableResource(context);
+                    sir.xmlResId = R.xml.carrier_label;
+                    result.add(sir);
+                    return result;
+                }
+
+                @Override
+                public List<String> getNonIndexableKeys(Context context) {
+                    ArrayList<String> result = new ArrayList<String>();
+                    return result;
+                }
+            };
 }
