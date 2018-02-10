@@ -67,7 +67,7 @@
     <string name="navbar_size">Bar size</string>
     <string name="navbar_mode">Navigation mode</string>
     <string name="navbar_mode_summary">Select which navigation mode to use on your device</string>
-    <string name="navbar_visibility">Allow navigation bar</string>
+    <string name="navbar_visibility">Enable software navigation bar</string>
     <string name="navigationbar_settings_title">Navigation bar</string>
     <string name="navigationbar_settings_summary">Customize navigation style and behavior</string>
     <string name="navbar_general_title">Advanced</string>
@@ -501,19 +501,20 @@
     <string name="lockscreen_power_menu_disabled_summary">Disable power menu on secure lockscreen</string>
 
     <!-- Hide Lockscreen shortcuts on secure Lockscreen -->
-    <string name="lockscreen_hide_shortcuts_title">Hide bottom Shortcuts</string>
+    <string name="lockscreen_hide_shortcuts_title">Secured bottom Shortcuts</string>
     <string name="lockscreen_hide_shortcuts_summary">Hide bottom shortcuts on secure lock screens</string>
 
     <!-- d2ts on lockscreen -->
     <string name="double_tap_sleep_lockscreen">Double tap to sleep on lockscreen</string>
+    <string name="double_tap_sleep_lockscreen_summary">Double tap on empty area of lockscreen to sleep</string>
     
     <!-- Quick pulldown -->
     <string name="status_bar_quick_qs_pulldown">Quick pulldown</string>
     <string name="status_bar_quick_qs_pulldown_summary">Pulldown statusbar from right side to show QS panel</string>
 
     <!-- D2ts on statusbar -->
-    <string name="double_tap_sleep_gesture_title">Double tap status bar to sleep</string>
-
+    <string name="double_tap_sleep_gesture_title">Double tap to sleep</string>
+    <string name="double_tap_sleep_gesture_summary">Double tap on status bar to sleep</string>
 
     <!-- Screen state service -->
     <string name="screen_state_toggles_summary">@null</string>
@@ -648,6 +649,7 @@
 
     <!-- Expanded desktop -->
     <string name="expanded_desktop_category">Expanded Desktop</string>
+    <string name="expanded_desktop_summary">Configure expanded desktop for apps</string>    
     <string name="expanded_hide_nothing">Hide nothing</string>
     <string name="expanded_hide_status">Hide status bar</string>
     <string name="expanded_hide_navigation">Hide navigation bar</string>
