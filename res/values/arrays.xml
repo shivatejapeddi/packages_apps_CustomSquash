@@ -122,7 +122,7 @@
         <item>0</item>
         <item>1</item>
     </string-array>
-    
+
     <!-- Values for the notification light pulse spinners -->
     <string-array name="notification_pulse_length_entries" translatable="false">
         <item>@string/pulse_length_always_on</item>
@@ -181,7 +181,7 @@
 
     <!-- Ticker mode -->
     <string-array name="ticker_mode_entries">
-        <item>@string/ticker_disabled</item> 
+        <item>@string/ticker_disabled</item>
         <item>@string/ticker_enabled</item>
         <item>@string/ticker_media_enabled</item>
     </string-array>
@@ -196,13 +196,13 @@
     <string-array name="custom_header_provider_entries" translatable="false">
         <item>@string/daylight_header_provider_title</item>
         <item>@string/static_header_provider_title</item>
-        <item>@string/file_header_provider_title</item> 
+        <item>@string/file_header_provider_title</item>
     </string-array>
 
     <string-array name="custom_header_provider_values" translatable="false">
         <item>@string/daylight_header_provider</item>
         <item>@string/static_header_provider</item>
-        <item>@string/file_header_provider</item> 
+        <item>@string/file_header_provider</item>
     </string-array>
 
     <!-- System ui theme -->
@@ -217,7 +217,7 @@
         <item>1</item>
         <item>2</item>
     </string-array>
-    
+
     <!-- Network Traffic Type -->
     <string-array name="show_network_traffic_type_entries" translatable="false">
         <item>@string/show_network_traffic_up</item>
@@ -264,7 +264,7 @@
         <item>2</item>
         <item>3</item>
     </string-array>
-    
+
     <!-- Custom Logos  -->
     <string-array name="status_bar_custom_logo_entries">
         <item>@string/logo_citrus</item>
@@ -359,7 +359,7 @@
         <item>41</item>
         <item>42</item>
         <item>43</item>
-        <item>44</item>        
+        <item>44</item>
     </string-array>
 
     <!-- Torch Power button gestures -->
@@ -462,7 +462,7 @@
     <string-array name="show_custom_logo_pos_entries" translatable="false">
         <item>@string/show_custom_logo_center</item>
         <item>@string/show_custom_logo_left</item>
-        <item>@string/show_custom_logo_right</item>        
+        <item>@string/show_custom_logo_right</item>
     </string-array>
 
     <string-array name="show_custom_logo_pos_values" translatable="false">
@@ -513,5 +513,16 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <!-- Ticker animation mode -->
+    <string-array name="ticker_animation_mode_entries" translatable="false">
+        <item>@string/ticker_animation_mode_alpha_fade</item>
+        <item>@string/ticker_animation_mode_scroll</item>
+    </string-array>
+
+    <string-array name="ticker_animation_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
     </string-array>
 </resources>
