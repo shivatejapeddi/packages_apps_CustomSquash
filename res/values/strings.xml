@@ -53,7 +53,7 @@
     <!-- General strings -->
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    <string name="reset">Reset</string>    
+    <string name="reset">Reset</string>
     <string name="reset_android">Android</string>
     <string name="reset_citrus">Citrus-CAF</string>
     <string name="reset_colors">Reset colors</string>
@@ -156,7 +156,7 @@
     <string name="fling_longpress_title">Long press delay</string>
     <string name="fling_longpress_summary">Increase or decrease the time it takes to execute a long press</string>
     <string name="fling_keyboard_cursors_title">Dynamic keyboard cursors action</string>
-    <string name="fling_keyboard_cursors_summary">Double tap left and right actions becomes left and right keyboard cursor actions if keyboard is open</string>
+    <string name="fling_keyboard_cursors_move_summary">When keyboard is showing, long press left or right to move the text cursor to left or right.\nKeep longpressing to keep moving the cursor, single tap on bar to go to home screen.</string>
     <string name="fling_logo_opacity_title">Fling logo opacity</string>
 
     <!-- Pulse navigation bar music visualizer -->
@@ -313,11 +313,11 @@
     <string name="notification_light_no_apps_footer_text">To add per app control, activate \'%1$s\' and press \'\u002b\' on the menu bar</string>
     <string name="led_notification_title">Light settings</string>
     <string name="led_notification_text">LED light enabled by settings</string>
-    
+
     <!-- dialog -->
     <string name="ok">OK</string>
     <string name="profiles_add">Add</string>
-    <string name="profile_choose_app">Choose app</string> 
+    <string name="profile_choose_app">Choose app</string>
     <string name="dialog_delete_title">Remove</string>
     <string name="dialog_delete_message">Remove selected item?</string>
 
@@ -347,7 +347,7 @@
     <string name="ticker_disabled">Disabled</string>
     <string name="ticker_enabled">Notification ticker</string>
     <string name="ticker_media_enabled">Notification and music ticker</string>
- 
+
     <!-- Fingerprint unlock keystore -->
     <string name="fp_unlock_keystore_title">FP unlock on boot</string>
     <string name="fp_unlock_keystore_summary">Allow unlocking device using Fingerprint directly after boot\nNote: at your own risk!</string>
@@ -400,7 +400,7 @@
     <!-- Small quick settings scroller -->
     <string name="qqs_scroll_title">Scroll small QS tiles</string>
     <string name="qqs_scroll_summary">Allow scrolling through the small QS tiles</string>
-    
+
     <!-- Header -->
     <string name="status_bar_custom_header_title">Enable</string>
     <string name="daylight_header_pack_title">Header image pack</string>
@@ -449,18 +449,18 @@
     <string name="notification_settings_summary">Manage notification related settings</string>
 
     <!-- Notification style -->
-    <string name="notification_style_title">Notification style</string> 
+    <string name="notification_style_title">Notification style</string>
     <string name="notification_style_warning_text">While you use heads up notifications, you will not be able to use the ticker feature, and vice versa.</string>
-    <!-- Heads up --> 
-    <string name="heads_up_notifications">HeadsUp</string> 
-    <string name="summary_heads_up_enabled">HeadsUp notifications are enabled</string> 
+    <!-- Heads up -->
+    <string name="heads_up_notifications">HeadsUp</string>
+    <string name="summary_heads_up_enabled">HeadsUp notifications are enabled</string>
     <string name="summary_heads_up_disabled">HeadsUp notifications are disabled</string>
-    <string name="add_heads_up_blacklist_package">Add an app to headsup blacklist</string>  
-    <string name="add_heads_up_whitelist_package">Add an app to headsup whitelist</string> 
+    <string name="add_heads_up_blacklist_package">Add an app to headsup blacklist</string>
+    <string name="add_heads_up_whitelist_package">Add an app to headsup whitelist</string>
     <string name="add_heads_up_blacklist_summary">Disable headsup notifications from these apps</string>
     <string name="add_heads_up_whitelist_summary">Disable headsup notifications while using these apps</string>
-    <string name="heads_up_blacklist_title">Blacklist</string>  
-    <string name="heads_up_whitelist_title">Whitelist</string> 
+    <string name="heads_up_blacklist_title">Blacklist</string>
+    <string name="heads_up_whitelist_title">Whitelist</string>
 
     <!-- Sensor block per-package -->
     <string name="sensor_block_title">Sensor block per-package</string>
@@ -491,7 +491,7 @@
     <!--  Lockscreen battery info indicator  -->
     <string name="lockscreen_battery_info_title">Lockscreen charging info</string>
     <string name="lockscreen_battery_info_summary">Display negociated charger max current and voltage on lockscreen</string>
- 
+
     <!-- Disable QS on secure Lockscreen -->
     <string name="lockscreen_qs_disabled_title">Secured quick settings</string>
     <string name="lockscreen_qs_disabled_summary">Prevent expanding quick settings on secure lock screens</string>
@@ -507,7 +507,7 @@
     <!-- d2ts on lockscreen -->
     <string name="double_tap_sleep_lockscreen">Double tap to sleep on lockscreen</string>
     <string name="double_tap_sleep_lockscreen_summary">Double tap on empty area of lockscreen to sleep</string>
-    
+
     <!-- Quick pulldown -->
     <string name="status_bar_quick_qs_pulldown">Quick pulldown</string>
     <string name="status_bar_quick_qs_pulldown_summary">Pulldown statusbar from right side to show QS panel</string>
@@ -555,8 +555,8 @@
     <string name="show_custom_logo_pos_title">Custom logo position</string>
     <string name="show_custom_logo_center">Center</string>
     <string name="show_custom_logo_left">Left</string>
-    <string name="show_custom_logo_right">Right</string>    
-    <string name="logo_citrus">Citrus-CAF</string>        
+    <string name="show_custom_logo_right">Right</string>
+    <string name="logo_citrus">Citrus-CAF</string>
     <string name="logo_cardinal">Cardinal-AOSP</string>
     <string name="logo_bugdroid">BugDroid Minimal</string>
     <string name="logo_drupal">Drupal</string>
@@ -643,13 +643,13 @@
     <string name="default_iconpack_title">Default icons</string>
 
     <!-- Hide Apps from Recents -->
-    <string name="add_recents_blacklist_package">Add an app to recents blacklist</string>  
+    <string name="add_recents_blacklist_package">Add an app to recents blacklist</string>
     <string name="add_recents_blacklist_summary">Hide these apps from recents</string>
-    <string name="recents_blacklist_title">Recents blacklist</string>  
+    <string name="recents_blacklist_title">Recents blacklist</string>
 
     <!-- Expanded desktop -->
     <string name="expanded_desktop_category">Expanded Desktop</string>
-    <string name="expanded_desktop_summary">Configure expanded desktop for apps</string>    
+    <string name="expanded_desktop_summary">Configure expanded desktop for apps</string>
     <string name="expanded_hide_nothing">Hide nothing</string>
     <string name="expanded_hide_status">Hide status bar</string>
     <string name="expanded_hide_navigation">Hide navigation bar</string>
@@ -661,7 +661,7 @@
     <string name="expanded_desktop_style">Expanded desktop style</string>
     <string name="expanded_desktop_style_description">Choose a default expanded desktop style</string>
     <string name="expanded_desktop_title">Expanded desktop options</string>
-    
+
     <!-- less notifucations -->
     <string name="less_notification_sounds_title">Smart notification sounds</string>
     <string name="less_notification_sounds_summary">Play the notification sound of each app only once per set time period</string>
@@ -676,7 +676,7 @@
     <string name="qs_footer_warnings_summary">Display a warning at bottom of the QS panel while your network is monitored by external apps or a VPN</string>
 
     <!-- Custom summary text -->
-    <string name="custom_summary_cat_title">Dashboard</string>    
+    <string name="custom_summary_cat_title">Dashboard</string>
     <string name="custom_settings_summary_title">Custom dashboard summary</string>
     <string name="custom_summary_title">Custom dashboard summary</string>
     <string name="custom_summary_explain">Enter new summary text. Leave blank to revert to default.</string>
@@ -713,7 +713,7 @@
     <string name="show_carrier_statusbar">Status bar</string>
     <string name="show_carrier_enabled">Both</string>
     <string name="carrier_label_warning_text">Be advised that the custom carrier label is not available in the extended statusbar area, also known as the quick settings area. Also using emojis as your carrier label might cause some visibility issues on lighter backgrounds.</string>
- 
+
     <!-- Battery styles -->
     <string name="battery_style_title">Battery icon style</string>
     <string name="battery_style_summary">Change the look of the battery icon in the statusbar</string>
