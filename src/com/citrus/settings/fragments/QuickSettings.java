@@ -43,7 +43,7 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
-import com.android.internal.util.custom.CustomUtils;
+//import com.android.internal.util.custom.CustomUtils;
 
 import com.citrus.settings.preference.CustomSeekBarPreference;
 import com.citrus.settings.preference.SystemSettingSwitchPreference;
@@ -55,7 +55,7 @@ import java.util.List;
 import java.util.Map;
 
 public class QuickSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener, Indexable {
-   
+
     // Omnijaws Weather
     private static final String CATEGORY_WEATHER = "weather_category";
     private static final String WEATHER_ICON_PACK = "weather_icon_pack";
@@ -82,25 +82,25 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private CustomSeekBarPreference mQsColumnsPort;
     private CustomSeekBarPreference mQsColumnsLand;
     private ListPreference mDaylightHeaderPack;
-    private ListPreference mHeaderProvider;       
+    private ListPreference mHeaderProvider;
     private ListPreference mWeatherIconPack;
     private PreferenceCategory mWeatherCategory;
     private Preference mHeaderBrowse;
-    private Preference mFileHeader;    
+    private Preference mFileHeader;
     private String mDaylightHeaderProvider;
-    private String mFileHeaderProvider;    
+    private String mFileHeaderProvider;
     private SystemSettingSwitchPreference mHeaderEnabled;
- 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.quicksettings);
-        
+
         PreferenceScreen prefScreen = getPreferenceScreen();
 
         final ContentResolver resolver = getActivity().getContentResolver();
-
+/*
         int value = Settings.System.getIntForUser(resolver,
                 Settings.System.QS_ROWS_PORTRAIT, 2, UserHandle.USER_CURRENT);
         mQsRowsPort = (CustomSeekBarPreference) findPreference("qs_rows_portrait");
@@ -124,7 +124,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         mQsColumnsLand = (CustomSeekBarPreference) findPreference("qs_columns_landscape");
         mQsColumnsLand.setValue(value);
         mQsColumnsLand.setOnPreferenceChangeListener(this);
-    
+
 
         mWeatherCategory = (PreferenceCategory) prefScreen.findPreference(CATEGORY_WEATHER);
         if (mWeatherCategory != null && !isOmniJawsServiceInstalled()) {
@@ -181,14 +181,14 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         mHeaderShadow.setOnPreferenceChangeListener(this);
 
         mDaylightHeaderProvider = getResources().getString(R.string.daylight_header_provider);
-        mFileHeaderProvider = getResources().getString(R.string.file_header_provider); 
+        mFileHeaderProvider = getResources().getString(R.string.file_header_provider);
         String providerName = Settings.System.getString(getContentResolver(),
                 Settings.System.STATUS_BAR_CUSTOM_HEADER_PROVIDER);
         if (providerName == null) {
             providerName = mDaylightHeaderProvider;
         }
-        
-        mHeaderBrowse.setEnabled(isBrowseHeaderAvailable() && !providerName.equals(mFileHeaderProvider)); 
+
+        mHeaderBrowse.setEnabled(isBrowseHeaderAvailable() && !providerName.equals(mFileHeaderProvider));
 
         mHeaderProvider = (ListPreference) findPreference(CUSTOM_HEADER_PROVIDER);
         int valueIndex = mHeaderProvider.findIndexOfValue(providerName);
@@ -215,7 +215,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
                 mDaylightHeaderPack.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
                 mDaylightHeaderPack.setSummary(mDaylightHeaderPack.getEntry());
             }
-        }
+        }*/
     }
 
     @Override
@@ -227,7 +227,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     public void onResume() {
         super.onResume();
     }
-
+/*
      @Override
      public boolean onPreferenceTreeClick(Preference preference) {
         if (preference == mFileHeader) {
@@ -238,10 +238,10 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         }
          return super.onPreferenceTreeClick(preference);
      }
-
+*/
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (preference == mQsRowsPort) {
+/*        if (preference == mQsRowsPort) {
             int val = (Integer) objValue;
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.QS_ROWS_PORTRAIT, val, UserHandle.USER_CURRENT);
@@ -274,13 +274,13 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
                     Settings.System.STATUS_BAR_DAYLIGHT_HEADER_PACK, value);
             int valueIndex = mDaylightHeaderPack.findIndexOfValue(value);
             mDaylightHeaderPack.setSummary(mDaylightHeaderPack.getEntries()[valueIndex]);
-            return true;            
+            return true;
         } else if (preference == mHeaderShadow) {
             Integer headerShadow = (Integer) objValue;
             int realHeaderValue = (int) (((double) headerShadow / 100) * 255);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_CUSTOM_HEADER_SHADOW, realHeaderValue);
-            return true;                    
+            return true;
         } else if (preference == mHeaderProvider) {
             String value = (String) objValue;
             Settings.System.putString(getContentResolver(),
@@ -288,19 +288,19 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             int valueIndex = mHeaderProvider.findIndexOfValue(value);
             mHeaderProvider.setSummary(mHeaderProvider.getEntries()[valueIndex]);
             mDaylightHeaderPack.setEnabled(value.equals(mDaylightHeaderProvider));
-            mHeaderBrowse.setEnabled(!value.equals(mFileHeaderProvider)); 
+            mHeaderBrowse.setEnabled(!value.equals(mFileHeaderProvider));
             mHeaderBrowse.setTitle(valueIndex == 0 ? R.string.custom_header_browse_title : R.string.custom_header_pick_title);
             mHeaderBrowse.setSummary(valueIndex == 0 ? R.string.custom_header_browse_summary_new : R.string.custom_header_pick_summary);
-            mFileHeader.setEnabled(value.equals(mFileHeaderProvider)); 
-            return true;        
+            mFileHeader.setEnabled(value.equals(mFileHeaderProvider));
+            return true;
         } else if (preference == mHeaderEnabled) {
             Boolean headerEnabled = (Boolean) objValue;
-            updateHeaderProviderSummary(headerEnabled);   
-            return true;        
-        }
+            updateHeaderProviderSummary(headerEnabled);
+            return true;
+        }*/
         return false;
     }
-
+/*
     private boolean isOmniJawsServiceInstalled() {
         return CustomUtils.isAvailableApp(WEATHER_SERVICE_PACKAGE, getActivity());
     }
@@ -411,7 +411,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             Settings.System.putString(getContentResolver(), Settings.System.STATUS_BAR_FILE_HEADER_IMAGE, imageUri.toString());
         }
     }
-
+*/
     public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
             new BaseSearchIndexProvider() {
                 @Override
@@ -425,7 +425,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
                     result.add(sir);
                     return result;
                 }
- 
+
                 @Override
                 public List<String> getNonIndexableKeys(Context context) {
                     ArrayList<String> result = new ArrayList<String>();

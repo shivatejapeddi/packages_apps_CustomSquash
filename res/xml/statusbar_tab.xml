@@ -18,38 +18,17 @@
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" >
 
+<!--
   <Preference
     android:key="quicksettings"
     android:fragment="com.citrus.settings.fragments.QuickSettings"
     android:title="@string/quicksettings_category"
     android:summary="@string/quicksettings_summary" />
 
-<!--
-    <Preference
-            android:title="@string/powern_notifications_title"
-            android:summary="@string/powern_notifications_summary">
-        <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="com.android.systemui"
-                android:targetClass="com.android.systemui.tuner.PowerNotificationsTunerActivity" />
-    </Preference>
--->
-
-    <Preference
-      android:key="battery_settings"
-      android:fragment="com.citrus.settings.fragments.BatterySettings"
-      android:title="@string/battery_settings_title" 
-      android:summary="@string/battery_settings_summary"/>
-
-    <Preference
-        android:key="notification_settings"
-        android:title="@string/notification_settings_title"
-        android:summary="@string/notification_settings_summary"
-        android:fragment="com.citrus.settings.fragments.NotificationSettings" />
- 
     <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="double_tap_sleep_gesture"
         android:title="@string/double_tap_sleep_gesture_title"
-        android:summary="@string/double_tap_sleep_gesture_summary"        
+        android:summary="@string/double_tap_sleep_gesture_summary"
         android:defaultValue="false" />
 
     <com.citrus.settings.preference.SystemSettingSwitchPreference
@@ -68,12 +47,6 @@
                 android:targetPackage="com.android.systemui"
                 android:targetClass="com.android.systemui.tuner.StatusBarIconsTunerActivity" />
         </Preference>
-
-        <Preference
-            android:key="carrier_label"
-            android:fragment="com.citrus.settings.fragments.CarrierLabel"
-            android:title="@string/carrier_label_title"
-            android:summary="@string/carrier_label_summary" />
 
         <com.citrus.settings.preference.SystemSettingSwitchPreference
             android:key="status_bar_custom_logo"
@@ -98,29 +71,5 @@
             android:dependency="status_bar_custom_logo" />
 
     </PreferenceCategory>
-
-    <PreferenceCategory
-      android:title="@string/network_traffic_cat_title">
-      
-        <com.citrus.settings.preference.SystemSettingSwitchPreference
-            android:key="network_traffic_state"
-            android:title="@string/network_traffic_state_title"
-            android:defaultValue="false" />
-
-        <ListPreference
-            android:key="network_traffic_type"
-            android:title="@string/network_traffic_type"
-            android:entries="@array/show_network_traffic_type_entries"
-            android:entryValues="@array/show_network_traffic_type_values"
-            android:dependency="network_traffic_state"
-            android:persistent="false" />
-
-        <com.citrus.settings.preference.CustomSeekBarPreference
-            android:key="network_traffic_autohide_threshold"
-            android:title="@string/network_traffic_autohide_threshold_title"
-            android:max="10"
-            settings:min="0"
-            settings:units="" />
-    </PreferenceCategory>
-
+-->
 </PreferenceScreen>

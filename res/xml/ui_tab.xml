@@ -17,18 +17,11 @@
     android:title="@string/ui_title"
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" >
-
+<!--
     <Preference
         android:key="expanded_desktop"
         android:fragment="com.citrus.settings.fragments.ExpandedDesktop"
         android:title="@string/expanded_desktop_category" />
-
-    <DropDownPreference
-        android:key="systemui_theme_style"
-        android:title="@string/systemui_theme_style_title"
-        android:persistent="false"
-        android:entries="@array/systemui_theme_style_entries"
-        android:entryValues="@array/systemui_theme_style_values" />
 
     <ListPreference
         android:key="screen_off_animation"
@@ -36,31 +29,8 @@
         android:entries="@array/screen_off_animation_entries"
         android:entryValues="@array/screen_off_animation_values" />
 
-    <ListPreference
-        android:key="pref_scrollingcache"
-        android:dialogTitle="@string/pref_scrollingcache_title"
-        android:title="@string/pref_scrollingcache_title"
-        android:summary="@string/pref_scrollingcache_summary"
-        android:entries="@array/entries_scrollingcache" 
-        android:entryValues="@array/values_scrollingcache"/>
-
     <PreferenceCategory
       android:title="@string/recents_cat_title">
-      
-        <com.citrus.settings.preference.SystemSettingSwitchPreference
-            android:key="show_clear_all_recents"
-            android:title="@string/show_clear_all_recents_button_title"
-            android:summaryOn="@string/show_clear_all_recents_button_summary_on"
-            android:summaryOff="@string/show_clear_all_recents_button_summary_off"
-            android:defaultValue="false" />
-
-        <ListPreference
-            android:key="recents_clear_all_location"
-            android:title="@string/recents_clear_all_location_title"
-            android:entries="@array/recents_clear_all_location_entries"
-            android:entryValues="@array/recents_clear_all_location_values"
-            android:defaultValue="3"
-            android:dependency="show_clear_all_recents" />
 
         <com.citrus.settings.preference.SystemSettingSwitchPreference
             android:key="systemui_recents_mem_display"
@@ -69,22 +39,6 @@
             android:summaryOff="@string/systemui_recents_mem_display_summaryOff"
             android:defaultValue="false" />
 
-        <Preference
-            android:key="recents_icon_pack"
-            android:title="@string/recents_icon_pack_title"
-            android:summary="@string/recents_icon_pack_summary" />
-
     </PreferenceCategory>
-
-    <PreferenceCategory
-            android:title="@string/recents_blacklist_title"
-            android:key="recents_blacklist_applications" >
-        
-        <Preference
-            android:key="add_recents_blacklist_packages"
-            android:icon="@drawable/ic_menu_add"
-            android:title="@string/add_recents_blacklist_package"
-            android:summary="@string/add_recents_blacklist_summary" />
-    </PreferenceCategory>
-
+-->
 </PreferenceScreen>

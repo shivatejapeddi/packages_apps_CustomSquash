@@ -27,7 +27,7 @@ import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 
-import com.android.internal.utils.du.DUActionUtils;
+//import com.android.internal.utils.du.DUActionUtils;
 
 import com.android.settings.R;
 import com.android.settings.search.BaseSearchIndexProvider;
@@ -41,10 +41,10 @@ import java.util.List;
 public class Buttons extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, Indexable {
 
-    private static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture"; 
+    private static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture";
 
-    private ListPreference mTorchPowerButton; 
-    
+    private ListPreference mTorchPowerButton;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +53,7 @@ public class Buttons extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getActivity().getContentResolver();
         PreferenceScreen prefScreen = getPreferenceScreen();
-
+/*
         if (!DUActionUtils.deviceSupportsFlashLight(getContext())) {
             Preference toRemove = prefScreen.findPreference(TORCH_POWER_BUTTON_GESTURE);
             if (toRemove != null) {
@@ -66,13 +66,13 @@ public class Buttons extends SettingsPreferenceFragment implements
             mTorchPowerButton.setValue(Integer.toString(mTorchPowerButtonValue));
             mTorchPowerButton.setSummary(mTorchPowerButton.getEntry());
             mTorchPowerButton.setOnPreferenceChangeListener(this);
-        }
+        } */
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mTorchPowerButton) {
+/*        if (preference == mTorchPowerButton) {
             int mTorchPowerButtonValue = Integer.valueOf((String) newValue);
             int index = mTorchPowerButton.findIndexOfValue((String) newValue);
             mTorchPowerButton.setSummary(
@@ -85,7 +85,7 @@ public class Buttons extends SettingsPreferenceFragment implements
                         1);
             }
             return true;
-        }
+        }*/
         return false;
     }
 

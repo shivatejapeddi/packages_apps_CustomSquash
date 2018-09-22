@@ -45,12 +45,12 @@ public class CustomSquash extends SettingsPreferenceFragment {
         mContainer = container;
         View view = inflater.inflate(R.layout.custom_squash, container, false);
         mViewPager = (ViewPager) view.findViewById(R.id.pager);
-	      mTabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
+        mTabs = (PagerSlidingTabStrip) view.findViewById(R.id.tabs);
 
         StatusBarAdapter StatusBarAdapter = new StatusBarAdapter(getFragmentManager());
         mViewPager.setAdapter(StatusBarAdapter);
 
-	mTabs.setViewPager(mViewPager);
+        mTabs.setViewPager(mViewPager);
         setHasOptionsMenu(true);
         return view;
     }
@@ -113,7 +113,7 @@ public class CustomSquash extends SettingsPreferenceFragment {
             getString(R.string.misc_title)};
         return titleString;
     }
-
+/*
     private static class SummaryProvider implements SummaryLoader.SummaryProvider {
 
         private final Context mContext;
@@ -160,7 +160,7 @@ public class CustomSquash extends SettingsPreferenceFragment {
             return new SummaryProvider(activity, summaryLoader);
         }
     };
-
+*/
     @Override
     public int getMetricsCategory() {
         return MetricsEvent.CUSTOM_SQUASH;

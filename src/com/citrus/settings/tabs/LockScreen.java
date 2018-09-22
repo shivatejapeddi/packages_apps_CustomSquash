@@ -42,11 +42,9 @@ import java.util.List;
 public class LockScreen extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, Indexable {
 
-    private static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
 
     private FingerprintManager mFingerprintManager;
-    private SwitchPreference mFpKeystore;
     private SystemSettingSwitchPreference mFingerprintVib;
 
    @Override
@@ -58,18 +56,12 @@ public class LockScreen extends SettingsPreferenceFragment implements
         PreferenceScreen prefSet = getPreferenceScreen();
 
         ContentResolver resolver = getActivity().getContentResolver();
-        
+/*
         mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
-        mFpKeystore = (SwitchPreference) findPreference(FP_UNLOCK_KEYSTORE);
         mFingerprintVib = (SystemSettingSwitchPreference) findPreference(FINGERPRINT_VIB);
         if (mFingerprintManager == null || !mFingerprintManager.isHardwareDetected()){
-        prefSet.removePreference(mFpKeystore);
-        prefSet.removePreference(mFingerprintVib);
-        } else {
-        mFpKeystore.setChecked((Settings.System.getInt(getContentResolver(),
-               Settings.System.FP_UNLOCK_KEYSTORE, 0) == 1));
-        mFpKeystore.setOnPreferenceChangeListener(this);
-        }
+            prefSet.removePreference(mFingerprintVib);
+        }*/
     }
 
     @Override
@@ -89,12 +81,12 @@ public class LockScreen extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
-        if (preference == mFpKeystore) {
-         boolean value = (Boolean) objValue;
-         Settings.System.putInt(getActivity().getContentResolver(),
+/*        if (preference == mFpKeystore) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
                   Settings.System.FP_UNLOCK_KEYSTORE, value ? 1 : 0);
          return true;
-        }
+        }*/
         return false;
     }
 

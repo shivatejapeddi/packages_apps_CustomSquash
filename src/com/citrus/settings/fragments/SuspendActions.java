@@ -43,7 +43,7 @@ import com.citrus.settings.preference.CustomSeekBarPreference;
 
 import java.util.ArrayList;
 import java.util.List;
- 
+
 public class SuspendActions extends SettingsPreferenceFragment
             implements Preference.OnPreferenceChangeListener, Indexable {
 
@@ -84,7 +84,7 @@ public class SuspendActions extends SettingsPreferenceFragment
         ContentResolver resolver = getActivity().getContentResolver();
 
         mContext = (Context) getActivity();
-
+/*
         mEnableScreenStateToggles = (SwitchPreference) findPreference(
                 SCREEN_STATE_TOOGLES_ENABLE);
 
@@ -153,13 +153,13 @@ public class SuspendActions extends SettingsPreferenceFragment
         }
 
         mMobileDateCategory.setEnabled(enabled != 0);
-        mLocationCategory.setEnabled(enabled != 0);
+        mLocationCategory.setEnabled(enabled != 0);*/
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
 
-        if (preference == mEnableScreenStateToggles) {
+ /*       if (preference == mEnableScreenStateToggles) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.START_SCREEN_STATE_SERVICE, value ? 1 : 0);
@@ -216,8 +216,7 @@ public class SuspendActions extends SettingsPreferenceFragment
                     Settings.System.SCREEN_STATE_ON_DELAY, delay);
 
             return true;
-        }
-
+        }*/
         return false;
     }
 
@@ -225,14 +224,14 @@ public class SuspendActions extends SettingsPreferenceFragment
     public void onResume() {
         super.onResume();
     }
-
+/*
     private void restartService(){
         Intent service = (new Intent())
                 .setClassName("com.android.systemui", "com.android.systemui.screenstate.ScreenStateService");
         getActivity().stopService(service);
         getActivity().startService(service);
     }
-
+*/
     public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
             new BaseSearchIndexProvider() {
                 @Override
@@ -246,7 +245,7 @@ public class SuspendActions extends SettingsPreferenceFragment
                     result.add(sir);
                     return result;
                 }
- 
+
                 @Override
                 public List<String> getNonIndexableKeys(Context context) {
                     ArrayList<String> result = new ArrayList<String>();

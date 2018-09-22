@@ -43,13 +43,9 @@ import java.util.List;
 
 public class StatusBar extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, Indexable {
-    
-    private ListPreference mCustomLogoStyle;
-    private ListPreference mCustomLogoPos;    
-    private ListPreference mNetTrafficType;
 
-    private CustomSeekBarPreference mThreshold;
-    private SystemSettingSwitchPreference mNetMonitor;
+    private ListPreference mCustomLogoStyle;
+    private ListPreference mCustomLogoPos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,28 +54,7 @@ public class StatusBar extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.statusbar_tab);
 
         ContentResolver resolver = getActivity().getContentResolver();
-
-        boolean isNetMonitorEnabled = Settings.System.getIntForUser(resolver,
-                Settings.System.NETWORK_TRAFFIC_STATE, 0, UserHandle.USER_CURRENT) == 1;
-        mNetMonitor = (SystemSettingSwitchPreference) findPreference("network_traffic_state");
-        mNetMonitor.setChecked(isNetMonitorEnabled);
-        mNetMonitor.setOnPreferenceChangeListener(this);
-
-        int value = Settings.System.getIntForUser(resolver,
-                Settings.System.NETWORK_TRAFFIC_TYPE, 0, UserHandle.USER_CURRENT);
-        mNetTrafficType = (ListPreference) findPreference("network_traffic_type");
-        mNetTrafficType.setValue(String.valueOf(value));
-        mNetTrafficType.setSummary(mNetTrafficType.getEntry());
-        mNetTrafficType.setOnPreferenceChangeListener(this);
-        mNetTrafficType.setEnabled(isNetMonitorEnabled);
-
-        value = Settings.System.getIntForUser(resolver,
-                Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, 1, UserHandle.USER_CURRENT);
-        mThreshold = (CustomSeekBarPreference) findPreference("network_traffic_autohide_threshold");
-        mThreshold.setValue(value);
-        mThreshold.setOnPreferenceChangeListener(this);
-        mThreshold.setEnabled(isNetMonitorEnabled);
-
+/*
         mCustomLogoStyle = (ListPreference) findPreference("status_bar_custom_logo_style");
         int customLogoStyle = Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.STATUS_BAR_CUSTOM_LOGO_STYLE, 0,
@@ -87,7 +62,7 @@ public class StatusBar extends SettingsPreferenceFragment implements
         mCustomLogoStyle.setValue(String.valueOf(customLogoStyle));
         mCustomLogoStyle.setSummary(mCustomLogoStyle.getEntry());
         mCustomLogoStyle.setOnPreferenceChangeListener(this);
-        
+
         mCustomLogoPos = (ListPreference) findPreference("status_bar_custom_logo_position");
         int customLogoPos = Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.STATUS_BAR_CUSTOM_LOGO_POSITION, 0,
@@ -95,7 +70,7 @@ public class StatusBar extends SettingsPreferenceFragment implements
         mCustomLogoPos.setValue(String.valueOf(customLogoPos));
         mCustomLogoPos.setSummary(mCustomLogoPos.getEntry());
         mCustomLogoPos.setOnPreferenceChangeListener(this);
-
+*/
     }
 
     @Override
@@ -115,31 +90,9 @@ public class StatusBar extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mNetMonitor) {
-            boolean value = (Boolean) objValue;
-            Settings.System.putIntForUser(getActivity().getContentResolver(),
-                    Settings.System.NETWORK_TRAFFIC_STATE, value ? 1 : 0,
-                    UserHandle.USER_CURRENT);
-            mNetMonitor.setChecked(value);
-            mThreshold.setEnabled(value);
-            return true;
-        } else if (preference == mThreshold) {
-            int val = (Integer) objValue;
-            Settings.System.putIntForUser(getContentResolver(),
-                    Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, val,
-                    UserHandle.USER_CURRENT);
-            return true;
-        } else if (preference == mNetTrafficType) {
+/*        if (preference == mCustomLogoStyle) {
             int val = Integer.valueOf((String) objValue);
             Settings.System.putIntForUser(getContentResolver(),
-                    Settings.System.NETWORK_TRAFFIC_TYPE, val,
-                    UserHandle.USER_CURRENT);
-            int index = mNetTrafficType.findIndexOfValue((String) objValue);
-            mNetTrafficType.setSummary(mNetTrafficType.getEntries()[index]);
-            return true;
-        }  else if (preference == mCustomLogoStyle) {
-            int val = Integer.valueOf((String) objValue);
-            Settings.System.putIntForUser(getContentResolver(), 
 		            Settings.System.STATUS_BAR_CUSTOM_LOGO_STYLE, val,
                     UserHandle.USER_CURRENT);
             int index = mCustomLogoStyle.findIndexOfValue((String) objValue);
@@ -147,13 +100,13 @@ public class StatusBar extends SettingsPreferenceFragment implements
             return true;
         }  else if (preference == mCustomLogoPos) {
             int val = Integer.valueOf((String) objValue);
-            Settings.System.putIntForUser(getContentResolver(), 
+            Settings.System.putIntForUser(getContentResolver(),
 		            Settings.System.STATUS_BAR_CUSTOM_LOGO_POSITION, val,
                     UserHandle.USER_CURRENT);
             int index = mCustomLogoPos.findIndexOfValue((String) objValue);
             mCustomLogoPos.setSummary(mCustomLogoPos.getEntries()[index]);
             return true;
-        }
+        }*/
         return false;
     }
 
