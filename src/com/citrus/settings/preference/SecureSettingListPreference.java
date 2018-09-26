@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod project
+ * Copyright (C) 2018 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +19,10 @@ package com.citrus.settings.preference;
 
 import android.content.Context;
 import android.provider.Settings;
-import android.support.v7.preference.ListPreference;
 import android.util.AttributeSet;
 
-public class SecureSettingListPreference extends ListPreference {
+public class SecureSettingListPreference extends CustomListPreference {
+
     public SecureSettingListPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
@@ -30,26 +31,8 @@ public class SecureSettingListPreference extends ListPreference {
         super(context, attrs);
     }
 
-    @Override
-    protected boolean persistString(String value) {
-        if (shouldPersist()) {
-            if (value == getPersistedString(null)) {
-                // It's already there, so the same as persisting
-                return true;
-            }
-            Settings.Secure.putString(getContext().getContentResolver(), getKey(), value);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    protected String getPersistedString(String defaultReturnValue) {
-        if (!shouldPersist()) {
-            return defaultReturnValue;
-        }
-        String value = Settings.Secure.getString(getContext().getContentResolver(), getKey());
-        return value == null ? defaultReturnValue : value;
+    public int getIntValue(int defValue) {
+        return getValue() == null ? defValue : Integer.valueOf(getValue());
     }
 
     @Override
@@ -57,7 +40,14 @@ public class SecureSettingListPreference extends ListPreference {
         return Settings.Secure.getString(getContext().getContentResolver(), getKey()) != null;
     }
 
-    public int getIntValue(int defValue) {
-        return getValue() == null ? defValue : Integer.valueOf(getValue());
+    @Override
+    protected void putString(String key, String value) {
+        Settings.Secure.putString(getContext().getContentResolver(), key, value);
+    }
+
+    @Override
+    protected String getString(String key, String defaultValue) {
+        String result = Settings.Secure.getString(getContext().getContentResolver(), key);
+        return result == null ? defaultValue : result;
     }
 }

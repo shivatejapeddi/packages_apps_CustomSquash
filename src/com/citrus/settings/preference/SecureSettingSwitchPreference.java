@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2015 The CyanogenMod project
+ * Copyright (C) 2018 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +18,11 @@
 package com.citrus.settings.preference;
 
 import android.content.Context;
-import android.support.v14.preference.SwitchPreference;
 import android.provider.Settings;
 import android.util.AttributeSet;
 
-public class SecureSettingSwitchPreference extends SwitchPreference {
+public class SecureSettingSwitchPreference extends CustomSwitchPreference {
+
     public SecureSettingSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
@@ -35,31 +36,18 @@ public class SecureSettingSwitchPreference extends SwitchPreference {
     }
 
     @Override
-    protected boolean persistBoolean(boolean value) {
-        if (shouldPersist()) {
-            if (value == getPersistedBoolean(!value)) {
-                // It's already there, so the same as persisting
-                return true;
-            }
-            Settings.Secure.putInt(getContext().getContentResolver(), getKey(), value ? 1 : 0);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    protected boolean getPersistedBoolean(boolean defaultReturnValue) {
-        if (!shouldPersist()) {
-            return defaultReturnValue;
-        }
-        return Settings.Secure.getInt(getContext().getContentResolver(),
-                getKey(), defaultReturnValue ? 1 : 0) != 0;
-    }
-
-    @Override
     protected boolean isPersisted() {
-        // Using getString instead of getInt so we can simply check for null
-        // instead of catching an exception. (All values are stored as strings.)
         return Settings.Secure.getString(getContext().getContentResolver(), getKey()) != null;
+    }
+
+    @Override
+    protected void putBoolean(String key, boolean value) {
+        Settings.Secure.putInt(getContext().getContentResolver(), key, value ? 1 : 0);
+    }
+
+    @Override
+    protected boolean getBoolean(String key, boolean defaultValue) {
+        return Settings.Secure.getInt(getContext().getContentResolver(),
+                key, defaultValue ? 1 : 0) != 0;
     }
 }
