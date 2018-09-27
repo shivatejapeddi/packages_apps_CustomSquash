@@ -154,8 +154,7 @@ public class ExpandedDesktop extends SettingsPreferenceFragment
 
         mSwitchBar = ((SettingsActivity) getActivity()).getSwitchBar();
         mSwitchBar.addOnSwitchChangeListener(this);
-        mSwitchBar.setOnStateOffLabel(R.string.expanded_enabled_for_all);
-        mSwitchBar.setOnStateOnLabel(R.string.expanded_enabled_for_all);
+        mSwitchBar.setSwitchBarText(R.string.expanded_enabled_for_all, R.string.expanded_enabled_for_all);
         mSwitchBar.show();
 
         mEmptyView = view.findViewById(R.id.nothing_to_show);
