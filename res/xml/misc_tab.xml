@@ -17,13 +17,13 @@
     android:title="@string/misc_title"
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
-<!--
+
     <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="sensor_block"
         android:title="@string/sensor_block_title"
         android:summary="@string/sensor_block_summary"
         android:defaultValue="false" />
-
+<!--
     <Preference
         android:key="suspend_actions"
         android:title="@string/screen_state_toggles_title"
