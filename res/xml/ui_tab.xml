@@ -17,12 +17,12 @@
     android:title="@string/ui_title"
     android:layout="@layout/tab"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" >
-<!--
+
     <Preference
         android:key="expanded_desktop"
         android:fragment="com.citrus.settings.fragments.ExpandedDesktop"
         android:title="@string/expanded_desktop_category" />
-
+<!--
     <ListPreference
         android:key="screen_off_animation"
         android:title="@string/screen_off_animation_title"

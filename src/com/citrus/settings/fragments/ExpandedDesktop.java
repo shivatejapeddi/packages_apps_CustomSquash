@@ -104,8 +104,7 @@ public class ExpandedDesktop extends SettingsPreferenceFragment
 
         mExpandedDesktopState = getExpandedDesktopState(getActivity().getContentResolver());
         if (mExpandedDesktopState == STATE_USER_CONFIGURABLE) {
-            WindowManagerPolicyControl.reloadFromSetting(getActivity(),
-                    Settings.Global.POLICY_CONTROL);
+            WindowManagerPolicyControl.reloadFromSetting(getActivity());
         }
         mAllPackagesAdapter = new AllPackagesAdapter(getActivity());
 
@@ -326,8 +325,7 @@ public class ExpandedDesktop extends SettingsPreferenceFragment
 
     private void save() {
         if (mExpandedDesktopState == STATE_USER_CONFIGURABLE) {
-            WindowManagerPolicyControl.saveToSettings(getActivity(),
-                    Settings.Global.POLICY_CONTROL);
+            WindowManagerPolicyControl.saveToSettings(getActivity());
         }
     }
 
