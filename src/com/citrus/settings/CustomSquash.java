@@ -17,8 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.settings.dashboard.SummaryLoader;
+import com.android.settings.search.actionbar.SearchMenuController;
 import com.android.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.core.InstrumentedFragment;
 
 import com.citrus.settings.tabs.Buttons;
 import com.citrus.settings.tabs.StatusBar;
@@ -32,7 +33,7 @@ import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
 import java.util.Random;
 
-public class CustomSquash extends SettingsPreferenceFragment {
+public class CustomSquash extends InstrumentedFragment {
 
     ViewPager mViewPager;
     String titleString[];
@@ -52,6 +53,7 @@ public class CustomSquash extends SettingsPreferenceFragment {
 
         mTabs.setViewPager(mViewPager);
         setHasOptionsMenu(true);
+
         return view;
     }
 
@@ -62,6 +64,7 @@ public class CustomSquash extends SettingsPreferenceFragment {
 
         // Set actionbar elevation 0 to make tab and actionbar look uniform.
         getActivity().getActionBar().setElevation(0);
+        getActivity().getActionBar().setTitle(R.string.custom_squash_title);
     }
 
     @Override

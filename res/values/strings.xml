@@ -16,7 +16,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- Custom Squash menus -->
-    <string name="custom_squash_title">Custom Squash!</string>
+    <string name="custom_squash_title">Custom Squash</string>
     <string name="keywords_citrus">Citrus-CAF</string>
 
     <!-- Tabs -->
