@@ -43,7 +43,7 @@ import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
-//import com.android.internal.util.custom.CustomUtils;
+import com.android.internal.util.custom.CustomUtils;
 
 import com.citrus.settings.preference.CustomSeekBarPreference;
 import com.citrus.settings.preference.SystemSettingSwitchPreference;
@@ -124,8 +124,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         mQsColumnsLand = (CustomSeekBarPreference) findPreference("qs_columns_landscape");
         mQsColumnsLand.setValue(value);
         mQsColumnsLand.setOnPreferenceChangeListener(this);
-
-
+*/
         mWeatherCategory = (PreferenceCategory) prefScreen.findPreference(CATEGORY_WEATHER);
         if (mWeatherCategory != null && !isOmniJawsServiceInstalled()) {
             prefScreen.removePreference(mWeatherCategory);
@@ -155,7 +154,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             mWeatherIconPack.setSummary(mWeatherIconPack.getEntry());
             mWeatherIconPack.setOnPreferenceChangeListener(this);
         }
-
+/*
         mHeaderBrowse = findPreference(CUSTOM_HEADER_BROWSE);
 
         mHeaderEnabled = (SystemSettingSwitchPreference) findPreference(CUSTOM_HEADER_ENABLED);
@@ -199,8 +198,9 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
 
         mFileHeader = findPreference(FILE_HEADER_SELECT);
         mFileHeader.setEnabled(providerName.equals(mFileHeaderProvider));
+    */
     }
-
+/*
     private void updateHeaderProviderSummary(boolean headerEnabled) {
         mDaylightHeaderPack.setSummary(getResources().getString(R.string.header_provider_disabled));
         if (headerEnabled) {
@@ -215,9 +215,9 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
                 mDaylightHeaderPack.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
                 mDaylightHeaderPack.setSummary(mDaylightHeaderPack.getEntry());
             }
-        }*/
+        }
     }
-
+*/
     @Override
     public int getMetricsCategory() {
         return MetricsEvent.CUSTOM_SQUASH;
@@ -241,7 +241,14 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
 */
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-/*        if (preference == mQsRowsPort) {
+        if (preference == mWeatherIconPack) {
+            String value = (String) objValue;
+            Settings.System.putString(getContentResolver(),
+                    Settings.System.OMNIJAWS_WEATHER_ICON_PACK, value);
+            int valueIndex = mWeatherIconPack.findIndexOfValue(value);
+            mWeatherIconPack.setSummary(mWeatherIconPack.getEntries()[valueIndex]);
+            return true;
+/*        } else if (preference == mQsRowsPort) {
             int val = (Integer) objValue;
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.QS_ROWS_PORTRAIT, val, UserHandle.USER_CURRENT);
@@ -260,13 +267,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             int val = (Integer) objValue;
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.QS_COLUMNS_LANDSCAPE, val, UserHandle.USER_CURRENT);
-            return true;
-        } else if (preference == mWeatherIconPack) {
-            String value = (String) objValue;
-            Settings.System.putString(getContentResolver(),
-                    Settings.System.OMNIJAWS_WEATHER_ICON_PACK, value);
-            int valueIndex = mWeatherIconPack.findIndexOfValue(value);
-            mWeatherIconPack.setSummary(mWeatherIconPack.getEntries()[valueIndex]);
             return true;
         } else if (preference == mDaylightHeaderPack) {
             String value = (String) objValue;
@@ -296,11 +296,11 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         } else if (preference == mHeaderEnabled) {
             Boolean headerEnabled = (Boolean) objValue;
             updateHeaderProviderSummary(headerEnabled);
-            return true;
-        }*/
+            return true;*/
+        }
         return false;
     }
-/*
+
     private boolean isOmniJawsServiceInstalled() {
         return CustomUtils.isAvailableApp(WEATHER_SERVICE_PACKAGE, getActivity());
     }
@@ -359,7 +359,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         }
         return true;
     }
-
+/*
     private boolean isBrowseHeaderAvailable() {
         PackageManager pm = getPackageManager();
         Intent browse = new Intent();
