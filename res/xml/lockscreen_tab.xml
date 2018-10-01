@@ -40,7 +40,7 @@
         android:summary="@string/lockscreen_items_summary"
         android:fragment="com.citrus.settings.fragments.LockScreenItems" />
 
-    <com.citrus.settings.preference.SystemSettingSwitchPreference
+    <com.citrus.settings.preference.SecureSettingSwitchPreference
         android:key="lockscreen_power_menu_disabled"
         android:title="@string/lockscreen_power_menu_disabled_title"
         android:summary="@string/lockscreen_power_menu_disabled_summary"
