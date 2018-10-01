@@ -56,12 +56,12 @@ public class LockScreen extends SettingsPreferenceFragment implements
         PreferenceScreen prefSet = getPreferenceScreen();
 
         ContentResolver resolver = getActivity().getContentResolver();
-/*
+
         mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
         mFingerprintVib = (SystemSettingSwitchPreference) findPreference(FINGERPRINT_VIB);
         if (mFingerprintManager == null || !mFingerprintManager.isHardwareDetected()){
             prefSet.removePreference(mFingerprintVib);
-        }*/
+        }
     }
 
     @Override
@@ -80,14 +80,7 @@ public class LockScreen extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
-/*        if (preference == mFpKeystore) {
-            boolean value = (Boolean) objValue;
-            Settings.System.putInt(getActivity().getContentResolver(),
-                  Settings.System.FP_UNLOCK_KEYSTORE, value ? 1 : 0);
-         return true;
-        }*/
-        return false;
+        return true;
     }
 
     public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
