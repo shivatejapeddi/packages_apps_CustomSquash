@@ -84,7 +84,7 @@ public class SuspendActions extends SettingsPreferenceFragment
         ContentResolver resolver = getActivity().getContentResolver();
 
         mContext = (Context) getActivity();
-/*
+
         mEnableScreenStateToggles = (SwitchPreference) findPreference(
                 SCREEN_STATE_TOOGLES_ENABLE);
 
@@ -153,13 +153,13 @@ public class SuspendActions extends SettingsPreferenceFragment
         }
 
         mMobileDateCategory.setEnabled(enabled != 0);
-        mLocationCategory.setEnabled(enabled != 0);*/
+        mLocationCategory.setEnabled(enabled != 0);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
 
- /*       if (preference == mEnableScreenStateToggles) {
+        if (preference == mEnableScreenStateToggles) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.START_SCREEN_STATE_SERVICE, value ? 1 : 0);
@@ -172,51 +172,41 @@ public class SuspendActions extends SettingsPreferenceFragment
             } else {
                 getActivity().stopService(service);
             }
-
             mMobileDateCategory.setEnabled(value);
             mLocationCategory.setEnabled(value);
-
             return true;
         } else if (preference == mEnableScreenStateTogglesTwoG) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.SCREEN_STATE_TWOG, value ? 1 : 0);
-
             Intent intent = new Intent("android.intent.action.SCREEN_STATE_SERVICE_UPDATE");
             mContext.sendBroadcast(intent);
-
             return true;
         } else if (preference == mEnableScreenStateTogglesGps) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.SCREEN_STATE_GPS, value ? 1 : 0);
-
             Intent intent = new Intent("android.intent.action.SCREEN_STATE_SERVICE_UPDATE");
             mContext.sendBroadcast(intent);
-
             return true;
         } else if (preference == mEnableScreenStateTogglesMobileData) {
             boolean value = (Boolean) newValue;
             Settings.System.putInt(resolver,
                     Settings.System.SCREEN_STATE_MOBILE_DATA, value ? 1 : 0);
-
             Intent intent = new Intent("android.intent.action.SCREEN_STATE_SERVICE_UPDATE");
             mContext.sendBroadcast(intent);
-
             return true;
         } else if (preference == mMinutesOffDelay) {
             int delay = ((Integer) newValue) * 60;
             Settings.System.putInt(resolver,
                     Settings.System.SCREEN_STATE_OFF_DELAY, delay);
-
             return true;
         } else if (preference == mMinutesOnDelay) {
             int delay = ((Integer) newValue) * 60;
             Settings.System.putInt(resolver,
                     Settings.System.SCREEN_STATE_ON_DELAY, delay);
-
             return true;
-        }*/
+        }
         return false;
     }
 
@@ -224,14 +214,14 @@ public class SuspendActions extends SettingsPreferenceFragment
     public void onResume() {
         super.onResume();
     }
-/*
+
     private void restartService(){
         Intent service = (new Intent())
                 .setClassName("com.android.systemui", "com.android.systemui.screenstate.ScreenStateService");
         getActivity().stopService(service);
         getActivity().startService(service);
     }
-*/
+
     public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
             new BaseSearchIndexProvider() {
                 @Override
