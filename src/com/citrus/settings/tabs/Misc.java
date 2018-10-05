@@ -59,8 +59,8 @@ public class Misc extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getActivity().getContentResolver();
 
-        //mCustomSummary = (Preference) findPreference(PREF_CUSTOM_SETTINGS_SUMMARY);
-        //updateCustomSummaryTextString();
+        mCustomSummary = (Preference) findPreference(PREF_CUSTOM_SETTINGS_SUMMARY);
+        updateCustomSummaryTextString();
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Misc extends SettingsPreferenceFragment implements
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         return true;
     }
-/*
+
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
         ContentResolver resolver = getActivity().getContentResolver();
@@ -121,7 +121,7 @@ public class Misc extends SettingsPreferenceFragment implements
             mCustomSummary.setSummary(mCustomSummaryText);
         }
     }
-*/
+
     public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
             new BaseSearchIndexProvider() {
                 @Override

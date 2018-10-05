@@ -116,7 +116,7 @@ public class CustomSquash extends InstrumentedFragment {
             getString(R.string.misc_title)};
         return titleString;
     }
-/*
+
     private static class SummaryProvider implements SummaryLoader.SummaryProvider {
 
         private final Context mContext;
@@ -163,7 +163,7 @@ public class CustomSquash extends InstrumentedFragment {
             return new SummaryProvider(activity, summaryLoader);
         }
     };
-*/
+
     @Override
     public int getMetricsCategory() {
         return MetricsEvent.CUSTOM_SQUASH;

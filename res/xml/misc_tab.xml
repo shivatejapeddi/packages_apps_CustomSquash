@@ -28,7 +28,7 @@
         android:key="suspend_actions"
         android:title="@string/screen_state_toggles_title"
         android:fragment="com.citrus.settings.fragments.SuspendActions" />
-<!--
+
     <PreferenceCategory
         android:title="@string/custom_summary_cat_title">
 
@@ -43,5 +43,5 @@
             android:defaultValue="false" />
 
     </PreferenceCategory>
--->
+
 </PreferenceScreen>
