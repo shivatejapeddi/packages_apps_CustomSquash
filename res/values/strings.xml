@@ -334,4 +334,10 @@
     <string name="sum7">#CAFftw!</string>
     <string name="sum8">#HakunaMatata!</string>
 
+    <!-- Settings dashboard conditions and suggestions -->
+    <string name="dashboard_conditions_title">Dashboard conditions</string>
+    <string name="dashboard_conditions_summary">Enable/disable Conditions on Settings dashboard</string>
+    <string name="dashboard_suggestions_title">Dashboard Suggestions</string>
+    <string name="dashboard_suggestions_summary">Enable/disable Suggestions on Settings dashboard</string>
+
 </resources>
