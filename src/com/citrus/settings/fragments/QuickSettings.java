@@ -100,31 +100,34 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         PreferenceScreen prefScreen = getPreferenceScreen();
 
         final ContentResolver resolver = getActivity().getContentResolver();
-/*
+
+        final int defaultQsRows = getResources().getInteger(com.android.internal.R.integer.quick_settings_num_rows);
+        final int defaultQsColumns = getResources().getInteger(com.android.internal.R.integer.quick_settings_num_columns);
+
         int value = Settings.System.getIntForUser(resolver,
-                Settings.System.QS_ROWS_PORTRAIT, 2, UserHandle.USER_CURRENT);
+                Settings.System.QS_ROWS_PORTRAIT, defaultQsRows, UserHandle.USER_CURRENT);
         mQsRowsPort = (CustomSeekBarPreference) findPreference("qs_rows_portrait");
         mQsRowsPort.setValue(value);
         mQsRowsPort.setOnPreferenceChangeListener(this);
 
         value = Settings.System.getIntForUser(resolver,
-                Settings.System.QS_ROWS_LANDSCAPE, 1, UserHandle.USER_CURRENT);
+                Settings.System.QS_ROWS_LANDSCAPE, defaultQsRows, UserHandle.USER_CURRENT);
         mQsRowsLand = (CustomSeekBarPreference) findPreference("qs_rows_landscape");
         mQsRowsLand.setValue(value);
         mQsRowsLand.setOnPreferenceChangeListener(this);
 
         value = Settings.System.getIntForUser(resolver,
-                Settings.System.QS_COLUMNS_PORTRAIT, 3, UserHandle.USER_CURRENT);
+                Settings.System.QS_COLUMNS_PORTRAIT, defaultQsColumns, UserHandle.USER_CURRENT);
         mQsColumnsPort = (CustomSeekBarPreference) findPreference("qs_columns_portrait");
         mQsColumnsPort.setValue(value);
         mQsColumnsPort.setOnPreferenceChangeListener(this);
 
         value = Settings.System.getIntForUser(resolver,
-                Settings.System.QS_COLUMNS_LANDSCAPE, 3, UserHandle.USER_CURRENT);
+                Settings.System.QS_COLUMNS_LANDSCAPE, defaultQsColumns, UserHandle.USER_CURRENT);
         mQsColumnsLand = (CustomSeekBarPreference) findPreference("qs_columns_landscape");
         mQsColumnsLand.setValue(value);
         mQsColumnsLand.setOnPreferenceChangeListener(this);
-*/
+
         mWeatherCategory = (PreferenceCategory) prefScreen.findPreference(CATEGORY_WEATHER);
         if (mWeatherCategory != null && !isOmniJawsServiceInstalled()) {
             prefScreen.removePreference(mWeatherCategory);
@@ -248,7 +251,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             int valueIndex = mWeatherIconPack.findIndexOfValue(value);
             mWeatherIconPack.setSummary(mWeatherIconPack.getEntries()[valueIndex]);
             return true;
-/*        } else if (preference == mQsRowsPort) {
+        } else if (preference == mQsRowsPort) {
             int val = (Integer) objValue;
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.QS_ROWS_PORTRAIT, val, UserHandle.USER_CURRENT);
@@ -268,7 +271,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.QS_COLUMNS_LANDSCAPE, val, UserHandle.USER_CURRENT);
             return true;
-        } else if (preference == mDaylightHeaderPack) {
+/*        } else if (preference == mDaylightHeaderPack) {
             String value = (String) objValue;
             Settings.System.putString(getContentResolver(),
                     Settings.System.STATUS_BAR_DAYLIGHT_HEADER_PACK, value);
