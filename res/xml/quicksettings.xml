@@ -29,14 +29,14 @@
         android:summary="@string/brightness_icon_summary"
         android:defaultValue="false"
         android:dependency="qs_show_brightness"/>
-
+-->
     <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="qs_tile_title_visibility"
         android:title="@string/qs_tile_title_visibility_title"
         android:summaryOn="@string/qs_tile_title_visibility_summary_on"
         android:summaryOff="@string/qs_tile_title_visibility_summary_off"
         android:defaultValue="true"/>
-
+<!--
     <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="qs_quickbar_scroll_enabled"
         android:title="@string/qqs_scroll_title"
