@@ -17,12 +17,12 @@
     android:title="@string/buttons_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-<!--
+
     <Preference
-        android:key="navigation"
+        android:key="navigation_bar"
         android:fragment="com.citrus.settings.fragments.NavigationBar"
         android:title="@string/navigationbar_settings_title" />
-
+<!--
     <ListPreference
         android:key="torch_power_button_gesture"
         android:title="@string/torch_power_button_gesture_title"
