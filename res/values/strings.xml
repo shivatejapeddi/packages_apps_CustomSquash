@@ -373,4 +373,8 @@
    <string name="navigationbar_settings_summary">Configure navigation buttons</string>
    <string name="hardwarekeys_cat_title">Hardware Keys</string>
 
+   <!-- ANBI -->
+   <string name="anbi_title">Accidental touch</string>
+   <string name="anbi_summary">Prevent interaction with hardware navigation buttons while the screen is being touched</string>
+
 </resources>

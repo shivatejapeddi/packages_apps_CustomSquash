@@ -58,8 +58,9 @@ public class NavigationBar extends SettingsPreferenceFragment implements
     private static final int KEY_MASK_CAMERA = 0x20;
 
     private static final String KEY_NAVIGATION_BAR         = "navigation_bar";
-    private static final String KEY_SWAP_NAVIGATION_KEYS   = "swap_navigation_keys";
+    private static final String KEY_BUTTON_ANBI            = "button_anbi";
     private static final String KEY_BUTTON_BRIGHTNESS      = "button_brightness";
+    private static final String KEY_SWAP_NAVIGATION_KEYS   = "swap_navigation_keys";
 
     private static final String KEY_HOME_LONG_PRESS        = "home_key_long_press";
     private static final String KEY_HOME_DOUBLE_TAP        = "home_key_double_tap";
@@ -101,6 +102,7 @@ public class NavigationBar extends SettingsPreferenceFragment implements
     private ListPreference mCameraDoubleTapAction;
 
     private SwitchPreference mNavigationBar;
+    private SwitchPreference mAnbiPreference;
     private SwitchPreference mSwapNavigationkeys;
     private SwitchPreference mButtonBrightness;
 
@@ -127,6 +129,17 @@ public class NavigationBar extends SettingsPreferenceFragment implements
             } else {
                 mNavigationBar = null;
                 removePreference(KEY_NAVIGATION_BAR);
+            }
+        }
+
+        /* ANBI */
+        mAnbiPreference = (SwitchPreference) findPreference(KEY_BUTTON_ANBI);
+        if (mAnbiPreference != null) {
+            if (mDeviceHardwareKeys != 0) {
+                mAnbiPreference.setOnPreferenceChangeListener(this);
+            } else {
+                mAnbiPreference = null;
+                removePreference(KEY_BUTTON_ANBI);
             }
         }
 
@@ -326,6 +339,8 @@ public class NavigationBar extends SettingsPreferenceFragment implements
             return EMPTY_STRING;
         } else if (preference == mNavigationBar) {
             return Settings.System.NAVIGATION_BAR_ENABLED;
+        } else if (preference == mAnbiPreference) {
+            return Settings.System.ANBI_ENABLED;
         } else if (preference == mSwapNavigationkeys) {
             return Settings.System.SWAP_NAVIGATION_KEYS;
         } else if (preference == mButtonBrightness) {
@@ -374,6 +389,9 @@ public class NavigationBar extends SettingsPreferenceFragment implements
         final boolean hasAppSwitch = (mDeviceHardwareKeys & KEY_MASK_APP_SWITCH) != 0 || navigationBarEnabled;
         final boolean hasCamera = (mDeviceHardwareKeys & KEY_MASK_CAMERA) != 0;
 
+        final boolean anbiEnabled = Settings.System.getIntForUser(resolver,
+                Settings.System.ANBI_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
+
         final boolean swapNavigationkeysEnabled = Settings.System.getIntForUser(resolver,
                 Settings.System.SWAP_NAVIGATION_KEYS, 0, UserHandle.USER_CURRENT) != 0;
 
@@ -382,6 +400,10 @@ public class NavigationBar extends SettingsPreferenceFragment implements
 
         if (mNavigationBar != null) {
             mNavigationBar.setChecked(navigationBarEnabled);
+        }
+
+        if (mAnbiPreference != null) {
+            mAnbiPreference.setChecked(anbiEnabled);
         }
 
         if (mSwapNavigationkeys != null) {

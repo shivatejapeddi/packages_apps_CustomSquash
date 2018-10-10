@@ -22,7 +22,15 @@
         android:key="navigation_bar"
         android:title="@string/enable_navigation_bar_title"
         android:summary="@string/enable_navigation_bar_summary"
-        android:defaultValue="false" />
+        android:defaultValue="false"
+        android:disableDependentsState="true"/>
+
+    <SwitchPreference
+        android:key="button_anbi"
+        android:title="@string/anbi_title"
+        android:summary="@string/anbi_summary"
+        android:persistent="false"
+        android:dependency="navigation_bar" />
 
     <SwitchPreference
         android:key="swap_navigation_keys"
