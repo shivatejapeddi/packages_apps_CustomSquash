@@ -70,6 +70,9 @@
     <!-- Pin scramble -->
     <string name="unlock_scramble_pin_layout_title">Scramble PIN layout</string>
     <string name="unlock_scramble_pin_layout_summary">Scramble PIN layout when unlocking device</string>
+    <!-- Quick unlock -->
+    <string name="unlock_quick_unlock_control_title">Quick unlock</string>
+    <string name="unlock_quick_unlock_control_summary">Immediately unlock on correct PIN/Password entry</string>
 
     <!-- Media art -->
     <string name="media_art_title">Media cover art</string>
