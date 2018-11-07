@@ -27,6 +27,7 @@ import android.provider.Settings;
 
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.text.Spannable;
@@ -39,12 +40,16 @@ import com.android.settings.search.Indexable;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 
+import com.citrus.settings.preference.SystemSettingSwitchPreference;
+import com.citrus.settings.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Misc extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, Indexable {
 
+    private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
     private static final String PREF_CUSTOM_SETTINGS_SUMMARY = "custom_settings_summary";
 
     private Preference mCustomSummary;
@@ -61,6 +66,11 @@ public class Misc extends SettingsPreferenceFragment implements
 
         mCustomSummary = (Preference) findPreference(PREF_CUSTOM_SETTINGS_SUMMARY);
         updateCustomSummaryTextString();
+
+        PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
+        if (!Utils.isVoiceCapable(getActivity())) {
+            prefSet.removePreference(incallVibCategory);
+        }
     }
 
     @Override
