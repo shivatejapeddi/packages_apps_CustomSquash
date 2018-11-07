@@ -22,13 +22,15 @@
         android:key="navigation_bar"
         android:fragment="com.citrus.settings.fragments.NavigationBar"
         android:title="@string/navigationbar_settings_title" />
-<!--
+
     <ListPreference
         android:key="torch_power_button_gesture"
         android:title="@string/torch_power_button_gesture_title"
+        android:dialogTitle="@string/torch_power_button_gesture_title"
         android:entries="@array/torch_power_button_gesture_entries"
         android:entryValues="@array/torch_power_button_gesture_values" />
 
+<!--
     <com.citrus.settings.preference.SystemSettingSwitchPreference
         android:key="volume_rocker_wake"
         android:title="@string/volume_rocker_wake_title"
